@@ -59,7 +59,7 @@ const PasswordResetForm = () => {
     setDisableButton(true);
     if (!email) return;
     if (turnstileEnabled && turnstileToken === '') {
-      showInfo('请稍后几秒重试，Turnstile 正在检查用户环境！');
+      showInfo('Please wait a few seconds and try again. Turnstile is checking the user environment!');
       return;
     }
     setLoading(true);
@@ -132,7 +132,7 @@ const PasswordResetForm = () => {
                 loading={loading}
                 disabled={disableButton}
                 style={{
-                  background: '#2F73FF', // 使用更现代的蓝色
+                  background: '#2F73FF', // Use a more modern blue
                   color: 'white',
                   marginBottom: '1.5em',
                 }}

@@ -65,14 +65,14 @@ function App() {
           import.meta.env.REACT_APP_VERSION !== ''
         ) {
           showNotice(
-            `新版本可用：${data.version}，请使用快捷键 Shift + F5 刷新页面`,
+            `New version ${data.version} is available! Please use the shortcut Shift + F5 to refresh the page.`,
           );
         }
       } else {
-        showError(message || '无法正常连接至服务器！');
+        showError(message || 'Unable to connect to the server!');
       }
     } catch (error) {
-      showError(error.message || '无法正常连接至服务器！');
+      showError(error.message || 'Unable to connect to the server!');
     }
   };
 

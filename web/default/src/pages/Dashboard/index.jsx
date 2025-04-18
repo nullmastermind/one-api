@@ -16,7 +16,7 @@ import {
 import axios from 'axios';
 import './Dashboard.css';
 
-// 在 Dashboard 组件内添加自定义配置
+// Add custom configurations to the Dashboard component.
 const chartConfig = {
   lineChart: {
     style: {
@@ -40,16 +40,16 @@ const chartConfig = {
     tokens: '#6C63FF',
   },
   barColors: [
-    '#4318FF', // 深紫色
-    '#00B5D8', // 青色
-    '#6C63FF', // 紫色
-    '#05CD99', // 绿色
-    '#FFB547', // 橙色
-    '#FF5E7D', // 粉色
-    '#41B883', // 翠绿
-    '#7983FF', // 淡紫
-    '#FF8F6B', // 珊瑚色
-    '#49BEFF', // 天蓝
+    '#4318FF',
+    '#00B5D8',
+    '#6C63FF',
+    '#05CD99',
+    '#FFB547',
+    '#FF5E7D',
+    '#41B883',
+    '#7983FF',
+    '#FF8F6B',
+    '#49BEFF',
   ],
 };
 
@@ -110,26 +110,22 @@ const Dashboard = () => {
     setSummaryData(summary);
   };
 
-  // 处理数据以供折线图使用，补充缺失的日期
   const processTimeSeriesData = () => {
     const dailyData = {};
 
-    // 获取日期范围
     const dates = data.map((item) => item.Day);
-    const maxDate = new Date(); // 总是使用今天作为最后一天
+    const maxDate = new Date();
     let minDate =
       dates.length > 0
         ? new Date(Math.min(...dates.map((d) => new Date(d))))
         : new Date();
 
-    // 确保至少显示7天的数据
     const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // -6是因为包含今天
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // -6 because it includes today
     if (minDate > sevenDaysAgo) {
       minDate = sevenDaysAgo;
     }
 
-    // 生成所有日期
     for (let d = new Date(minDate); d <= maxDate; d.setDate(d.getDate() + 1)) {
       const dateStr = d.toISOString().split('T')[0];
       dailyData[dateStr] = {
@@ -140,7 +136,6 @@ const Dashboard = () => {
       };
     }
 
-    // 填充实际数据
     data.forEach((item) => {
       dailyData[item.Day].requests += item.RequestCount;
       dailyData[item.Day].quota += item.Quota / 1000000;
@@ -152,40 +147,40 @@ const Dashboard = () => {
     );
   };
 
-  // 处理数据以供堆叠柱状图使用
+  // Processing data for stacked bar charts!
   const processModelData = () => {
     const timeData = {};
 
-    // 获取日期范围
+    // Get date range
     const dates = data.map((item) => item.Day);
-    const maxDate = new Date(); // 总是使用今天作为最后一天
+    const maxDate = new Date(); // Always treat today as if it's your last.
     let minDate =
       dates.length > 0
         ? new Date(Math.min(...dates.map((d) => new Date(d))))
         : new Date();
 
-    // 确保至少显示7天的数据
+    // Make sure to display at least 7 days of data!
     const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // -6是因为包含今天
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // -6 because it includes today.
     if (minDate > sevenDaysAgo) {
       minDate = sevenDaysAgo;
     }
 
-    // 生成所有日期
+    // Generate all dates
     for (let d = new Date(minDate); d <= maxDate; d.setDate(d.getDate() + 1)) {
       const dateStr = d.toISOString().split('T')[0];
       timeData[dateStr] = {
         date: dateStr,
       };
 
-      // 初始化所有模型的数据为0
+      // Initialize all model data to 0.
       const models = [...new Set(data.map((item) => item.ModelName))];
       models.forEach((model) => {
         timeData[dateStr][model] = 0;
       });
     }
 
-    // 填充实际数据
+    // Fill in the actual data
     data.forEach((item) => {
       timeData[item.Day][item.ModelName] =
         item.PromptTokens + item.CompletionTokens;
@@ -194,7 +189,7 @@ const Dashboard = () => {
     return Object.values(timeData).sort((a, b) => a.date.localeCompare(b.date));
   };
 
-  // 获取所有唯一的模型名称
+  // Get all unique model names
   const getUniqueModels = () => {
     return [...new Set(data.map((item) => item.ModelName))];
   };
@@ -203,12 +198,12 @@ const Dashboard = () => {
   const modelData = processModelData();
   const models = getUniqueModels();
 
-  // 生成随机颜色
+  // Generate a random color
   const getRandomColor = (index) => {
     return chartConfig.barColors[index % chartConfig.barColors.length];
   };
 
-  // 添加一个日期格式化函数
+  // Add a date formatting function
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('zh-CN', {
@@ -217,7 +212,7 @@ const Dashboard = () => {
     });
   };
 
-  // 修改所有 XAxis 配置
+  // Modify all XAxis configurations
   const xAxisConfig = {
     dataKey: 'date',
     axisLine: false,
@@ -225,17 +220,17 @@ const Dashboard = () => {
     tick: {
       fontSize: 12,
       fill: '#A3AED0',
-      textAnchor: 'middle', // 文本居中对齐
+      textAnchor: 'middle', // Center-aligned text!
     },
     tickFormatter: formatDate,
     interval: 0,
     minTickGap: 5,
-    padding: { left: 30, right: 30 }, // 增加两侧的内边距，确保首尾标签完整显示
+    padding: { left: 30, right: 30 }, // Add padding to both sides to make sure the first and last labels are fully displayed.
   };
 
   return (
     <div className='dashboard-container'>
-      {/* 三个并排的折线图 */}
+      {/* Three line charts, side by side! */}
       <Grid columns={3} stackable className='charts-grid'>
         <Grid.Column>
           <Card fluid className='chart-card'>
@@ -248,7 +243,7 @@ const Dashboard = () => {
                 <ResponsiveContainer
                   width='100%'
                   height={120}
-                  margin={{ left: 10, right: 10 }} // 调整容器边距
+                  margin={{ left: 10, right: 10 }}
                 >
                   <LineChart data={timeSeriesData}>
                     <CartesianGrid
@@ -304,7 +299,7 @@ const Dashboard = () => {
                 <ResponsiveContainer
                   width='100%'
                   height={120}
-                  margin={{ left: 10, right: 10 }} // 调整容器边距
+                  margin={{ left: 10, right: 10 }}
                 >
                   <LineChart data={timeSeriesData}>
                     <CartesianGrid
@@ -358,7 +353,7 @@ const Dashboard = () => {
                 <ResponsiveContainer
                   width='100%'
                   height={120}
-                  margin={{ left: 10, right: 10 }} // 调整容器边距
+                  margin={{ left: 10, right: 10 }}
                 >
                   <LineChart data={timeSeriesData}>
                     <CartesianGrid
@@ -402,7 +397,7 @@ const Dashboard = () => {
         </Grid.Column>
       </Grid>
 
-      {/* 模型使用统计 */}
+      {/* Model usage stats */}
       <Card fluid className='chart-card'>
         <Card.Content>
           <Card.Header>{t('dashboard.statistics.title')}</Card.Header>

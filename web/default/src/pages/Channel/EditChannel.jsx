@@ -309,22 +309,20 @@ const EditChannel = () => {
             {inputs.type === 3 && (
               <>
                 <Message>
-                  注意，<strong>模型部署名称必须和模型名称保持一致</strong>
-                  ，因为 One API 会把请求体中的 model
-                  参数替换为你的部署名称（模型名称中的点会被剔除），
+                  Heads up! Make sure your model deployment name matches your model name. One API swaps the 'model' parameter in the request body with your deployment name (dots in the model name get removed).
                   <a
                     target='_blank'
                     href='https://github.com/songquanpeng/one-api/issues/133?notification_referrer_id=NT_kwDOAmJSYrM2NjIwMzI3NDgyOjM5OTk4MDUw#issuecomment-1571602271'
                   >
-                    图片演示
+                    Image demo
                   </a>
-                  。
+                  .
                 </Message>
                 <Form.Field>
                   <Form.Input
                     label='AZURE_OPENAI_ENDPOINT'
                     name='base_url'
-                    placeholder='请输入 AZURE_OPENAI_ENDPOINT，例如：https://docs-test-001.openai.azure.com'
+                    placeholder='Please enter your AZURE_OPENAI_ENDPOINT, e.g., https://docs-test-001.openai.azure.com'
                     onChange={handleInputChange}
                     value={inputs.base_url}
                     autoComplete='new-password'
@@ -332,9 +330,9 @@ const EditChannel = () => {
                 </Form.Field>
                 <Form.Field>
                   <Form.Input
-                    label='默认 API 版本'
+                    label='Default API Version'
                     name='other'
-                    placeholder='请输入默认 API 版本，例如：2024-03-01-preview，该配置可以被实际的请求查询参数所覆盖'
+                    placeholder='Enter the default API version, e.g., 2024-03-01-preview. This setting can be overridden by the actual request query parameters.'
                     onChange={handleInputChange}
                     value={inputs.other}
                     autoComplete='new-password'
@@ -640,7 +638,7 @@ const EditChannel = () => {
                   name='user_id'
                   required
                   placeholder={
-                    '请输入 Account ID，例如：d8d7c61dbc334c32d3ced580e4bf42b4'
+                    'Enter Account ID, e.g., d8d7c61dbc334c32d3ced580e4bf42b4'
                   }
                   onChange={handleConfigChange}
                   value={config.user_id}
@@ -675,10 +673,10 @@ const EditChannel = () => {
             {inputs.type === 22 && (
               <Form.Field>
                 <Form.Input
-                  label='私有部署地址'
+                  label='Private deployment address'
                   name='base_url'
                   placeholder={
-                    '请输入私有部署地址，格式为：https://fastgpt.run/api/openapi'
+                    'Please enter your private deployment address, in the format: https://fastgpt.run/api/openapi'
                   }
                   onChange={handleInputChange}
                   value={inputs.base_url}

@@ -1,24 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/User';
-import { useTranslation } from 'react-i18next';
+import React, {useContext, useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {UserContext} from '../context/User';
+import {useTranslation} from 'react-i18next';
 
-import {
-  Button,
-  Container,
-  Dropdown,
-  Icon,
-  Menu,
-  Segment,
-} from 'semantic-ui-react';
-import {
-  API,
-  getLogo,
-  getSystemName,
-  isAdmin,
-  isMobile,
-  showSuccess,
-} from '../helpers';
+import {Button, Container, Dropdown, Icon, Menu, Segment,} from 'semantic-ui-react';
+import {API, getLogo, getSystemName, isAdmin, isMobile, showSuccess,} from '../helpers';
 import '../index.css';
 
 // Header Buttons
@@ -93,7 +79,7 @@ const Header = () => {
   async function logout() {
     setShowSidebar(false);
     await API.get('/api/user/logout');
-    showSuccess('注销成功!');
+    showSuccess('Successfully logged out!');
     userDispatch({ type: 'logout' });
     localStorage.removeItem('user');
     navigate('/login');
@@ -140,7 +126,7 @@ const Header = () => {
 
   // Add language switcher dropdown
   const languageOptions = [
-    { key: 'zh', text: '中文', value: 'zh' },
+    { key: 'zh', text: 'Tiếng Việt', value: 'zh' },
     { key: 'en', text: 'English', value: 'en' },
   ];
 

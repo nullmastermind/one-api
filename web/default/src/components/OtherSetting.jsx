@@ -104,7 +104,7 @@ const OtherSetting = () => {
     );
     const { tag_name, body } = res.data;
     if (tag_name === import.meta.env.REACT_APP_VERSION) {
-      showSuccess(`已是最新版本：${tag_name}`);
+      showSuccess(`Already up to date: ${tag_name}`);
     } else {
       setUpdateData({
         tag_name: tag_name,
@@ -229,16 +229,16 @@ const OtherSetting = () => {
         onOpen={() => setShowUpdateModal(true)}
         open={showUpdateModal}
       >
-        <Modal.Header>新版本：{updateData.tag_name}</Modal.Header>
+        <Modal.Header>New version: {updateData.tag_name}</Modal.Header>
         <Modal.Content>
           <Modal.Description>
             <div dangerouslySetInnerHTML={{ __html: updateData.content }}></div>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={() => setShowUpdateModal(false)}>关闭</Button>
+          <Button onClick={() => setShowUpdateModal(false)}>Close</Button>
           <Button
-            content='详情'
+            content='Details'
             onClick={() => {
               setShowUpdateModal(false);
               openGitHubRelease();

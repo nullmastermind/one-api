@@ -4,8 +4,8 @@ import { Message } from 'semantic-ui-react';
 const NotFound = () => (
   <>
     <Message negative>
-      <Message.Header>页面不存在</Message.Header>
-      <p>请检查你的浏览器地址是否正确</p>
+      <Message.Header>Page not found!</Message.Header>
+      <p>Please check if your browser address is correct.</p>
     </Message>
   </>
 );

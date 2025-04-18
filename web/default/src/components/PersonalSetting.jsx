@@ -82,7 +82,7 @@ const PersonalSetting = () => {
       setSystemToken(data);
       setAffLink('');
       await copy(data);
-      showSuccess(`令牌已重置并已复制到剪贴板`);
+      showSuccess(`Token reset and copied to clipboard!`);
     } else {
       showError(message);
     }
@@ -96,7 +96,7 @@ const PersonalSetting = () => {
       setAffLink(link);
       setSystemToken('');
       await copy(link);
-      showSuccess(`邀请链接已复制到剪切板`);
+      showSuccess(`Invite link copied to clipboard!`);
     } else {
       showError(message);
     }
@@ -105,18 +105,18 @@ const PersonalSetting = () => {
   const handleAffLinkClick = async (e) => {
     e.target.select();
     await copy(e.target.value);
-    showSuccess(`邀请链接已复制到剪切板`);
+    showSuccess(`Invite link copied to clipboard!`);
   };
 
   const handleSystemTokenClick = async (e) => {
     e.target.select();
     await copy(e.target.value);
-    showSuccess(`系统令牌已复制到剪切板`);
+    showSuccess(`System token copied to clipboard!`);
   };
 
   const deleteAccount = async () => {
     if (inputs.self_account_deletion_confirmation !== userState.user.username) {
-      showError('请输入你的账户名以确认删除！');
+      showError('Please enter your account name to confirm deletion!');
       return;
     }
 
@@ -124,7 +124,7 @@ const PersonalSetting = () => {
     const { success, message } = res.data;
 
     if (success) {
-      showSuccess('账户已删除！');
+      showSuccess('Account deleted!');
       await API.get('/api/user/logout');
       userDispatch({ type: 'logout' });
       localStorage.removeItem('user');
@@ -141,7 +141,7 @@ const PersonalSetting = () => {
     );
     const { success, message } = res.data;
     if (success) {
-      showSuccess('微信账户绑定成功！');
+      showSuccess('WeChat account successfully linked!');
       setShowWeChatBindModal(false);
     } else {
       showError(message);
@@ -152,7 +152,7 @@ const PersonalSetting = () => {
     setDisableButton(true);
     if (inputs.email === '') return;
     if (turnstileEnabled && turnstileToken === '') {
-      showInfo('请稍后几秒重试，Turnstile 正在检查用户环境！');
+      showInfo('Please wait a few seconds and try again. Turnstile is checking the user environment!');
       return;
     }
     setLoading(true);
@@ -161,7 +161,7 @@ const PersonalSetting = () => {
     );
     const { success, message } = res.data;
     if (success) {
-      showSuccess('验证码发送成功，请检查邮箱！');
+      showSuccess('Verification code sent! Please check your email.');
     } else {
       showError(message);
     }
@@ -176,7 +176,7 @@ const PersonalSetting = () => {
     );
     const { success, message } = res.data;
     if (success) {
-      showSuccess('邮箱账户绑定成功！');
+      showSuccess('Email account successfully linked!');
       setShowEmailBindModal(false);
     } else {
       showError(message);

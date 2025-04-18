@@ -254,7 +254,7 @@ const UsersTable = () => {
                   <Table.Cell>{user.id}</Table.Cell>
                   <Table.Cell>
                     <Popup
-                      content={user.email ? user.email : '未绑定邮箱地址'}
+                      content={user.email ? user.email : 'Unbound email address'}
                       key={user.username}
                       header={
                         user.display_name ? user.display_name : user.username
@@ -265,7 +265,7 @@ const UsersTable = () => {
                   </Table.Cell>
                   <Table.Cell>{renderGroup(user.group)}</Table.Cell>
                   {/*<Table.Cell>*/}
-                  {/*  {user.email ? <Popup hoverable content={user.email} trigger={<span>{renderText(user.email, 24)}</span>} /> : '无'}*/}
+                  {/*  {user.email ? <Popup hoverable content={user.email} trigger={<span>{renderText(user.email, 24)}</span>} /> : 'None'}*/}
                   {/*</Table.Cell>*/}
                   <Table.Cell>
                     <Popup

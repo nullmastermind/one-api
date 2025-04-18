@@ -141,7 +141,7 @@ const LoginForm = () => {
                 fluid
                 size='large'
                 style={{
-                  background: '#2F73FF', // 使用更现代的蓝色
+                  background: '#2F73FF', // Use a more modern blue.
                   color: 'white',
                   marginBottom: '1.5em',
                 }}

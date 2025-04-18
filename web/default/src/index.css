@@ -57,7 +57,7 @@ code {
   }
 }
 
-/* 小屏笔记本 (13-14寸) */
+/* Small screen laptops (13-14 inches) */
 @media screen and (min-width: 769px) and (max-width: 1366px) {
   .ui.container {
     width: auto !important;
@@ -67,12 +67,12 @@ code {
     padding: 0 24px !important;
   }
 
-  /* 调整表格显示 */
+  /* Adjust table display */
   .ui.table {
     font-size: 0.9em;
   }
 
-  /* 调整卡片布局 */
+  /* Adjust card layout */
   .ui.cards {
     margin-left: -0.5em !important;
     margin-right: -0.5em !important;
@@ -84,7 +84,7 @@ code {
   }
 }
 
-/* 大屏幕 */
+/* Big screen */
 @media screen and (min-width: 1367px) {
   .ui.container {
     width: 1200px !important;
@@ -94,7 +94,7 @@ code {
   }
 }
 
-/* 优化 Dashboard 网格布局 */
+/* Optimizing the Dashboard grid layout */
 @media screen and (max-width: 1366px) {
   .charts-grid {
     margin: 0 -0.5em !important;
@@ -108,7 +108,7 @@ code {
     margin: 0 !important;
   }
 
-  /* 调整字体大小 */
+  /* Adjust font size */
   .ui.header {
     font-size: 1.1em !important;
   }
