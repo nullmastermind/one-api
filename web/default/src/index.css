@@ -72,7 +72,8 @@
 /* Big screen */
 @media screen and (min-width: 1367px) {
   .ui.container {
-    width: 1200px !important;
+    width: calc(100% - 3rem) !important;
+    max-width: 1200px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     padding: 0 !important;

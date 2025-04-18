@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card } from 'semantic-ui-react';
 
+import { Button } from '@/components/ui/button.js';
+
 import { API, showError } from '../../helpers';
 
 const About = () => {
