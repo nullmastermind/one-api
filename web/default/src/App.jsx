@@ -11,7 +11,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 import RegisterForm from './components/RegisterForm';
 import { StatusContext } from './context/Status';
 import { UserContext } from './context/User';
-import { API, getLogo, getSystemName, showError, showNotice } from './helpers';
+import { API, getLogo, getSystemName, showError } from './helpers';
 import Channel from './pages/Channel';
 import EditChannel from './pages/Channel/EditChannel';
 import Chat from './pages/Chat';
@@ -65,9 +65,9 @@ function App() {
           data.version !== 'v0.0.0' &&
           import.meta.env.REACT_APP_VERSION !== ''
         ) {
-          showNotice(
-            `New version ${data.version} is available! Please use the shortcut Shift + F5 to refresh the page.`,
-          );
+          // showNotice(
+          //   `New version ${data.version} is available! Please use the shortcut Shift + F5 to refresh the page.`,
+          // );
         }
       } else {
         showError(message || 'Unable to connect to the server!');
