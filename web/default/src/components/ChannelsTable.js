@@ -433,20 +433,20 @@ const ChannelsTable = () => {
           onChange={handleKeywordChange}
         />
       </Form>
-      {showPrompt && (
-        <Message
-          onDismiss={() => {
-            setShowPrompt(false);
-            setPromptShown(promptID);
-          }}
-        >
-          {t('channel.balance_notice')}
-          <br />
-          {t('channel.test_notice')}
-          <br />
-          {t('channel.detail_notice')}
-        </Message>
-      )}
+      {/*{showPrompt && (*/}
+      {/*  <Message*/}
+      {/*    onDismiss={() => {*/}
+      {/*      setShowPrompt(false);*/}
+      {/*      setPromptShown(promptID);*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    {t('channel.balance_notice')}*/}
+      {/*    <br />*/}
+      {/*    {t('channel.test_notice')}*/}
+      {/*    <br />*/}
+      {/*    {t('channel.detail_notice')}*/}
+      {/*  </Message>*/}
+      {/*)}*/}
       <Table basic={'very'} compact size='small'>
         <Table.Header>
           <Table.Row>
