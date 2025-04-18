@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Card, Grid} from 'semantic-ui-react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Card, Grid } from 'semantic-ui-react';
 import {
   Bar,
   BarChart,
@@ -97,13 +97,13 @@ const Dashboard = () => {
     const summary = {
       todayRequests: todayData.reduce(
         (sum, item) => sum + item.RequestCount,
-        0
+        0,
       ),
       todayQuota:
         todayData.reduce((sum, item) => sum + item.Quota, 0) / 1000000,
       todayTokens: todayData.reduce(
         (sum, item) => sum + item.PromptTokens + item.CompletionTokens,
-        0
+        0,
       ),
     };
 
@@ -148,7 +148,7 @@ const Dashboard = () => {
     });
 
     return Object.values(dailyData).sort((a, b) =>
-      a.date.localeCompare(b.date)
+      a.date.localeCompare(b.date),
     );
   };
 
@@ -272,7 +272,7 @@ const Dashboard = () => {
                       ]}
                       labelFormatter={(label) =>
                         `${t(
-                          'dashboard.statistics.tooltip.date'
+                          'dashboard.statistics.tooltip.date',
                         )}: ${formatDate(label)}`
                       }
                     />
@@ -328,7 +328,7 @@ const Dashboard = () => {
                       ]}
                       labelFormatter={(label) =>
                         `${t(
-                          'dashboard.statistics.tooltip.date'
+                          'dashboard.statistics.tooltip.date',
                         )}: ${formatDate(label)}`
                       }
                     />
@@ -382,7 +382,7 @@ const Dashboard = () => {
                       ]}
                       labelFormatter={(label) =>
                         `${t(
-                          'dashboard.statistics.tooltip.date'
+                          'dashboard.statistics.tooltip.date',
                         )}: ${formatDate(label)}`
                       }
                     />
@@ -429,7 +429,7 @@ const Dashboard = () => {
                   }}
                   labelFormatter={(label) =>
                     `${t('dashboard.statistics.tooltip.date')}: ${formatDate(
-                      label
+                      label,
                     )}`
                   }
                 />

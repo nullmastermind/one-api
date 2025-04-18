@@ -85,7 +85,9 @@ const EditRedemption = () => {
       <Card fluid className='chart-card'>
         <Card.Content>
           <Card.Header className='header'>
-            {isEdit ? t('redemption.edit.title_edit') : t('redemption.edit.title_create')}
+            {isEdit
+              ? t('redemption.edit.title_edit')
+              : t('redemption.edit.title_create')}
           </Card.Header>
           <Form loading={loading} autoComplete='new-password'>
             <Form.Field>

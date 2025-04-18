@@ -374,7 +374,7 @@ const TokensTable = () => {
           {tokens
             .slice(
               (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE
+              activePage * ITEMS_PER_PAGE,
             )
             .map((token, idx) => {
               if (token.deleted) return <></>;
@@ -392,7 +392,7 @@ const TokensTable = () => {
                   onClick: async () => {
                     await onOpenLink(option.value, token.key);
                   },
-                })
+                }),
               );
 
               return (
@@ -471,7 +471,7 @@ const TokensTable = () => {
                           manageToken(
                             token.id,
                             token.status === 1 ? 'disable' : 'enable',
-                            idx
+                            idx,
                           );
                         }}
                       >

@@ -250,7 +250,7 @@ const EditToken = () => {
               <Form.Input
                 label={`${t('token.edit.quota')}${renderQuotaWithPrompt(
                   remain_quota,
-                  t
+                  t,
                 )}`}
                 name='remain_quota'
                 placeholder={t('token.edit.quota_placeholder')}

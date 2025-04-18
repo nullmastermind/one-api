@@ -36,7 +36,7 @@ const OperationSetting = () => {
   const [originInputs, setOriginInputs] = useState({});
   let [loading, setLoading] = useState(false);
   let [historyTimestamp, setHistoryTimestamp] = useState(
-    timestamp2string(now.getTime() / 1000 - 30 * 24 * 3600)
+    timestamp2string(now.getTime() / 1000 - 30 * 24 * 3600),
   ); // a month ago
 
   const getOptions = async () => {
@@ -103,7 +103,7 @@ const OperationSetting = () => {
         ) {
           await updateOption(
             'ChannelDisableThreshold',
-            inputs.ChannelDisableThreshold
+            inputs.ChannelDisableThreshold,
           );
         }
         if (
@@ -111,7 +111,7 @@ const OperationSetting = () => {
         ) {
           await updateOption(
             'QuotaRemindThreshold',
-            inputs.QuotaRemindThreshold
+            inputs.QuotaRemindThreshold,
           );
         }
         break;
@@ -172,7 +172,7 @@ const OperationSetting = () => {
   const deleteHistoryLogs = async () => {
     console.log(inputs);
     const res = await API.delete(
-      `/api/log/?target_timestamp=${Date.parse(historyTimestamp) / 1000}`
+      `/api/log/?target_timestamp=${Date.parse(historyTimestamp) / 1000}`,
     );
     const { success, message, data } = res.data;
     if (success) {
@@ -217,7 +217,7 @@ const OperationSetting = () => {
               type='number'
               min='0'
               placeholder={t(
-                'setting.operation.quota.inviter_reward_placeholder'
+                'setting.operation.quota.inviter_reward_placeholder',
               )}
             />
             <Form.Input
@@ -229,7 +229,7 @@ const OperationSetting = () => {
               type='number'
               min='0'
               placeholder={t(
-                'setting.operation.quota.invitee_reward_placeholder'
+                'setting.operation.quota.invitee_reward_placeholder',
               )}
             />
           </Form.Group>
@@ -323,7 +323,7 @@ const OperationSetting = () => {
               type='number'
               min='0'
               placeholder={t(
-                'setting.operation.monitor.max_response_time_placeholder'
+                'setting.operation.monitor.max_response_time_placeholder',
               )}
             />
             <Form.Input
@@ -335,7 +335,7 @@ const OperationSetting = () => {
               type='number'
               min='0'
               placeholder={t(
-                'setting.operation.monitor.quota_reminder_placeholder'
+                'setting.operation.monitor.quota_reminder_placeholder',
               )}
             />
           </Form.Group>
@@ -372,7 +372,7 @@ const OperationSetting = () => {
               value={inputs.TopUpLink}
               type='link'
               placeholder={t(
-                'setting.operation.general.topup_link_placeholder'
+                'setting.operation.general.topup_link_placeholder',
               )}
             />
             <Form.Input
@@ -393,7 +393,7 @@ const OperationSetting = () => {
               type='number'
               step='0.01'
               placeholder={t(
-                'setting.operation.general.quota_per_unit_placeholder'
+                'setting.operation.general.quota_per_unit_placeholder',
               )}
             />
             <Form.Input
@@ -406,7 +406,7 @@ const OperationSetting = () => {
               autoComplete='new-password'
               value={inputs.RetryTimes}
               placeholder={t(
-                'setting.operation.general.retry_times_placeholder'
+                'setting.operation.general.retry_times_placeholder',
               )}
             />
           </Form.Group>

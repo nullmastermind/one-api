@@ -1,10 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Button, Card, Form, Input, Message} from 'semantic-ui-react';
-import {useNavigate, useParams} from 'react-router-dom';
-import {API, copy, getChannelModels, showError, showInfo, showSuccess, verifyJSON,} from '../../helpers';
-import {CHANNEL_OPTIONS} from '../../constants';
-import {renderChannelTip} from '../../helpers/render';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Button, Card, Form, Input, Message } from 'semantic-ui-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  API,
+  copy,
+  getChannelModels,
+  showError,
+  showInfo,
+  showSuccess,
+  verifyJSON,
+} from '../../helpers';
+import { CHANNEL_OPTIONS } from '../../constants';
+import { renderChannelTip } from '../../helpers/render';
 
 const MODEL_MAPPING_EXAMPLE = {
   'gpt-3.5-turbo-0301': 'gpt-3.5-turbo',
@@ -98,7 +106,7 @@ const EditChannel = () => {
         data.model_mapping = JSON.stringify(
           JSON.parse(data.model_mapping),
           null,
-          2
+          2,
         );
       }
       setInputs(data);
@@ -135,7 +143,7 @@ const EditChannel = () => {
           key: group,
           text: group,
           value: group,
-        }))
+        })),
       );
     } catch (error) {
       showError(error.message);
@@ -198,7 +206,7 @@ const EditChannel = () => {
     if (localInputs.base_url && localInputs.base_url.endsWith('/')) {
       localInputs.base_url = localInputs.base_url.slice(
         0,
-        localInputs.base_url.length - 1
+        localInputs.base_url.length - 1,
       );
     }
     if (localInputs.type === 3 && localInputs.other === '') {
@@ -339,20 +347,20 @@ const EditChannel = () => {
             {inputs.type === 8 && (
               <Form.Field>
                 <Form.Input
-                    required
-                    label={t('channel.edit.proxy_url')}
-                    name='base_url'
-                    placeholder={t('channel.edit.proxy_url_placeholder')}
-                    onChange={handleInputChange}
-                    value={inputs.base_url}
-                    autoComplete='new-password'
+                  required
+                  label={t('channel.edit.proxy_url')}
+                  name='base_url'
+                  placeholder={t('channel.edit.proxy_url_placeholder')}
+                  onChange={handleInputChange}
+                  value={inputs.base_url}
+                  autoComplete='new-password'
                 />
               </Form.Field>
             )}
             {inputs.type === 50 && (
-                <Form.Field>
-                  <Form.Input
-                      required
+              <Form.Field>
+                <Form.Input
+                  required
                   label={t('channel.edit.base_url')}
                   name='base_url'
                   placeholder={t('channel.edit.base_url_placeholder')}
@@ -493,7 +501,7 @@ const EditChannel = () => {
                   <Form.TextArea
                     label={t('channel.edit.model_mapping')}
                     placeholder={`${t(
-                      'channel.edit.model_mapping_placeholder'
+                      'channel.edit.model_mapping_placeholder',
                     )}\n${JSON.stringify(MODEL_MAPPING_EXAMPLE, null, 2)}`}
                     name='model_mapping'
                     onChange={handleInputChange}
@@ -651,13 +659,13 @@ const EditChannel = () => {
             {inputs.type !== 3 &&
               inputs.type !== 33 &&
               inputs.type !== 8 &&
-                inputs.type !== 50 &&
+              inputs.type !== 50 &&
               inputs.type !== 22 && (
                 <Form.Field>
                   <Form.Input
-                      label={t('channel.edit.proxy_url')}
+                    label={t('channel.edit.proxy_url')}
                     name='base_url'
-                      placeholder={t('channel.edit.proxy_url_placeholder')}
+                    placeholder={t('channel.edit.proxy_url_placeholder')}
                     onChange={handleInputChange}
                     value={inputs.base_url}
                     autoComplete='new-password'

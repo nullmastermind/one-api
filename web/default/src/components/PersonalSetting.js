@@ -137,7 +137,7 @@ const PersonalSetting = () => {
   const bindWeChat = async () => {
     if (inputs.wechat_verification_code === '') return;
     const res = await API.get(
-      `/api/oauth/wechat/bind?code=${inputs.wechat_verification_code}`
+      `/api/oauth/wechat/bind?code=${inputs.wechat_verification_code}`,
     );
     const { success, message } = res.data;
     if (success) {
@@ -157,7 +157,7 @@ const PersonalSetting = () => {
     }
     setLoading(true);
     const res = await API.get(
-      `/api/verification?email=${inputs.email}&turnstile=${turnstileToken}`
+      `/api/verification?email=${inputs.email}&turnstile=${turnstileToken}`,
     );
     const { success, message } = res.data;
     if (success) {
@@ -172,7 +172,7 @@ const PersonalSetting = () => {
     if (inputs.email_verification_code === '') return;
     setLoading(true);
     const res = await API.get(
-      `/api/oauth/email/bind?email=${inputs.email}&code=${inputs.email_verification_code}`
+      `/api/oauth/email/bind?email=${inputs.email}&code=${inputs.email_verification_code}`,
     );
     const { success, message } = res.data;
     if (success) {
@@ -246,7 +246,7 @@ const PersonalSetting = () => {
               <Form.Input
                 fluid
                 placeholder={t(
-                  'setting.personal.binding.wechat.verification_code'
+                  'setting.personal.binding.wechat.verification_code',
                 )}
                 name='wechat_verification_code'
                 value={inputs.wechat_verification_code}
@@ -286,7 +286,7 @@ const PersonalSetting = () => {
               <Form.Input
                 fluid
                 placeholder={t(
-                  'setting.personal.binding.email.email_placeholder'
+                  'setting.personal.binding.email.email_placeholder',
                 )}
                 onChange={handleInputChange}
                 name='email'
@@ -307,7 +307,7 @@ const PersonalSetting = () => {
               <Form.Input
                 fluid
                 placeholder={t(
-                  'setting.personal.binding.email.code_placeholder'
+                  'setting.personal.binding.email.code_placeholder',
                 )}
                 name='email_verification_code'
                 value={inputs.email_verification_code}
@@ -370,7 +370,7 @@ const PersonalSetting = () => {
                   'setting.personal.delete_account.confirm_placeholder',
                   {
                     username: userState?.user?.username,
-                  }
+                  },
                 )}
                 name='self_account_deletion_confirmation'
                 value={inputs.self_account_deletion_confirmation}

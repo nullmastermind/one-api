@@ -42,7 +42,7 @@ const EditUser = () => {
           key: group,
           text: group,
           value: group,
-        }))
+        })),
       );
     } catch (error) {
       showError(error.message);
@@ -154,7 +154,7 @@ const EditUser = () => {
                   <Form.Input
                     label={`${t('user.edit.quota')}${renderQuotaWithPrompt(
                       quota,
-                      t
+                      t,
                     )}`}
                     name='quota'
                     placeholder={t('user.edit.quota_placeholder')}

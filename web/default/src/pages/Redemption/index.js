@@ -5,7 +5,7 @@ import RedemptionsTable from '../../components/RedemptionsTable';
 
 const Redemption = () => {
   const { t } = useTranslation();
-  
+
   return (
     <div className='dashboard-container'>
       <Card fluid className='chart-card'>

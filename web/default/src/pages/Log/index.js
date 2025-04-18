@@ -5,7 +5,7 @@ import LogsTable from '../../components/LogsTable';
 
 const Log = () => {
   const { t } = useTranslation();
-  
+
   return (
     <div className='dashboard-container'>
       <Card fluid className='chart-card'>

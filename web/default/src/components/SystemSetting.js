@@ -67,7 +67,7 @@ const SystemSetting = () => {
       setEmailDomainWhitelist(
         newInputs.EmailDomainWhitelist.split(',').map((item) => {
           return { key: item, text: item, value: item };
-        })
+        }),
       );
     } else {
       showError(message);
@@ -177,7 +177,7 @@ const SystemSetting = () => {
     ) {
       await updateOption(
         'EmailDomainWhitelist',
-        inputs.EmailDomainWhitelist.join(',')
+        inputs.EmailDomainWhitelist.join(','),
       );
     }
   };
@@ -186,7 +186,7 @@ const SystemSetting = () => {
     if (originInputs['WeChatServerAddress'] !== inputs.WeChatServerAddress) {
       await updateOption(
         'WeChatServerAddress',
-        removeTrailingSlash(inputs.WeChatServerAddress)
+        removeTrailingSlash(inputs.WeChatServerAddress),
       );
     }
     if (
@@ -195,7 +195,7 @@ const SystemSetting = () => {
     ) {
       await updateOption(
         'WeChatAccountQRCodeImageURL',
-        inputs.WeChatAccountQRCodeImageURL
+        inputs.WeChatAccountQRCodeImageURL,
       );
     }
     if (
@@ -210,7 +210,7 @@ const SystemSetting = () => {
     if (originInputs['MessagePusherAddress'] !== inputs.MessagePusherAddress) {
       await updateOption(
         'MessagePusherAddress',
-        removeTrailingSlash(inputs.MessagePusherAddress)
+        removeTrailingSlash(inputs.MessagePusherAddress),
       );
     }
     if (
@@ -288,7 +288,7 @@ const SystemSetting = () => {
             <Form.Input
               label={t('setting.system.general.server_address')}
               placeholder={t(
-                'setting.system.general.server_address_placeholder'
+                'setting.system.general.server_address_placeholder',
               )}
               value={inputs.ServerAddress}
               name='ServerAddress'
@@ -390,7 +390,7 @@ const SystemSetting = () => {
             <Form.Input
               label={t('setting.system.email_restriction.add_domain')}
               placeholder={t(
-                'setting.system.email_restriction.add_domain_placeholder'
+                'setting.system.email_restriction.add_domain_placeholder',
               )}
               value={restrictedDomainInput}
               onChange={(e, { value }) => {
@@ -596,7 +596,7 @@ const SystemSetting = () => {
               autoComplete='new-password'
               value={inputs.WeChatServerAddress}
               placeholder={t(
-                'setting.system.wechat.server_address_placeholder'
+                'setting.system.wechat.server_address_placeholder',
               )}
             />
             <Form.Input

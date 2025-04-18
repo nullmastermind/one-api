@@ -6,7 +6,6 @@ import {
   Form,
   Input,
   Label,
-  Message,
   Pagination,
   Popup,
   Table,
@@ -15,7 +14,6 @@ import { Link } from 'react-router-dom';
 import {
   API,
   loadChannelModels,
-  setPromptShown,
   shouldShowPrompt,
   showError,
   showInfo,
@@ -131,7 +129,7 @@ const ChannelsTable = () => {
         newChannels.splice(
           startIdx * ITEMS_PER_PAGE,
           data.length,
-          ...localChannels
+          ...localChannels,
         );
         setChannels(newChannels);
       }
@@ -334,7 +332,7 @@ const ChannelsTable = () => {
       newChannels[realIdx].test_time = Date.now() / 1000;
       setChannels(newChannels);
       showSuccess(
-        t('channel.messages.test_success', { name, model, time, message })
+        t('channel.messages.test_success', { name, model, time, message }),
       );
     } else {
       showError(message);
@@ -361,7 +359,7 @@ const ChannelsTable = () => {
     const { success, message, data } = res.data;
     if (success) {
       showSuccess(
-        t('channel.messages.delete_disabled_success', { count: data })
+        t('channel.messages.delete_disabled_success', { count: data }),
       );
       await refresh();
     } else {
@@ -526,7 +524,7 @@ const ChannelsTable = () => {
           {channels
             .slice(
               (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE
+              activePage * ITEMS_PER_PAGE,
             )
             .map((channel, idx) => {
               if (channel.deleted) return <></>;
@@ -578,7 +576,7 @@ const ChannelsTable = () => {
                               channel.id,
                               'priority',
                               idx,
-                              event.target.value
+                              event.target.value,
                             );
                           }}
                         >
@@ -618,7 +616,7 @@ const ChannelsTable = () => {
                             channel.id,
                             channel.name,
                             idx,
-                            channel.test_model
+                            channel.test_model,
                           );
                         }}
                       >
@@ -650,7 +648,7 @@ const ChannelsTable = () => {
                           manageChannel(
                             channel.id,
                             channel.status === 1 ? 'disable' : 'enable',
-                            idx
+                            idx,
                           );
                         }}
                       >

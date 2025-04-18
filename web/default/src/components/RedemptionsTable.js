@@ -140,7 +140,7 @@ const RedemptionsTable = () => {
     }
     setSearching(true);
     const res = await API.get(
-      `/api/redemption/search?keyword=${searchKeyword}`
+      `/api/redemption/search?keyword=${searchKeyword}`,
     );
     const { success, message, data } = res.data;
     if (success) {
@@ -255,7 +255,7 @@ const RedemptionsTable = () => {
           {redemptions
             .slice(
               (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE
+              activePage * ITEMS_PER_PAGE,
             )
             .map((redemption, idx) => {
               if (redemption.deleted) return <></>;
@@ -263,7 +263,9 @@ const RedemptionsTable = () => {
                 <Table.Row key={redemption.id}>
                   <Table.Cell>{redemption.id}</Table.Cell>
                   <Table.Cell>
-                    {redemption.name ? redemption.name : t('redemption.table.no_name')}
+                    {redemption.name
+                      ? redemption.name
+                      : t('redemption.table.no_name')}
                   </Table.Cell>
                   <Table.Cell>{renderStatus(redemption.status, t)}</Table.Cell>
                   <Table.Cell>{renderQuota(redemption.quota, t)}</Table.Cell>
@@ -317,7 +319,7 @@ const RedemptionsTable = () => {
                           manageRedemption(
                             redemption.id,
                             redemption.status === 1 ? 'disable' : 'enable',
-                            idx
+                            idx,
                           );
                         }}
                       >

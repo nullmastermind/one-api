@@ -245,7 +245,7 @@ const UsersTable = () => {
           {users
             .slice(
               (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE
+              activePage * ITEMS_PER_PAGE,
             )
             .map((user, idx) => {
               if (user.deleted) return <></>;
@@ -341,7 +341,7 @@ const UsersTable = () => {
                           manageUser(
                             user.username,
                             user.status === 1 ? 'disable' : 'enable',
-                            idx
+                            idx,
                           );
                         }}
                         disabled={user.role === 100}

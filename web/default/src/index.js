@@ -28,5 +28,5 @@ root.render(
         </BrowserRouter>
       </UserProvider>
     </StatusProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
