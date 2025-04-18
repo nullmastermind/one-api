@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/songquanpeng/one-api/common"
@@ -51,6 +52,10 @@ func Relay(c *gin.Context) {
 	}
 	channelId := c.GetInt(ctxkey.ChannelId)
 	userId := c.GetInt(ctxkey.Id)
+
+	c.Request.Header.Set("x-user-id", strconv.Itoa(userId))
+	c.Request.Header.Set("x-from-ip", c.ClientIP())
+
 	bizErr := relayHelper(c, relayMode)
 	if bizErr == nil {
 		monitor.Emit(channelId, true)
