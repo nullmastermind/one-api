@@ -47,7 +47,7 @@ func DisableChannel(channelId int, channelName string, reason string) {
 func MetricDisableChannel(channelId int, successRate float64) {
 	model.UpdateChannelStatusById(channelId, model.ChannelStatusAutoDisabled)
 	logger.SysLog(fmt.Sprintf("channel #%d has been disabled due to low success rate: %.2f", channelId, successRate*100))
-	subject := fmt.Sprintf("渠道状态变更提醒")
+	subject := fmt.Sprintf("Channel status change alert!")
 	content := message.EmailTemplate(
 		subject,
 		fmt.Sprintf(`

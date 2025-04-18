@@ -7,26 +7,26 @@ import (
 
 // https://www.xfyun.cn/doc/spark/Web.html#_1-%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E
 
-//Spark4.0 Ultra 请求地址，对应的domain参数为4.0Ultra：
+//Spark4.0 Ultra request address, the corresponding domain parameter is 4.0Ultra:
 //
 //wss://spark-api.xf-yun.com/v4.0/chat
-//Spark Max-32K请求地址，对应的domain参数为max-32k
+//Spark Max-32K request address, the corresponding domain parameter is max-32k.
 //
 //wss://spark-api.xf-yun.com/chat/max-32k
-//Spark Max请求地址，对应的domain参数为generalv3.5
+//Spark Max request address, the corresponding domain parameter is generalv3.5
 //
 //wss://spark-api.xf-yun.com/v3.5/chat
-//Spark Pro-128K请求地址，对应的domain参数为pro-128k：
+//Spark Pro-128K request address, the corresponding domain parameter is pro-128k:
 //
 // wss://spark-api.xf-yun.com/chat/pro-128k
-//Spark Pro请求地址，对应的domain参数为generalv3：
+//Spark Pro request address, the corresponding domain parameter is generalv3:
 //
 //wss://spark-api.xf-yun.com/v3.1/chat
-//Spark Lite请求地址，对应的domain参数为lite：
+//Spark Lite request address, the corresponding domain parameter is lite:
 //
 //wss://spark-api.xf-yun.com/v1.1/chat
 
-// Lite、Pro、Pro-128K、Max、Max-32K和4.0 Ultra
+// Lite, Pro, Pro-128K, Max, Max-32K, and 4.0 Ultra
 
 func parseAPIVersionByModelName(modelName string) string {
 	apiVersion := modelName2APIVersion(modelName)

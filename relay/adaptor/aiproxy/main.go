@@ -20,8 +20,6 @@ import (
 	"github.com/songquanpeng/one-api/relay/model"
 )
 
-// https://docs.aiproxy.io/dev/library#使用已经定制好的知识库进行对话问答
-
 func ConvertRequest(request model.GeneralOpenAIRequest) *LibraryRequest {
 	query := ""
 	if len(request.Messages) != 0 {
@@ -38,7 +36,7 @@ func aiProxyDocuments2Markdown(documents []LibraryDocument) string {
 	if len(documents) == 0 {
 		return ""
 	}
-	content := "\n\n参考文档：\n"
+	content := "\n\nReference document:\n"
 	for i, document := range documents {
 		content += fmt.Sprintf("%d. [%s](%s)\n", i+1, document.Title, document.URL)
 	}

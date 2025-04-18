@@ -6,7 +6,7 @@ import (
 	"github.com/songquanpeng/one-api/common/config"
 )
 
-// EmailTemplate 生成美观的 HTML 邮件内容
+// EmailTemplate EmailTemplate: Generate beautiful HTML email content
 func EmailTemplate(title, content string) string {
 	return fmt.Sprintf(`
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ func EmailTemplate(title, content string) string {
             %s
         </div>
         <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #888; font-size: 14px; text-align: center;">
-            <p style="margin: 5px 0;">此邮件由系统自动发送，请勿直接回复</p>
+            <p style="margin: 5px 0;">This email is sent automatically by the system, please do not reply directly.</p>
             <p style="margin: 5px 0;">%s</p>
         </div>
     </div>

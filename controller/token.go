@@ -109,12 +109,12 @@ func GetTokenStatus(c *gin.Context) {
 
 func validateToken(c *gin.Context, token model.Token) error {
 	if len(token.Name) > 30 {
-		return fmt.Errorf("令牌名称过长")
+		return fmt.Errorf("token name is too long")
 	}
 	if token.Subnet != nil && *token.Subnet != "" {
 		err := network.IsValidSubnets(*token.Subnet)
 		if err != nil {
-			return fmt.Errorf("无效的网段：%s", err.Error())
+			return fmt.Errorf("invalid network segment: %s", err.Error())
 		}
 	}
 	return nil
@@ -134,7 +134,7 @@ func AddToken(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"success": false,
-			"message": fmt.Sprintf("参数错误：%s", err.Error()),
+			"message": fmt.Sprintf("Invalid parameter: %s", err.Error()),
 		})
 		return
 	}
@@ -201,7 +201,7 @@ func UpdateToken(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"success": false,
-			"message": fmt.Sprintf("参数错误：%s", err.Error()),
+			"message": fmt.Sprintf("Invalid parameter: %s", err.Error()),
 		})
 		return
 	}
@@ -217,14 +217,14 @@ func UpdateToken(c *gin.Context) {
 		if cleanToken.Status == model.TokenStatusExpired && cleanToken.ExpiredTime <= helper.GetTimestamp() && cleanToken.ExpiredTime != -1 {
 			c.JSON(http.StatusOK, gin.H{
 				"success": false,
-				"message": "令牌已过期，无法启用，请先修改令牌过期时间，或者设置为永不过期",
+				"message": "Token expired, can't enable. Please modify the token's expiration time or set it to never expire.",
 			})
 			return
 		}
 		if cleanToken.Status == model.TokenStatusExhausted && cleanToken.RemainQuota <= 0 && !cleanToken.UnlimitedQuota {
 			c.JSON(http.StatusOK, gin.H{
 				"success": false,
-				"message": "令牌可用额度已用尽，无法启用，请先修改令牌剩余额度，或者设置为无限额度",
+				"message": "Token credit ran out, can't enable. Please adjust the remaining credit or set to unlimited.",
 			})
 			return
 		}

@@ -88,7 +88,7 @@ func SearchUsers(keyword string) (users []*User, err error) {
 
 func GetUserById(id int, selectAll bool) (*User, error) {
 	if id == 0 {
-		return nil, errors.New("id 为空！")
+		return nil, errors.New("ID is empty")
 	}
 	user := User{Id: id}
 	var err error = nil
@@ -102,7 +102,7 @@ func GetUserById(id int, selectAll bool) (*User, error) {
 
 func GetUserIdByAffCode(affCode string) (int, error) {
 	if affCode == "" {
-		return 0, errors.New("affCode 为空！")
+		return 0, errors.New("affCode is empty")
 	}
 	var user User
 	err := DB.Select("id").First(&user, "aff_code = ?", affCode).Error
@@ -111,7 +111,7 @@ func GetUserIdByAffCode(affCode string) (int, error) {
 
 func DeleteUserById(id int) (err error) {
 	if id == 0 {
-		return errors.New("id 为空！")
+		return errors.New("ID is empty")
 	}
 	user := User{Id: id}
 	return user.Delete()
@@ -133,16 +133,16 @@ func (user *User) Insert(ctx context.Context, inviterId int) error {
 		return result.Error
 	}
 	if config.QuotaForNewUser > 0 {
-		RecordLog(ctx, user.Id, LogTypeSystem, fmt.Sprintf("新用户注册赠送 %s", common.LogQuota(config.QuotaForNewUser)))
+		RecordLog(ctx, user.Id, LogTypeSystem, fmt.Sprintf("New users get %s upon registration!", common.LogQuota(config.QuotaForNewUser)))
 	}
 	if inviterId != 0 {
 		if config.QuotaForInvitee > 0 {
 			_ = IncreaseUserQuota(user.Id, config.QuotaForInvitee)
-			RecordLog(ctx, user.Id, LogTypeSystem, fmt.Sprintf("使用邀请码赠送 %s", common.LogQuota(config.QuotaForInvitee)))
+			RecordLog(ctx, user.Id, LogTypeSystem, fmt.Sprintf("Use invite code to get %s!", common.LogQuota(config.QuotaForInvitee)))
 		}
 		if config.QuotaForInviter > 0 {
 			_ = IncreaseUserQuota(inviterId, config.QuotaForInviter)
-			RecordLog(ctx, inviterId, LogTypeSystem, fmt.Sprintf("邀请用户赠送 %s", common.LogQuota(config.QuotaForInviter)))
+			RecordLog(ctx, inviterId, LogTypeSystem, fmt.Sprintf("Invite users to gift %s", common.LogQuota(config.QuotaForInviter)))
 		}
 	}
 	// create default token
@@ -183,7 +183,7 @@ func (user *User) Update(updatePassword bool) error {
 
 func (user *User) Delete() error {
 	if user.Id == 0 {
-		return errors.New("id 为空！")
+		return errors.New("ID is empty")
 	}
 	blacklist.BanUser(user.Id)
 	user.Username = fmt.Sprintf("deleted_%s", random.GetUUID())
@@ -199,7 +199,7 @@ func (user *User) ValidateAndFill() (err error) {
 	// it won’t be used to build query conditions
 	password := user.Password
 	if user.Username == "" || password == "" {
-		return errors.New("用户名或密码为空")
+		return errors.New("username or password cannot be empty")
 	}
 	err = DB.Where("username = ?", user.Username).First(user).Error
 	if err != nil {
@@ -207,19 +207,19 @@ func (user *User) ValidateAndFill() (err error) {
 		// consider this case: a malicious user set his username as other's email
 		err := DB.Where("email = ?", user.Username).First(user).Error
 		if err != nil {
-			return errors.New("用户名或密码错误，或用户已被封禁")
+			return errors.New("incorrect username or password, or the user has been banned")
 		}
 	}
 	okay := common.ValidatePasswordAndHash(password, user.Password)
 	if !okay || user.Status != UserStatusEnabled {
-		return errors.New("用户名或密码错误，或用户已被封禁")
+		return errors.New("incorrect username or password, or the user has been banned")
 	}
 	return nil
 }
 
 func (user *User) FillUserById() error {
 	if user.Id == 0 {
-		return errors.New("id 为空！")
+		return errors.New("ID is empty")
 	}
 	DB.Where(User{Id: user.Id}).First(user)
 	return nil
@@ -227,7 +227,7 @@ func (user *User) FillUserById() error {
 
 func (user *User) FillUserByEmail() error {
 	if user.Email == "" {
-		return errors.New("email 为空！")
+		return errors.New("email is empty")
 	}
 	DB.Where(User{Email: user.Email}).First(user)
 	return nil
@@ -235,7 +235,7 @@ func (user *User) FillUserByEmail() error {
 
 func (user *User) FillUserByGitHubId() error {
 	if user.GitHubId == "" {
-		return errors.New("GitHub id 为空！")
+		return errors.New("gitHub ID is empty")
 	}
 	DB.Where(User{GitHubId: user.GitHubId}).First(user)
 	return nil
@@ -243,7 +243,7 @@ func (user *User) FillUserByGitHubId() error {
 
 func (user *User) FillUserByLarkId() error {
 	if user.LarkId == "" {
-		return errors.New("lark id 为空！")
+		return errors.New("lark ID is empty")
 	}
 	DB.Where(User{LarkId: user.LarkId}).First(user)
 	return nil
@@ -251,7 +251,7 @@ func (user *User) FillUserByLarkId() error {
 
 func (user *User) FillUserByOidcId() error {
 	if user.OidcId == "" {
-		return errors.New("oidc id 为空！")
+		return errors.New("OIDC ID is empty")
 	}
 	DB.Where(User{OidcId: user.OidcId}).First(user)
 	return nil
@@ -259,7 +259,7 @@ func (user *User) FillUserByOidcId() error {
 
 func (user *User) FillUserByWeChatId() error {
 	if user.WeChatId == "" {
-		return errors.New("WeChat id 为空！")
+		return errors.New("weChat ID is empty")
 	}
 	DB.Where(User{WeChatId: user.WeChatId}).First(user)
 	return nil
@@ -267,7 +267,7 @@ func (user *User) FillUserByWeChatId() error {
 
 func (user *User) FillUserByUsername() error {
 	if user.Username == "" {
-		return errors.New("username 为空！")
+		return errors.New("username is empty")
 	}
 	DB.Where(User{Username: user.Username}).First(user)
 	return nil
@@ -299,7 +299,7 @@ func IsUsernameAlreadyTaken(username string) bool {
 
 func ResetUserPasswordByEmail(email string, password string) error {
 	if email == "" || password == "" {
-		return errors.New("邮箱地址或密码为空！")
+		return errors.New("oops! Email or password was empty")
 	}
 	hashedPassword, err := common.Password2Hash(password)
 	if err != nil {
@@ -373,7 +373,7 @@ func GetUserGroup(id int) (group string, err error) {
 
 func IncreaseUserQuota(id int, quota int64) (err error) {
 	if quota < 0 {
-		return errors.New("quota 不能为负数！")
+		return errors.New("quota cannot be negative")
 	}
 	if config.BatchUpdateEnabled {
 		addNewRecord(BatchUpdateTypeUserQuota, id, quota)
@@ -389,7 +389,7 @@ func increaseUserQuota(id int, quota int64) (err error) {
 
 func DecreaseUserQuota(id int, quota int64) (err error) {
 	if quota < 0 {
-		return errors.New("quota 不能为负数！")
+		return errors.New("quota cannot be negative")
 	}
 	if config.BatchUpdateEnabled {
 		addNewRecord(BatchUpdateTypeUserQuota, id, -quota)

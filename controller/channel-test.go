@@ -111,7 +111,7 @@ func testChannel(ctx context.Context, channel *model.Channel, request *relaymode
 		return "", err, nil
 	}
 	defer func() {
-		logContent := fmt.Sprintf("渠道 %s 测试成功，响应：%s", channel.Name, responseMessage)
+		logContent := fmt.Sprintf("Channel %s test successful, response: %s", channel.Name, responseMessage)
 		if err != nil || openaiErr != nil {
 			errorMessage := ""
 			if err != nil {
@@ -119,7 +119,7 @@ func testChannel(ctx context.Context, channel *model.Channel, request *relaymode
 			} else {
 				errorMessage = openaiErr.Message
 			}
-			logContent = fmt.Sprintf("渠道 %s 测试失败，错误：%s", channel.Name, errorMessage)
+			logContent = fmt.Sprintf("Channel %s test failed, error: %s", channel.Name, errorMessage)
 		}
 		go model.RecordTestLog(ctx, &model.Log{
 			ChannelId:   channel.Id,
@@ -223,7 +223,7 @@ func testChannels(ctx context.Context, notify bool, scope string) error {
 	testAllChannelsLock.Lock()
 	if testAllChannelsRunning {
 		testAllChannelsLock.Unlock()
-		return errors.New("测试已在运行中")
+		return errors.New("tests are already running")
 	}
 	testAllChannelsRunning = true
 	testAllChannelsLock.Unlock()
@@ -244,11 +244,11 @@ func testChannels(ctx context.Context, notify bool, scope string) error {
 			tok := time.Now()
 			milliseconds := tok.Sub(tik).Milliseconds()
 			if isChannelEnabled && milliseconds > disableThreshold {
-				err = fmt.Errorf("响应时间 %.2fs 超过阈值 %.2fs", float64(milliseconds)/1000.0, float64(disableThreshold)/1000.0)
+				err = fmt.Errorf("response time of %.2fs exceeds the threshold of %.2fs", float64(milliseconds)/1000.0, float64(disableThreshold)/1000.0)
 				if config.AutomaticDisableChannelEnabled {
 					monitor.DisableChannel(channel.Id, channel.Name, err.Error())
 				} else {
-					_ = message.Notify(message.ByAll, fmt.Sprintf("渠道 %s （%d）测试超时", channel.Name, channel.Id), "", err.Error())
+					_ = message.Notify(message.ByAll, fmt.Sprintf("Channel %s (%d) test timed out", channel.Name, channel.Id), "", err.Error())
 				}
 			}
 			if isChannelEnabled && monitor.ShouldDisableChannel(openaiErr, -1) {
@@ -264,7 +264,7 @@ func testChannels(ctx context.Context, notify bool, scope string) error {
 		testAllChannelsRunning = false
 		testAllChannelsLock.Unlock()
 		if notify {
-			err := message.Notify(message.ByAll, "渠道测试完成", "", "渠道测试完成，如果没有收到禁用通知，说明所有渠道都正常")
+			err := message.Notify(message.ByAll, "Channel testing complete!", "", "Channel testing is complete! If you haven't received a disable notification, it means all channels are working normally.")
 			if err != nil {
 				logger.SysError(fmt.Sprintf("failed to send email: %s", err.Error()))
 			}
