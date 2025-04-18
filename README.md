@@ -1,3 +1,24 @@
+Change `justsong/one-api-en:latest` to `nullmastermind/one-api:latest`
+
+### How to build
+
+Change `nullmastermind` to your username!
+
+Update `./VERSION` to the next version.
+
+```shell
+VERSION=$(cat VERSION)
+docker build \
+  --file Dockerfile \
+  --tag nullmastermind/one-api:${VERSION} \
+  --tag nullmastermind/one-api:latest \
+  .
+docker push nullmastermind/one-api:${VERSION}
+docker push nullmastermind/one-api:latest
+```
+
+---
+
 <p align="right">
    <strong>中文</strong> | <a href="./README.en.md">English</a> | <a href="./README.ja.md">日本語</a>
 </p>
