@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Form,
   Header,
   Label,
   Pagination,
+  Popup,
   Segment,
   Select,
   Table,
-  Popup,
 } from 'semantic-ui-react';
+
+import { ITEMS_PER_PAGE } from '../constants';
 import {
   API,
   copy,
@@ -19,11 +23,7 @@ import {
   showWarning,
   timestamp2string,
 } from '../helpers';
-import { useTranslation } from 'react-i18next';
-
-import { ITEMS_PER_PAGE } from '../constants';
 import { renderColorLabel, renderQuota } from '../helpers/render';
-import { Link } from 'react-router-dom';
 
 function renderTimestamp(timestamp, request_id) {
   return (
@@ -51,37 +51,37 @@ function renderType(type) {
   switch (type) {
     case 1:
       return (
-        <Label basic color='green'>
+        <Label basic color="green">
           Top up
         </Label>
       );
     case 2:
       return (
-        <Label basic color='olive'>
+        <Label basic color="olive">
           Consumption
         </Label>
       );
     case 3:
       return (
-        <Label basic color='orange'>
+        <Label basic color="orange">
           Management
         </Label>
       );
     case 4:
       return (
-        <Label basic color='purple'>
+        <Label basic color="purple">
           System
         </Label>
       );
     case 5:
       return (
-        <Label basic color='violet'>
+        <Label basic color="violet">
           Test
         </Label>
       );
     default:
       return (
-        <Label basic color='black'>
+        <Label basic color="black">
           Unknown
         </Label>
       );
@@ -103,24 +103,20 @@ function renderDetail(log) {
       {log.content}
       <br />
       {log.elapsed_time && (
-        <Label
-          basic
-          size={'mini'}
-          color={getColorByElapsedTime(log.elapsed_time)}
-        >
+        <Label basic size={'mini'} color={getColorByElapsedTime(log.elapsed_time)}>
           {log.elapsed_time} ms
         </Label>
       )}
       {log.is_stream && (
         <>
-          <Label size={'mini'} color='pink'>
+          <Label size={'mini'} color="pink">
             Stream
           </Label>
         </>
       )}
       {log.system_prompt_reset && (
         <>
-          <Label basic size={'mini'} color='red'>
+          <Label basic size={'mini'} color="red">
             System Prompt Reset
           </Label>
         </>
@@ -148,14 +144,7 @@ const LogsTable = () => {
     end_timestamp: timestamp2string(now.getTime() / 1000 + 3600),
     channel: '',
   });
-  const {
-    username,
-    token_name,
-    model_name,
-    start_timestamp,
-    end_timestamp,
-    channel,
-  } = inputs;
+  const { username, token_name, model_name, start_timestamp, end_timestamp, channel } = inputs;
 
   const [stat, setStat] = useState({
     quota: 0,
@@ -310,14 +299,10 @@ const LogsTable = () => {
 
   return (
     <>
-      <Header as='h3'>
-        {t('log.usage_details')}（{t('log.total_quota')}：
-        {showStat && renderQuota(stat.quota, t)}
+      <Header as="h3">
+        {t('log.usage_details')}（{t('log.total_quota')}：{showStat && renderQuota(stat.quota, t)}
         {!showStat && (
-          <span
-            onClick={handleEyeClick}
-            style={{ cursor: 'pointer', color: 'gray' }}
-          >
+          <span onClick={handleEyeClick} style={{ cursor: 'pointer', color: 'gray' }}>
             {t('log.click_to_view')}
           </span>
         )}
@@ -332,7 +317,7 @@ const LogsTable = () => {
             width={3}
             value={token_name}
             placeholder={t('log.table.token_name_placeholder')}
-            name='token_name'
+            name="token_name"
             onChange={handleInputChange}
           />
           <Form.Input
@@ -342,7 +327,7 @@ const LogsTable = () => {
             width={3}
             value={model_name}
             placeholder={t('log.table.model_name_placeholder')}
-            name='model_name'
+            name="model_name"
             onChange={handleInputChange}
           />
           <Form.Input
@@ -351,8 +336,8 @@ const LogsTable = () => {
             size={'small'}
             width={4}
             value={start_timestamp}
-            type='datetime-local'
-            name='start_timestamp'
+            type="datetime-local"
+            name="start_timestamp"
             onChange={handleInputChange}
           />
           <Form.Input
@@ -361,8 +346,8 @@ const LogsTable = () => {
             size={'small'}
             width={4}
             value={end_timestamp}
-            type='datetime-local'
-            name='end_timestamp'
+            type="datetime-local"
+            name="end_timestamp"
             onChange={handleInputChange}
           />
           <Form.Button
@@ -385,7 +370,7 @@ const LogsTable = () => {
                 width={3}
                 value={channel}
                 placeholder={t('log.table.channel_id_placeholder')}
-                name='channel'
+                name="channel"
                 onChange={handleInputChange}
               />
               <Form.Input
@@ -395,20 +380,20 @@ const LogsTable = () => {
                 width={3}
                 value={username}
                 placeholder={t('log.table.username_placeholder')}
-                name='username'
+                name="username"
                 onChange={handleInputChange}
               />
             </Form.Group>
           </>
         )}
         <Form.Input
-          icon='search'
+          icon="search"
           placeholder={t('log.search')}
           value={searchKeyword}
           onChange={(e, { value }) => setSearchKeyword(value)}
         />
       </Form>
-      <Table basic={'very'} compact size='small'>
+      <Table basic={'very'} compact size="small">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -506,25 +491,16 @@ const LogsTable = () => {
 
         <Table.Body>
           {logs
-            .slice(
-              (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE,
-            )
+            .slice((activePage - 1) * ITEMS_PER_PAGE, activePage * ITEMS_PER_PAGE)
             .map((log, idx) => {
               if (log.deleted) return <></>;
               return (
                 <Table.Row key={log.id}>
-                  <Table.Cell>
-                    {renderTimestamp(log.created_at, log.request_id)}
-                  </Table.Cell>
+                  <Table.Cell>{renderTimestamp(log.created_at, log.request_id)}</Table.Cell>
                   {isAdminUser && (
                     <Table.Cell>
                       {log.channel ? (
-                        <Label
-                          basic
-                          as={Link}
-                          to={`/channel/edit/${log.channel}`}
-                        >
+                        <Label basic as={Link} to={`/channel/edit/${log.channel}`}>
                           {log.channel}
                         </Label>
                       ) : (
@@ -533,19 +509,13 @@ const LogsTable = () => {
                     </Table.Cell>
                   )}
                   <Table.Cell>{renderType(log.type)}</Table.Cell>
-                  <Table.Cell>
-                    {log.model_name ? renderColorLabel(log.model_name) : ''}
-                  </Table.Cell>
+                  <Table.Cell>{log.model_name ? renderColorLabel(log.model_name) : ''}</Table.Cell>
                   {showUserTokenQuota() && (
                     <>
                       {isAdminUser && (
                         <Table.Cell>
                           {log.username ? (
-                            <Label
-                              basic
-                              as={Link}
-                              to={`/user/edit/${log.user_id}`}
-                            >
+                            <Label basic as={Link} to={`/user/edit/${log.user_id}`}>
                               {log.username}
                             </Label>
                           ) : (
@@ -557,15 +527,9 @@ const LogsTable = () => {
                         {log.token_name ? renderColorLabel(log.token_name) : ''}
                       </Table.Cell>
 
-                      <Table.Cell>
-                        {log.prompt_tokens ? log.prompt_tokens : ''}
-                      </Table.Cell>
-                      <Table.Cell>
-                        {log.completion_tokens ? log.completion_tokens : ''}
-                      </Table.Cell>
-                      <Table.Cell>
-                        {log.quota ? renderQuota(log.quota, t, 6) : ''}
-                      </Table.Cell>
+                      <Table.Cell>{log.prompt_tokens ? log.prompt_tokens : ''}</Table.Cell>
+                      <Table.Cell>{log.completion_tokens ? log.completion_tokens : ''}</Table.Cell>
+                      <Table.Cell>{log.quota ? renderQuota(log.quota, t, 6) : ''}</Table.Cell>
                     </>
                   )}
 
@@ -582,20 +546,20 @@ const LogsTable = () => {
                 placeholder={t('log.type.select')}
                 options={LOG_OPTIONS}
                 style={{ marginRight: '8px' }}
-                name='logType'
+                name="logType"
                 value={logType}
                 onChange={(e, { name, value }) => {
                   setLogType(value);
                 }}
               />
-              <Button size='small' onClick={refresh} loading={loading}>
+              <Button size="small" onClick={refresh} loading={loading}>
                 {t('log.buttons.refresh')}
               </Button>
               <Pagination
-                floated='right'
+                floated="right"
                 activePage={activePage}
                 onPageChange={onPaginationChange}
-                size='small'
+                size="small"
                 siblingRange={1}
                 totalPages={
                   Math.ceil(logs.length / ITEMS_PER_PAGE) +

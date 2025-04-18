@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Button,
-  Form,
-  Label,
-  Popup,
-  Pagination,
-  Table,
-} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Button, Form, Label, Pagination, Popup, Table } from 'semantic-ui-react';
+
+import { ITEMS_PER_PAGE } from '../constants';
 import {
   API,
   copy,
@@ -18,8 +13,6 @@ import {
   showWarning,
   timestamp2string,
 } from '../helpers';
-
-import { ITEMS_PER_PAGE } from '../constants';
 import { renderQuota } from '../helpers/render';
 
 function renderTimestamp(timestamp) {
@@ -30,25 +23,25 @@ function renderStatus(status, t) {
   switch (status) {
     case 1:
       return (
-        <Label basic color='green'>
+        <Label basic color="green">
           {t('redemption.status.unused')}
         </Label>
       );
     case 2:
       return (
-        <Label basic color='red'>
+        <Label basic color="red">
           {t('redemption.status.disabled')}
         </Label>
       );
     case 3:
       return (
-        <Label basic color='grey'>
+        <Label basic color="grey">
           {t('redemption.status.used')}
         </Label>
       );
     default:
       return (
-        <Label basic color='black'>
+        <Label basic color="black">
           {t('redemption.status.unknown')}
         </Label>
       );
@@ -139,9 +132,7 @@ const RedemptionsTable = () => {
       return;
     }
     setSearching(true);
-    const res = await API.get(
-      `/api/redemption/search?keyword=${searchKeyword}`,
-    );
+    const res = await API.get(`/api/redemption/search?keyword=${searchKeyword}`);
     const { success, message, data } = res.data;
     if (success) {
       setRedemptions(data);
@@ -186,9 +177,9 @@ const RedemptionsTable = () => {
     <>
       <Form onSubmit={searchRedemptions}>
         <Form.Input
-          icon='search'
+          icon="search"
           fluid
-          iconPosition='left'
+          iconPosition="left"
           placeholder={t('redemption.search')}
           value={searchKeyword}
           loading={searching}
@@ -196,7 +187,7 @@ const RedemptionsTable = () => {
         />
       </Form>
 
-      <Table basic={'very'} compact size='small'>
+      <Table basic={'very'} compact size="small">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -253,25 +244,18 @@ const RedemptionsTable = () => {
 
         <Table.Body>
           {redemptions
-            .slice(
-              (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE,
-            )
+            .slice((activePage - 1) * ITEMS_PER_PAGE, activePage * ITEMS_PER_PAGE)
             .map((redemption, idx) => {
               if (redemption.deleted) return <></>;
               return (
                 <Table.Row key={redemption.id}>
                   <Table.Cell>{redemption.id}</Table.Cell>
                   <Table.Cell>
-                    {redemption.name
-                      ? redemption.name
-                      : t('redemption.table.no_name')}
+                    {redemption.name ? redemption.name : t('redemption.table.no_name')}
                   </Table.Cell>
                   <Table.Cell>{renderStatus(redemption.status, t)}</Table.Cell>
                   <Table.Cell>{renderQuota(redemption.quota, t)}</Table.Cell>
-                  <Table.Cell>
-                    {renderTimestamp(redemption.created_time)}
-                  </Table.Cell>
+                  <Table.Cell>{renderTimestamp(redemption.created_time)}</Table.Cell>
                   <Table.Cell>
                     {redemption.redeemed_time
                       ? renderTimestamp(redemption.redeemed_time)
@@ -295,11 +279,11 @@ const RedemptionsTable = () => {
                       </Button>
                       <Popup
                         trigger={
-                          <Button size='tiny' negative>
+                          <Button size="tiny" negative>
                             {t('redemption.buttons.delete')}
                           </Button>
                         }
-                        on='click'
+                        on="click"
                         flowing
                         hoverable
                       >
@@ -327,11 +311,7 @@ const RedemptionsTable = () => {
                           ? t('redemption.buttons.disable')
                           : t('redemption.buttons.enable')}
                       </Button>
-                      <Button
-                        size={'tiny'}
-                        as={Link}
-                        to={'/redemption/edit/' + redemption.id}
-                      >
+                      <Button size={'tiny'} as={Link} to={'/redemption/edit/' + redemption.id}>
                         {t('redemption.buttons.edit')}
                       </Button>
                     </div>
@@ -343,23 +323,18 @@ const RedemptionsTable = () => {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan='7'>
-              <Button
-                size='small'
-                as={Link}
-                to='/redemption/add'
-                loading={loading}
-              >
+            <Table.HeaderCell colSpan="7">
+              <Button size="small" as={Link} to="/redemption/add" loading={loading}>
                 {t('redemption.buttons.add')}
               </Button>
-              <Button size='small' onClick={refresh} loading={loading}>
+              <Button size="small" onClick={refresh} loading={loading}>
                 {t('redemption.buttons.refresh')}
               </Button>
               <Pagination
-                floated='right'
+                floated="right"
                 activePage={activePage}
                 onPageChange={onPaginationChange}
-                size='small'
+                size="small"
                 siblingRange={1}
                 totalPages={
                   Math.ceil(redemptions.length / ITEMS_PER_PAGE) +

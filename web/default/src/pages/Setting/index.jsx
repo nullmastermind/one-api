@@ -1,11 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, Tab } from 'semantic-ui-react';
-import SystemSetting from '../../components/SystemSetting';
-import { isRoot } from '../../helpers';
+
+import OperationSetting from '../../components/OperationSetting';
 import OtherSetting from '../../components/OtherSetting';
 import PersonalSetting from '../../components/PersonalSetting';
-import OperationSetting from '../../components/OperationSetting';
+import SystemSetting from '../../components/SystemSetting';
+import { isRoot } from '../../helpers';
 
 const Setting = () => {
   const { t } = useTranslation();
@@ -49,10 +50,10 @@ const Setting = () => {
   }
 
   return (
-    <div className='dashboard-container'>
-      <Card fluid className='chart-card'>
+    <div className="dashboard-container">
+      <Card fluid className="chart-card">
         <Card.Content>
-          <Card.Header className='header'>{t('setting.title')}</Card.Header>
+          <Card.Header className="header">{t('setting.title')}</Card.Header>
           <Tab
             menu={{
               secondary: true,

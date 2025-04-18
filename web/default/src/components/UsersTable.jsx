@@ -1,37 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Form,
-  Label,
-  Pagination,
-  Popup,
-  Table,
-  Dropdown,
-} from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import { API, showError, showSuccess } from '../helpers';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Button, Dropdown, Form, Label, Pagination, Popup, Table } from 'semantic-ui-react';
 
 import { ITEMS_PER_PAGE } from '../constants';
-import {
-  renderGroup,
-  renderNumber,
-  renderQuota,
-  renderText,
-} from '../helpers/render';
+import { API, showError, showSuccess } from '../helpers';
+import { renderGroup, renderNumber, renderQuota, renderText } from '../helpers/render';
 
 function renderRole(role, t) {
   switch (role) {
     case 1:
       return <Label>{t('user.table.role_types.normal')}</Label>;
     case 10:
-      return <Label color='yellow'>{t('user.table.role_types.admin')}</Label>;
+      return <Label color="yellow">{t('user.table.role_types.admin')}</Label>;
     case 100:
-      return (
-        <Label color='orange'>{t('user.table.role_types.super_admin')}</Label>
-      );
+      return <Label color="orange">{t('user.table.role_types.super_admin')}</Label>;
     default:
-      return <Label color='red'>{t('user.table.role_types.unknown')}</Label>;
+      return <Label color="red">{t('user.table.role_types.unknown')}</Label>;
   }
 }
 
@@ -110,13 +95,13 @@ const UsersTable = () => {
         return <Label basic>{t('user.table.status_types.activated')}</Label>;
       case 2:
         return (
-          <Label basic color='red'>
+          <Label basic color="red">
             {t('user.table.status_types.banned')}
           </Label>
         );
       default:
         return (
-          <Label basic color='grey'>
+          <Label basic color="grey">
             {t('user.table.status_types.unknown')}
           </Label>
         );
@@ -176,9 +161,9 @@ const UsersTable = () => {
     <>
       <Form onSubmit={searchUsers}>
         <Form.Input
-          icon='search'
+          icon="search"
           fluid
-          iconPosition='left'
+          iconPosition="left"
           placeholder={t('user.search')}
           value={searchKeyword}
           loading={searching}
@@ -186,7 +171,7 @@ const UsersTable = () => {
         />
       </Form>
 
-      <Table basic={'very'} compact size='small'>
+      <Table basic={'very'} compact size="small">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -243,10 +228,7 @@ const UsersTable = () => {
 
         <Table.Body>
           {users
-            .slice(
-              (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE,
-            )
+            .slice((activePage - 1) * ITEMS_PER_PAGE, activePage * ITEMS_PER_PAGE)
             .map((user, idx) => {
               if (user.deleted) return <></>;
               return (
@@ -256,9 +238,7 @@ const UsersTable = () => {
                     <Popup
                       content={user.email ? user.email : 'Unbound email address'}
                       key={user.username}
-                      header={
-                        user.display_name ? user.display_name : user.username
-                      }
+                      header={user.display_name ? user.display_name : user.username}
                       trigger={<span>{renderText(user.username, 15)}</span>}
                       hoverable
                     />
@@ -270,21 +250,15 @@ const UsersTable = () => {
                   <Table.Cell>
                     <Popup
                       content={t('user.table.remaining_quota')}
-                      trigger={
-                        <Label basic>{renderQuota(user.quota, t)}</Label>
-                      }
+                      trigger={<Label basic>{renderQuota(user.quota, t)}</Label>}
                     />
                     <Popup
                       content={t('user.table.used_quota')}
-                      trigger={
-                        <Label basic>{renderQuota(user.used_quota, t)}</Label>
-                      }
+                      trigger={<Label basic>{renderQuota(user.used_quota, t)}</Label>}
                     />
                     <Popup
                       content={t('user.table.request_count')}
-                      trigger={
-                        <Label basic>{renderNumber(user.request_count)}</Label>
-                      }
+                      trigger={<Label basic>{renderNumber(user.request_count)}</Label>}
                     />
                   </Table.Cell>
                   <Table.Cell>{renderRole(user.role, t)}</Table.Cell>
@@ -313,15 +287,11 @@ const UsersTable = () => {
                       </Button>
                       <Popup
                         trigger={
-                          <Button
-                            size='tiny'
-                            negative
-                            disabled={user.role === 100}
-                          >
+                          <Button size="tiny" negative disabled={user.role === 100}>
                             {t('user.buttons.delete')}
                           </Button>
                         }
-                        on='click'
+                        on="click"
                         flowing
                         hoverable
                       >
@@ -338,23 +308,13 @@ const UsersTable = () => {
                       <Button
                         size={'tiny'}
                         onClick={() => {
-                          manageUser(
-                            user.username,
-                            user.status === 1 ? 'disable' : 'enable',
-                            idx,
-                          );
+                          manageUser(user.username, user.status === 1 ? 'disable' : 'enable', idx);
                         }}
                         disabled={user.role === 100}
                       >
-                        {user.status === 1
-                          ? t('user.buttons.disable')
-                          : t('user.buttons.enable')}
+                        {user.status === 1 ? t('user.buttons.disable') : t('user.buttons.enable')}
                       </Button>
-                      <Button
-                        size={'tiny'}
-                        as={Link}
-                        to={'/user/edit/' + user.id}
-                      >
+                      <Button size={'tiny'} as={Link} to={'/user/edit/' + user.id}>
                         {t('user.buttons.edit')}
                       </Button>
                     </div>
@@ -366,8 +326,8 @@ const UsersTable = () => {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan='7'>
-              <Button size='small' as={Link} to='/user/add' loading={loading}>
+            <Table.HeaderCell colSpan="7">
+              <Button size="small" as={Link} to="/user/add" loading={loading}>
                 {t('user.buttons.add')}
               </Button>
               <Dropdown
@@ -396,10 +356,10 @@ const UsersTable = () => {
                 style={{ marginLeft: '10px' }}
               />
               <Pagination
-                floated='right'
+                floated="right"
                 activePage={activePage}
                 onPageChange={onPaginationChange}
-                size='small'
+                size="small"
                 siblingRange={1}
                 totalPages={
                   Math.ceil(users.length / ITEMS_PER_PAGE) +

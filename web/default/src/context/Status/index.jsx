@@ -1,6 +1,6 @@
 // contexts/User/index.jsx
-
 import React from 'react';
+
 import { initialState, reducer } from './reducer';
 
 export const StatusContext = React.createContext({
@@ -11,9 +11,5 @@ export const StatusContext = React.createContext({
 export const StatusProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  return (
-    <StatusContext.Provider value={[state, dispatch]}>
-      {children}
-    </StatusContext.Provider>
-  );
+  return <StatusContext.Provider value={[state, dispatch]}>{children}</StatusContext.Provider>;
 };

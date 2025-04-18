@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { API, showError, showSuccess } from '../helpers';
+import { Dimmer, Loader, Segment } from 'semantic-ui-react';
+
 import { UserContext } from '../context/User';
+import { API, showError, showSuccess } from '../helpers';
 
 const GitHubOAuth = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,7 +50,7 @@ const GitHubOAuth = () => {
   return (
     <Segment style={{ minHeight: '300px' }}>
       <Dimmer active inverted>
-        <Loader size='large'>{prompt}</Loader>
+        <Loader size="large">{prompt}</Loader>
       </Dimmer>
     </Segment>
   );

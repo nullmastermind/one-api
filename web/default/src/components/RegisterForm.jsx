@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Card,
-  Divider,
-} from 'semantic-ui-react';
-import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { API, getLogo, showError, showInfo, showSuccess } from '../helpers';
+import { Link, useNavigate } from 'react-router-dom';
 import Turnstile from 'react-turnstile';
+import { Button, Card, Divider, Form, Grid, Header, Image, Message } from 'semantic-ui-react';
+
+import { API, getLogo, showError, showInfo, showSuccess } from '../helpers';
 
 const RegisterForm = () => {
   const { t } = useTranslation();
@@ -89,10 +81,7 @@ const RegisterForm = () => {
         affCode = localStorage.getItem('aff');
       }
       inputs.aff_code = affCode;
-      const res = await API.post(
-        `/api/user/register?turnstile=${turnstileToken}`,
-        inputs,
-      );
+      const res = await API.post(`/api/user/register?turnstile=${turnstileToken}`, inputs);
       const { success, message } = res.data;
       if (success) {
         navigate('/login');
@@ -127,52 +116,44 @@ const RegisterForm = () => {
   };
 
   return (
-    <Grid textAlign='center' style={{ marginTop: '48px' }}>
+    <Grid textAlign="center" style={{ marginTop: '48px' }}>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Card
-          fluid
-          className='chart-card'
-          style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}
-        >
+        <Card fluid className="chart-card" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
           <Card.Content>
             <Card.Header>
-              <Header
-                as='h2'
-                textAlign='center'
-                style={{ marginBottom: '1.5em' }}
-              >
+              <Header as="h2" textAlign="center" style={{ marginBottom: '1.5em' }}>
                 <Image src={logo} style={{ marginBottom: '10px' }} />
                 <Header.Content>{t('auth.register.title')}</Header.Content>
               </Header>
             </Card.Header>
-            <Form size='large'>
+            <Form size="large">
               <Form.Input
                 fluid
-                icon='user'
-                iconPosition='left'
+                icon="user"
+                iconPosition="left"
                 placeholder={t('auth.register.username')}
                 onChange={handleChange}
-                name='username'
+                name="username"
                 style={{ marginBottom: '1em' }}
               />
               <Form.Input
                 fluid
-                icon='lock'
-                iconPosition='left'
+                icon="lock"
+                iconPosition="left"
                 placeholder={t('auth.register.password')}
                 onChange={handleChange}
-                name='password'
-                type='password'
+                name="password"
+                type="password"
                 style={{ marginBottom: '1em' }}
               />
               <Form.Input
                 fluid
-                icon='lock'
-                iconPosition='left'
+                icon="lock"
+                iconPosition="left"
                 placeholder={t('auth.register.confirm_password')}
                 onChange={handleChange}
-                name='password2'
-                type='password'
+                name="password2"
+                type="password"
                 style={{ marginBottom: '1em' }}
               />
 
@@ -180,12 +161,12 @@ const RegisterForm = () => {
                 <>
                   <Form.Input
                     fluid
-                    icon='mail'
-                    iconPosition='left'
+                    icon="mail"
+                    iconPosition="left"
                     placeholder={t('auth.register.email')}
                     onChange={handleChange}
-                    name='email'
-                    type='email'
+                    name="email"
+                    type="email"
                     action={
                       <Button onClick={sendVerificationCode} disabled={loading}>
                         {disableButton
@@ -197,11 +178,11 @@ const RegisterForm = () => {
                   />
                   <Form.Input
                     fluid
-                    icon='lock'
-                    iconPosition='left'
+                    icon="lock"
+                    iconPosition="left"
                     placeholder={t('auth.register.verification_code')}
                     onChange={handleChange}
-                    name='verification_code'
+                    name="verification_code"
                     style={{ marginBottom: '1em' }}
                   />
                 </>
@@ -226,7 +207,7 @@ const RegisterForm = () => {
 
               <Button
                 fluid
-                size='large'
+                size="large"
                 onClick={handleSubmit}
                 style={{
                   background: '#2F73FF', // Use a more modern blue
@@ -249,10 +230,7 @@ const RegisterForm = () => {
                 }}
               >
                 {t('auth.register.has_account')}
-                <Link
-                  to='/login'
-                  style={{ color: '#2185d0', marginLeft: '2px' }}
-                >
+                <Link to="/login" style={{ color: '#2185d0', marginLeft: '2px' }}>
                   {t('auth.register.login')}
                 </Link>
               </div>

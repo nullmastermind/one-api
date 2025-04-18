@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Card,
-  Message,
-} from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { API, copy, getLogo, showError, showNotice } from '../helpers';
 import { useSearchParams } from 'react-router-dom';
+import { Button, Card, Form, Grid, Header, Image, Message } from 'semantic-ui-react';
+
+import { API, copy, getLogo, showError, showNotice } from '../helpers';
 
 const PasswordResetConfirm = () => {
   const { t } = useTranslation();
@@ -70,31 +63,23 @@ const PasswordResetConfirm = () => {
   }
 
   return (
-    <Grid textAlign='center' style={{ marginTop: '48px' }}>
+    <Grid textAlign="center" style={{ marginTop: '48px' }}>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Card
-          fluid
-          className='chart-card'
-          style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}
-        >
+        <Card fluid className="chart-card" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
           <Card.Content>
             <Card.Header>
-              <Header
-                as='h2'
-                textAlign='center'
-                style={{ marginBottom: '1.5em' }}
-              >
+              <Header as="h2" textAlign="center" style={{ marginBottom: '1.5em' }}>
                 <Image src={logo} style={{ marginBottom: '10px' }} />
                 <Header.Content>{t('auth.reset.confirm.title')}</Header.Content>
               </Header>
             </Card.Header>
-            <Form size='large'>
+            <Form size="large">
               <Form.Input
                 fluid
-                icon='mail'
-                iconPosition='left'
+                icon="mail"
+                iconPosition="left"
                 placeholder={t('auth.reset.email')}
-                name='email'
+                name="email"
                 value={email}
                 readOnly
                 style={{ marginBottom: '1em' }}
@@ -102,10 +87,10 @@ const PasswordResetConfirm = () => {
               {newPassword && (
                 <Form.Input
                   fluid
-                  icon='lock'
-                  iconPosition='left'
+                  icon="lock"
+                  iconPosition="left"
                   placeholder={t('auth.reset.confirm.new_password')}
-                  name='newPassword'
+                  name="newPassword"
                   value={newPassword}
                   readOnly
                   style={{
@@ -122,7 +107,7 @@ const PasswordResetConfirm = () => {
               )}
               <Button
                 fluid
-                size='large'
+                size="large"
                 onClick={handleSubmit}
                 loading={loading}
                 disabled={disableButton}
@@ -139,9 +124,7 @@ const PasswordResetConfirm = () => {
             </Form>
             {newPassword && (
               <Message style={{ background: 'transparent', boxShadow: 'none' }}>
-                <p style={{ fontSize: '0.9em', color: '#666' }}>
-                  {t('auth.reset.confirm.notice')}
-                </p>
+                <p style={{ fontSize: '0.9em', color: '#666' }}>{t('auth.reset.confirm.notice')}</p>
               </Message>
             )}
           </Card.Content>

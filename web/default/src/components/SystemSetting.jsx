@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Button,
-  Divider,
-  Form,
-  Grid,
-  Header,
-  Modal,
-  Message,
-} from 'semantic-ui-react';
+import { Button, Divider, Form, Grid, Header, Message, Modal } from 'semantic-ui-react';
+
 import { API, removeTrailingSlash, showError } from '../helpers';
 
 const SystemSetting = () => {
@@ -47,8 +40,7 @@ const SystemSetting = () => {
   let [loading, setLoading] = useState(false);
   const [EmailDomainWhitelist, setEmailDomainWhitelist] = useState([]);
   const [restrictedDomainInput, setRestrictedDomainInput] = useState('');
-  const [showPasswordWarningModal, setShowPasswordWarningModal] =
-    useState(false);
+  const [showPasswordWarningModal, setShowPasswordWarningModal] = useState(false);
 
   const getOptions = async () => {
     const res = await API.get('/api/option/');
@@ -155,48 +147,29 @@ const SystemSetting = () => {
     if (originInputs['SMTPFrom'] !== inputs.SMTPFrom) {
       await updateOption('SMTPFrom', inputs.SMTPFrom);
     }
-    if (
-      originInputs['SMTPPort'] !== inputs.SMTPPort &&
-      inputs.SMTPPort !== ''
-    ) {
+    if (originInputs['SMTPPort'] !== inputs.SMTPPort && inputs.SMTPPort !== '') {
       await updateOption('SMTPPort', inputs.SMTPPort);
     }
-    if (
-      originInputs['SMTPToken'] !== inputs.SMTPToken &&
-      inputs.SMTPToken !== ''
-    ) {
+    if (originInputs['SMTPToken'] !== inputs.SMTPToken && inputs.SMTPToken !== '') {
       await updateOption('SMTPToken', inputs.SMTPToken);
     }
   };
 
   const submitEmailDomainWhitelist = async () => {
     if (
-      originInputs['EmailDomainWhitelist'] !==
-        inputs.EmailDomainWhitelist.join(',') &&
+      originInputs['EmailDomainWhitelist'] !== inputs.EmailDomainWhitelist.join(',') &&
       inputs.SMTPToken !== ''
     ) {
-      await updateOption(
-        'EmailDomainWhitelist',
-        inputs.EmailDomainWhitelist.join(','),
-      );
+      await updateOption('EmailDomainWhitelist', inputs.EmailDomainWhitelist.join(','));
     }
   };
 
   const submitWeChat = async () => {
     if (originInputs['WeChatServerAddress'] !== inputs.WeChatServerAddress) {
-      await updateOption(
-        'WeChatServerAddress',
-        removeTrailingSlash(inputs.WeChatServerAddress),
-      );
+      await updateOption('WeChatServerAddress', removeTrailingSlash(inputs.WeChatServerAddress));
     }
-    if (
-      originInputs['WeChatAccountQRCodeImageURL'] !==
-      inputs.WeChatAccountQRCodeImageURL
-    ) {
-      await updateOption(
-        'WeChatAccountQRCodeImageURL',
-        inputs.WeChatAccountQRCodeImageURL,
-      );
+    if (originInputs['WeChatAccountQRCodeImageURL'] !== inputs.WeChatAccountQRCodeImageURL) {
+      await updateOption('WeChatAccountQRCodeImageURL', inputs.WeChatAccountQRCodeImageURL);
     }
     if (
       originInputs['WeChatServerToken'] !== inputs.WeChatServerToken &&
@@ -208,10 +181,7 @@ const SystemSetting = () => {
 
   const submitMessagePusher = async () => {
     if (originInputs['MessagePusherAddress'] !== inputs.MessagePusherAddress) {
-      await updateOption(
-        'MessagePusherAddress',
-        removeTrailingSlash(inputs.MessagePusherAddress),
-      );
+      await updateOption('MessagePusherAddress', removeTrailingSlash(inputs.MessagePusherAddress));
     }
     if (
       originInputs['MessagePusherToken'] !== inputs.MessagePusherToken &&
@@ -259,10 +229,7 @@ const SystemSetting = () => {
 
   const submitNewRestrictedDomain = () => {
     const localDomainList = inputs.EmailDomainWhitelist;
-    if (
-      restrictedDomainInput !== '' &&
-      !localDomainList.includes(restrictedDomainInput)
-    ) {
+    if (restrictedDomainInput !== '' && !localDomainList.includes(restrictedDomainInput)) {
       setRestrictedDomainInput('');
       setInputs({
         ...inputs,
@@ -283,15 +250,13 @@ const SystemSetting = () => {
     <Grid columns={1}>
       <Grid.Column>
         <Form loading={loading}>
-          <Header as='h3'>{t('setting.system.general.title')}</Header>
-          <Form.Group widths='equal'>
+          <Header as="h3">{t('setting.system.general.title')}</Header>
+          <Form.Group widths="equal">
             <Form.Input
               label={t('setting.system.general.server_address')}
-              placeholder={t(
-                'setting.system.general.server_address_placeholder',
-              )}
+              placeholder={t('setting.system.general.server_address_placeholder')}
               value={inputs.ServerAddress}
-              name='ServerAddress'
+              name="ServerAddress"
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -299,12 +264,12 @@ const SystemSetting = () => {
             {t('setting.system.general.buttons.update')}
           </Form.Button>
           <Divider />
-          <Header as='h3'>{t('setting.system.login.title')}</Header>
+          <Header as="h3">{t('setting.system.login.title')}</Header>
           <Form.Group inline>
             <Form.Checkbox
               checked={inputs.PasswordLoginEnabled === 'true'}
               label={t('setting.system.login.password_login')}
-              name='PasswordLoginEnabled'
+              name="PasswordLoginEnabled"
               onChange={handleInputChange}
             />
             {showPasswordWarningModal && (
@@ -314,9 +279,7 @@ const SystemSetting = () => {
                 size={'tiny'}
                 style={{ maxWidth: '450px' }}
               >
-                <Modal.Header>
-                  {t('setting.system.password_login.warning.title')}
-                </Modal.Header>
+                <Modal.Header>{t('setting.system.password_login.warning.title')}</Modal.Header>
                 <Modal.Content>
                   <p>{t('setting.system.password_login.warning.content')}</p>
                 </Modal.Content>
@@ -325,7 +288,7 @@ const SystemSetting = () => {
                     {t('setting.system.password_login.warning.buttons.cancel')}
                   </Button>
                   <Button
-                    color='yellow'
+                    color="yellow"
                     onClick={async () => {
                       setShowPasswordWarningModal(false);
                       await updateOption('PasswordLoginEnabled', 'false');
@@ -339,25 +302,25 @@ const SystemSetting = () => {
             <Form.Checkbox
               checked={inputs.PasswordRegisterEnabled === 'true'}
               label={t('setting.system.login.password_register')}
-              name='PasswordRegisterEnabled'
+              name="PasswordRegisterEnabled"
               onChange={handleInputChange}
             />
             <Form.Checkbox
               checked={inputs.EmailVerificationEnabled === 'true'}
               label={t('setting.system.login.email_verification')}
-              name='EmailVerificationEnabled'
+              name="EmailVerificationEnabled"
               onChange={handleInputChange}
             />
             <Form.Checkbox
               checked={inputs.GitHubOAuthEnabled === 'true'}
               label={t('setting.system.login.github_oauth')}
-              name='GitHubOAuthEnabled'
+              name="GitHubOAuthEnabled"
               onChange={handleInputChange}
             />
             <Form.Checkbox
               checked={inputs.WeChatAuthEnabled === 'true'}
               label={t('setting.system.login.wechat_login')}
-              name='WeChatAuthEnabled'
+              name="WeChatAuthEnabled"
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -365,33 +328,31 @@ const SystemSetting = () => {
             <Form.Checkbox
               checked={inputs.RegisterEnabled === 'true'}
               label={t('setting.system.login.registration')}
-              name='RegisterEnabled'
+              name="RegisterEnabled"
               onChange={handleInputChange}
             />
             <Form.Checkbox
               checked={inputs.TurnstileCheckEnabled === 'true'}
               label={t('setting.system.login.turnstile')}
-              name='TurnstileCheckEnabled'
+              name="TurnstileCheckEnabled"
               onChange={handleInputChange}
             />
           </Form.Group>
           <Divider />
-          <Header as='h3'>{t('setting.system.email_restriction.title')}</Header>
+          <Header as="h3">{t('setting.system.email_restriction.title')}</Header>
           <Message>{t('setting.system.email_restriction.subtitle')}</Message>
           <Form.Group inline>
             <Form.Checkbox
               checked={inputs.EmailDomainRestrictionEnabled === 'true'}
               label={t('setting.system.email_restriction.enable')}
-              name='EmailDomainRestrictionEnabled'
+              name="EmailDomainRestrictionEnabled"
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group widths={3}>
             <Form.Input
               label={t('setting.system.email_restriction.add_domain')}
-              placeholder={t(
-                'setting.system.email_restriction.add_domain_placeholder',
-              )}
+              placeholder={t('setting.system.email_restriction.add_domain_placeholder')}
               value={restrictedDomainInput}
               onChange={(e, { value }) => {
                 setRestrictedDomainInput(value);
@@ -453,27 +414,27 @@ const SystemSetting = () => {
           </Form.Button>
 
           <Divider />
-          <Header as='h3'>{t('setting.system.smtp.title')}</Header>
+          <Header as="h3">{t('setting.system.smtp.title')}</Header>
           <Message>{t('setting.system.smtp.subtitle')}</Message>
           <Form.Group widths={3}>
             <Form.Input
               label={t('setting.system.smtp.server')}
               placeholder={t('setting.system.smtp.server_placeholder')}
-              name='SMTPServer'
+              name="SMTPServer"
               onChange={handleInputChange}
               value={inputs.SMTPServer}
             />
             <Form.Input
               label={t('setting.system.smtp.port')}
               placeholder={t('setting.system.smtp.port_placeholder')}
-              name='SMTPPort'
+              name="SMTPPort"
               onChange={handleInputChange}
               value={inputs.SMTPPort}
             />
             <Form.Input
               label={t('setting.system.smtp.account')}
               placeholder={t('setting.system.smtp.account_placeholder')}
-              name='SMTPAccount'
+              name="SMTPAccount"
               onChange={handleInputChange}
               value={inputs.SMTPAccount}
             />
@@ -482,28 +443,26 @@ const SystemSetting = () => {
             <Form.Input
               label={t('setting.system.smtp.from')}
               placeholder={t('setting.system.smtp.from_placeholder')}
-              name='SMTPFrom'
+              name="SMTPFrom"
               onChange={handleInputChange}
               value={inputs.SMTPFrom}
             />
             <Form.Input
               label={t('setting.system.smtp.token')}
               placeholder={t('setting.system.smtp.token_placeholder')}
-              name='SMTPToken'
+              name="SMTPToken"
               onChange={handleInputChange}
-              type='password'
+              type="password"
               value={inputs.SMTPToken}
             />
           </Form.Group>
-          <Form.Button onClick={submitSMTP}>
-            {t('setting.system.smtp.buttons.save')}
-          </Form.Button>
+          <Form.Button onClick={submitSMTP}>{t('setting.system.smtp.buttons.save')}</Form.Button>
 
           <Divider />
-          <Header as='h3'>{t('setting.system.github.title')}</Header>
+          <Header as="h3">{t('setting.system.github.title')}</Header>
           <Message>
             {t('setting.system.github.subtitle')}
-            <a href='https://github.com/settings/developers' target='_blank'>
+            <a href="https://github.com/settings/developers" target="_blank">
               {t('setting.system.github.manage_link')}
             </a>
             {t('setting.system.github.manage_text')}
@@ -518,16 +477,16 @@ const SystemSetting = () => {
             <Form.Input
               label={t('setting.system.github.client_id')}
               placeholder={t('setting.system.github.client_id_placeholder')}
-              name='GitHubClientId'
+              name="GitHubClientId"
               onChange={handleInputChange}
               value={inputs.GitHubClientId}
             />
             <Form.Input
               label={t('setting.system.github.client_secret')}
               placeholder={t('setting.system.github.client_secret_placeholder')}
-              name='GitHubClientSecret'
+              name="GitHubClientSecret"
               onChange={handleInputChange}
-              type='password'
+              type="password"
               value={inputs.GitHubClientSecret}
             />
           </Form.Group>
@@ -536,11 +495,11 @@ const SystemSetting = () => {
           </Form.Button>
 
           <Divider />
-          <Header as='h3'>
+          <Header as="h3">
             {t('setting.system.lark.title')}
             <Header.Subheader>
               {t('setting.system.lark.subtitle')}
-              <a href='https://open.feishu.cn/app' target='_blank'>
+              <a href="https://open.feishu.cn/app" target="_blank">
                 {t('setting.system.lark.manage_link')}
               </a>
               {t('setting.system.lark.manage_text')}
@@ -555,18 +514,18 @@ const SystemSetting = () => {
           <Form.Group widths={3}>
             <Form.Input
               label={t('setting.system.lark.client_id')}
-              name='LarkClientId'
+              name="LarkClientId"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.LarkClientId}
               placeholder={t('setting.system.lark.client_id_placeholder')}
             />
             <Form.Input
               label={t('setting.system.lark.client_secret')}
-              name='LarkClientSecret'
+              name="LarkClientSecret"
               onChange={handleInputChange}
-              type='password'
-              autoComplete='new-password'
+              type="password"
+              autoComplete="new-password"
               value={inputs.LarkClientSecret}
               placeholder={t('setting.system.lark.client_secret_placeholder')}
             />
@@ -576,14 +535,11 @@ const SystemSetting = () => {
           </Form.Button>
 
           <Divider />
-          <Header as='h3'>
+          <Header as="h3">
             {t('setting.system.wechat.title')}
             <Header.Subheader>
               {t('setting.system.wechat.subtitle')}
-              <a
-                href='https://github.com/songquanpeng/wechat-server'
-                target='_blank'
-              >
+              <a href="https://github.com/songquanpeng/wechat-server" target="_blank">
                 {t('setting.system.wechat.learn_more')}
               </a>
             </Header.Subheader>
@@ -591,28 +547,26 @@ const SystemSetting = () => {
           <Form.Group widths={3}>
             <Form.Input
               label={t('setting.system.wechat.server_address')}
-              name='WeChatServerAddress'
+              name="WeChatServerAddress"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.WeChatServerAddress}
-              placeholder={t(
-                'setting.system.wechat.server_address_placeholder',
-              )}
+              placeholder={t('setting.system.wechat.server_address_placeholder')}
             />
             <Form.Input
               label={t('setting.system.wechat.token')}
-              name='WeChatServerToken'
+              name="WeChatServerToken"
               onChange={handleInputChange}
-              type='password'
-              autoComplete='new-password'
+              type="password"
+              autoComplete="new-password"
               value={inputs.WeChatServerToken}
               placeholder={t('setting.system.wechat.token_placeholder')}
             />
             <Form.Input
               label={t('setting.system.wechat.qrcode')}
-              name='WeChatAccountQRCodeImageURL'
+              name="WeChatAccountQRCodeImageURL"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.WeChatAccountQRCodeImageURL}
               placeholder={t('setting.system.wechat.qrcode_placeholder')}
             />
@@ -622,11 +576,11 @@ const SystemSetting = () => {
           </Form.Button>
 
           <Divider />
-          <Header as='h3'>
+          <Header as="h3">
             {t('setting.system.turnstile.title')}
             <Header.Subheader>
               {t('setting.system.turnstile.subtitle')}
-              <a href='https://dash.cloudflare.com/' target='_blank'>
+              <a href="https://dash.cloudflare.com/" target="_blank">
                 {t('setting.system.turnstile.manage_link')}
               </a>
               {t('setting.system.turnstile.manage_text')}
@@ -635,18 +589,18 @@ const SystemSetting = () => {
           <Form.Group widths={3}>
             <Form.Input
               label={t('setting.system.turnstile.site_key')}
-              name='TurnstileSiteKey'
+              name="TurnstileSiteKey"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.TurnstileSiteKey}
               placeholder={t('setting.system.turnstile.site_key_placeholder')}
             />
             <Form.Input
               label={t('setting.system.turnstile.secret_key')}
-              name='TurnstileSecretKey'
+              name="TurnstileSecretKey"
               onChange={handleInputChange}
-              type='password'
-              autoComplete='new-password'
+              type="password"
+              autoComplete="new-password"
               value={inputs.TurnstileSecretKey}
               placeholder={t('setting.system.turnstile.secret_key_placeholder')}
             />

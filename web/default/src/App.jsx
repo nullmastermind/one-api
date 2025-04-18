@@ -1,31 +1,32 @@
-import React, { lazy, Suspense, useContext, useEffect } from 'react';
+import React, { Suspense, lazy, useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+import GitHubOAuth from './components/GitHubOAuth';
+import LarkOAuth from './components/LarkOAuth';
 import Loading from './components/Loading';
-import User from './pages/User';
+import LoginForm from './components/LoginForm';
+import PasswordResetConfirm from './components/PasswordResetConfirm';
+import PasswordResetForm from './components/PasswordResetForm';
 import { PrivateRoute } from './components/PrivateRoute';
 import RegisterForm from './components/RegisterForm';
-import LoginForm from './components/LoginForm';
-import NotFound from './pages/NotFound';
-import Setting from './pages/Setting';
-import EditUser from './pages/User/EditUser';
-import AddUser from './pages/User/AddUser';
-import { API, getLogo, getSystemName, showError, showNotice } from './helpers';
-import PasswordResetForm from './components/PasswordResetForm';
-import GitHubOAuth from './components/GitHubOAuth';
-import PasswordResetConfirm from './components/PasswordResetConfirm';
-import { UserContext } from './context/User';
 import { StatusContext } from './context/Status';
+import { UserContext } from './context/User';
+import { API, getLogo, getSystemName, showError, showNotice } from './helpers';
 import Channel from './pages/Channel';
-import Token from './pages/Token';
-import EditToken from './pages/Token/EditToken';
 import EditChannel from './pages/Channel/EditChannel';
+import Chat from './pages/Chat';
+import Dashboard from './pages/Dashboard';
+import Log from './pages/Log';
+import NotFound from './pages/NotFound';
 import Redemption from './pages/Redemption';
 import EditRedemption from './pages/Redemption/EditRedemption';
+import Setting from './pages/Setting';
+import Token from './pages/Token';
+import EditToken from './pages/Token/EditToken';
 import TopUp from './pages/TopUp';
-import Log from './pages/Log';
-import Chat from './pages/Chat';
-import LarkOAuth from './components/LarkOAuth';
-import Dashboard from './pages/Dashboard';
+import User from './pages/User';
+import AddUser from './pages/User/AddUser';
+import EditUser from './pages/User/EditUser';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -95,7 +96,7 @@ function App() {
   return (
     <Routes>
       <Route
-        path='/'
+        path="/"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <Home />
@@ -103,7 +104,7 @@ function App() {
         }
       />
       <Route
-        path='/channel'
+        path="/channel"
         element={
           <PrivateRoute>
             <Channel />
@@ -111,7 +112,7 @@ function App() {
         }
       />
       <Route
-        path='/channel/edit/:id'
+        path="/channel/edit/:id"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditChannel />
@@ -119,7 +120,7 @@ function App() {
         }
       />
       <Route
-        path='/channel/add'
+        path="/channel/add"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditChannel />
@@ -127,7 +128,7 @@ function App() {
         }
       />
       <Route
-        path='/token'
+        path="/token"
         element={
           <PrivateRoute>
             <Token />
@@ -135,7 +136,7 @@ function App() {
         }
       />
       <Route
-        path='/token/edit/:id'
+        path="/token/edit/:id"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditToken />
@@ -143,7 +144,7 @@ function App() {
         }
       />
       <Route
-        path='/token/add'
+        path="/token/add"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditToken />
@@ -151,7 +152,7 @@ function App() {
         }
       />
       <Route
-        path='/redemption'
+        path="/redemption"
         element={
           <PrivateRoute>
             <Redemption />
@@ -159,7 +160,7 @@ function App() {
         }
       />
       <Route
-        path='/redemption/edit/:id'
+        path="/redemption/edit/:id"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditRedemption />
@@ -167,7 +168,7 @@ function App() {
         }
       />
       <Route
-        path='/redemption/add'
+        path="/redemption/add"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditRedemption />
@@ -175,7 +176,7 @@ function App() {
         }
       />
       <Route
-        path='/user'
+        path="/user"
         element={
           <PrivateRoute>
             <User />
@@ -183,7 +184,7 @@ function App() {
         }
       />
       <Route
-        path='/user/edit/:id'
+        path="/user/edit/:id"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditUser />
@@ -191,7 +192,7 @@ function App() {
         }
       />
       <Route
-        path='/user/edit'
+        path="/user/edit"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <EditUser />
@@ -199,7 +200,7 @@ function App() {
         }
       />
       <Route
-        path='/user/add'
+        path="/user/add"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <AddUser />
@@ -207,7 +208,7 @@ function App() {
         }
       />
       <Route
-        path='/user/reset'
+        path="/user/reset"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <PasswordResetConfirm />
@@ -215,7 +216,7 @@ function App() {
         }
       />
       <Route
-        path='/login'
+        path="/login"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <LoginForm />
@@ -223,7 +224,7 @@ function App() {
         }
       />
       <Route
-        path='/register'
+        path="/register"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <RegisterForm />
@@ -231,7 +232,7 @@ function App() {
         }
       />
       <Route
-        path='/reset'
+        path="/reset"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <PasswordResetForm />
@@ -239,7 +240,7 @@ function App() {
         }
       />
       <Route
-        path='/oauth/github'
+        path="/oauth/github"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <GitHubOAuth />
@@ -247,7 +248,7 @@ function App() {
         }
       />
       <Route
-        path='/oauth/lark'
+        path="/oauth/lark"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <LarkOAuth />
@@ -255,7 +256,7 @@ function App() {
         }
       />
       <Route
-        path='/setting'
+        path="/setting"
         element={
           <PrivateRoute>
             <Suspense fallback={<Loading></Loading>}>
@@ -265,7 +266,7 @@ function App() {
         }
       />
       <Route
-        path='/topup'
+        path="/topup"
         element={
           <PrivateRoute>
             <Suspense fallback={<Loading></Loading>}>
@@ -275,7 +276,7 @@ function App() {
         }
       />
       <Route
-        path='/log'
+        path="/log"
         element={
           <PrivateRoute>
             <Log />
@@ -283,7 +284,7 @@ function App() {
         }
       />
       <Route
-        path='/about'
+        path="/about"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <About />
@@ -291,7 +292,7 @@ function App() {
         }
       />
       <Route
-        path='/chat'
+        path="/chat"
         element={
           <Suspense fallback={<Loading></Loading>}>
             <Chat />
@@ -299,14 +300,14 @@ function App() {
         }
       />
       <Route
-        path='/dashboard'
+        path="/dashboard"
         element={
           <PrivateRoute>
             <Dashboard />
           </PrivateRoute>
         }
       />
-      <Route path='*' element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

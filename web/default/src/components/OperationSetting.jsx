@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Divider, Form, Grid, Header } from 'semantic-ui-react';
-import {
-  API,
-  showError,
-  showSuccess,
-  timestamp2string,
-  verifyJSON,
-} from '../helpers';
+
+import { API, showError, showSuccess, timestamp2string, verifyJSON } from '../helpers';
 
 const OperationSetting = () => {
   const { t } = useTranslation();
@@ -97,22 +92,11 @@ const OperationSetting = () => {
   const submitConfig = async (group) => {
     switch (group) {
       case 'monitor':
-        if (
-          originInputs['ChannelDisableThreshold'] !==
-          inputs.ChannelDisableThreshold
-        ) {
-          await updateOption(
-            'ChannelDisableThreshold',
-            inputs.ChannelDisableThreshold,
-          );
+        if (originInputs['ChannelDisableThreshold'] !== inputs.ChannelDisableThreshold) {
+          await updateOption('ChannelDisableThreshold', inputs.ChannelDisableThreshold);
         }
-        if (
-          originInputs['QuotaRemindThreshold'] !== inputs.QuotaRemindThreshold
-        ) {
-          await updateOption(
-            'QuotaRemindThreshold',
-            inputs.QuotaRemindThreshold,
-          );
+        if (originInputs['QuotaRemindThreshold'] !== inputs.QuotaRemindThreshold) {
+          await updateOption('QuotaRemindThreshold', inputs.QuotaRemindThreshold);
         }
         break;
       case 'ratio':
@@ -125,7 +109,7 @@ const OperationSetting = () => {
         }
         if (originInputs['GroupRatio'] !== inputs.GroupRatio) {
           if (!verifyJSON(inputs.GroupRatio)) {
-            showError('Grouping multiple isn\'t a valid JSON string.');
+            showError("Grouping multiple isn't a valid JSON string.");
             return;
           }
           await updateOption('GroupRatio', inputs.GroupRatio);
@@ -186,51 +170,47 @@ const OperationSetting = () => {
     <Grid columns={1}>
       <Grid.Column>
         <Form loading={loading}>
-          <Header as='h3'>{t('setting.operation.quota.title')}</Header>
-          <Form.Group widths='equal'>
+          <Header as="h3">{t('setting.operation.quota.title')}</Header>
+          <Form.Group widths="equal">
             <Form.Input
               label={t('setting.operation.quota.new_user')}
-              name='QuotaForNewUser'
+              name="QuotaForNewUser"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.QuotaForNewUser}
-              type='number'
-              min='0'
+              type="number"
+              min="0"
               placeholder={t('setting.operation.quota.new_user_placeholder')}
             />
             <Form.Input
               label={t('setting.operation.quota.pre_consume')}
-              name='PreConsumedQuota'
+              name="PreConsumedQuota"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.PreConsumedQuota}
-              type='number'
-              min='0'
+              type="number"
+              min="0"
               placeholder={t('setting.operation.quota.pre_consume_placeholder')}
             />
             <Form.Input
               label={t('setting.operation.quota.inviter_reward')}
-              name='QuotaForInviter'
+              name="QuotaForInviter"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.QuotaForInviter}
-              type='number'
-              min='0'
-              placeholder={t(
-                'setting.operation.quota.inviter_reward_placeholder',
-              )}
+              type="number"
+              min="0"
+              placeholder={t('setting.operation.quota.inviter_reward_placeholder')}
             />
             <Form.Input
               label={t('setting.operation.quota.invitee_reward')}
-              name='QuotaForInvitee'
+              name="QuotaForInvitee"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.QuotaForInvitee}
-              type='number'
-              min='0'
-              placeholder={t(
-                'setting.operation.quota.invitee_reward_placeholder',
-              )}
+              type="number"
+              min="0"
+              placeholder={t('setting.operation.quota.invitee_reward_placeholder')}
             />
           </Form.Group>
           <Form.Button
@@ -241,36 +221,36 @@ const OperationSetting = () => {
             {t('setting.operation.quota.buttons.save')}
           </Form.Button>
           <Divider />
-          <Header as='h3'>{t('setting.operation.ratio.title')}</Header>
-          <Form.Group widths='equal'>
+          <Header as="h3">{t('setting.operation.ratio.title')}</Header>
+          <Form.Group widths="equal">
             <Form.TextArea
               label={t('setting.operation.ratio.model.title')}
-              name='ModelRatio'
+              name="ModelRatio"
               onChange={handleInputChange}
               style={{ minHeight: 250, fontFamily: 'JetBrains Mono, Consolas' }}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.ModelRatio}
               placeholder={t('setting.operation.ratio.model.placeholder')}
             />
           </Form.Group>
-          <Form.Group widths='equal'>
+          <Form.Group widths="equal">
             <Form.TextArea
               label={t('setting.operation.ratio.completion.title')}
-              name='CompletionRatio'
+              name="CompletionRatio"
               onChange={handleInputChange}
               style={{ minHeight: 250, fontFamily: 'JetBrains Mono, Consolas' }}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.CompletionRatio}
               placeholder={t('setting.operation.ratio.completion.placeholder')}
             />
           </Form.Group>
-          <Form.Group widths='equal'>
+          <Form.Group widths="equal">
             <Form.TextArea
               label={t('setting.operation.ratio.group.title')}
-              name='GroupRatio'
+              name="GroupRatio"
               onChange={handleInputChange}
               style={{ minHeight: 250, fontFamily: 'JetBrains Mono, Consolas' }}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.GroupRatio}
               placeholder={t('setting.operation.ratio.group.placeholder')}
             />
@@ -283,12 +263,12 @@ const OperationSetting = () => {
             {t('setting.operation.ratio.buttons.save')}
           </Form.Button>
           <Divider />
-          <Header as='h3'>{t('setting.operation.log.title')}</Header>
+          <Header as="h3">{t('setting.operation.log.title')}</Header>
           <Form.Group inline>
             <Form.Checkbox
               checked={inputs.LogConsumeEnabled === 'true'}
               label={t('setting.operation.log.enable_consume')}
-              name='LogConsumeEnabled'
+              name="LogConsumeEnabled"
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -296,8 +276,8 @@ const OperationSetting = () => {
             <Form.Input
               label={t('setting.operation.log.target_time')}
               value={historyTimestamp}
-              type='datetime-local'
-              name='history_timestamp'
+              type="datetime-local"
+              name="history_timestamp"
               onChange={(e, { name, value }) => {
                 setHistoryTimestamp(value);
               }}
@@ -312,44 +292,40 @@ const OperationSetting = () => {
           </Form.Button>
 
           <Divider />
-          <Header as='h3'>{t('setting.operation.monitor.title')}</Header>
+          <Header as="h3">{t('setting.operation.monitor.title')}</Header>
           <Form.Group widths={3}>
             <Form.Input
               label={t('setting.operation.monitor.max_response_time')}
-              name='ChannelDisableThreshold'
+              name="ChannelDisableThreshold"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.ChannelDisableThreshold}
-              type='number'
-              min='0'
-              placeholder={t(
-                'setting.operation.monitor.max_response_time_placeholder',
-              )}
+              type="number"
+              min="0"
+              placeholder={t('setting.operation.monitor.max_response_time_placeholder')}
             />
             <Form.Input
               label={t('setting.operation.monitor.quota_reminder')}
-              name='QuotaRemindThreshold'
+              name="QuotaRemindThreshold"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.QuotaRemindThreshold}
-              type='number'
-              min='0'
-              placeholder={t(
-                'setting.operation.monitor.quota_reminder_placeholder',
-              )}
+              type="number"
+              min="0"
+              placeholder={t('setting.operation.monitor.quota_reminder_placeholder')}
             />
           </Form.Group>
           <Form.Group inline>
             <Form.Checkbox
               checked={inputs.AutomaticDisableChannelEnabled === 'true'}
               label={t('setting.operation.monitor.auto_disable')}
-              name='AutomaticDisableChannelEnabled'
+              name="AutomaticDisableChannelEnabled"
               onChange={handleInputChange}
             />
             <Form.Checkbox
               checked={inputs.AutomaticEnableChannelEnabled === 'true'}
               label={t('setting.operation.monitor.auto_enable')}
-              name='AutomaticEnableChannelEnabled'
+              name="AutomaticEnableChannelEnabled"
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -362,71 +338,65 @@ const OperationSetting = () => {
           </Form.Button>
 
           <Divider />
-          <Header as='h3'>{t('setting.operation.general.title')}</Header>
+          <Header as="h3">{t('setting.operation.general.title')}</Header>
           <Form.Group widths={4}>
             <Form.Input
               label={t('setting.operation.general.topup_link')}
-              name='TopUpLink'
+              name="TopUpLink"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.TopUpLink}
-              type='link'
-              placeholder={t(
-                'setting.operation.general.topup_link_placeholder',
-              )}
+              type="link"
+              placeholder={t('setting.operation.general.topup_link_placeholder')}
             />
             <Form.Input
               label={t('setting.operation.general.chat_link')}
-              name='ChatLink'
+              name="ChatLink"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.ChatLink}
-              type='link'
+              type="link"
               placeholder={t('setting.operation.general.chat_link_placeholder')}
             />
             <Form.Input
               label={t('setting.operation.general.quota_per_unit')}
-              name='QuotaPerUnit'
+              name="QuotaPerUnit"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.QuotaPerUnit}
-              type='number'
-              step='0.01'
-              placeholder={t(
-                'setting.operation.general.quota_per_unit_placeholder',
-              )}
+              type="number"
+              step="0.01"
+              placeholder={t('setting.operation.general.quota_per_unit_placeholder')}
             />
             <Form.Input
               label={t('setting.operation.general.retry_times')}
-              name='RetryTimes'
+              name="RetryTimes"
               type={'number'}
-              step='1'
-              min='0'
+              step="1"
+              min="0"
               onChange={handleInputChange}
-              autoComplete='new-password'
+              autoComplete="new-password"
               value={inputs.RetryTimes}
-              placeholder={t(
-                'setting.operation.general.retry_times_placeholder',
-              )}
+              placeholder={t('setting.operation.general.retry_times_placeholder')}
             />
           </Form.Group>
           <Form.Group inline>
             <Form.Checkbox
               checked={inputs.DisplayInCurrencyEnabled === 'true'}
               label={t('setting.operation.general.display_in_currency')}
-              name='DisplayInCurrencyEnabled'
+              name="DisplayInCurrencyEnabled"
               onChange={handleInputChange}
             />
             <Form.Checkbox
               checked={inputs.DisplayTokenStatEnabled === 'true'}
               label={t('setting.operation.general.display_token_stat')}
-              name='DisplayTokenStatEnabled'
+              name="DisplayTokenStatEnabled"
               onChange={handleInputChange}
             />
             <Form.Checkbox
               checked={inputs.ApproximateTokenEnabled === 'true'}
               label={t('setting.operation.general.approximate_token')}
-              name='ApproximateTokenEnabled'
+              name="ApproximateTokenEnabled"
               onChange={handleInputChange}
             />
           </Form.Group>

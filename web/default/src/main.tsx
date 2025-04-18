@@ -1,31 +1,32 @@
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
-import {BrowserRouter} from 'react-router-dom';
-import {Container} from 'semantic-ui-react';
-import App from './App';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import 'semantic-ui-css/semantic.min.css';
-import './index.css';
-import {UserProvider} from './context/User';
-import {ToastContainer} from 'react-toastify';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {StatusProvider} from './context/Status';
+import 'semantic-ui-css/semantic.min.css';
+import { Container } from 'semantic-ui-react';
+
+import App from './App';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import { StatusProvider } from './context/Status';
+import { UserProvider } from './context/User';
 import './i18n';
+import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <StatusProvider>
       <UserProvider>
         <BrowserRouter>
-          <Header/>
+          <Header />
           <Container className={'main-content'}>
-            <App/>
+            <App />
           </Container>
-          <ToastContainer/>
-          <Footer/>
+          <ToastContainer />
+          <Footer />
         </BrowserRouter>
       </UserProvider>
     </StatusProvider>
   </StrictMode>,
-)
+);

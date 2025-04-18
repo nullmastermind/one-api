@@ -1,25 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Button,
-  Dropdown,
-  Form,
-  Label,
-  Pagination,
-  Popup,
-  Table,
-} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import {
-  API,
-  copy,
-  showError,
-  showSuccess,
-  showWarning,
-  timestamp2string,
-} from '../helpers';
+import { Button, Dropdown, Form, Label, Pagination, Popup, Table } from 'semantic-ui-react';
 
 import { ITEMS_PER_PAGE } from '../constants';
+import { API, copy, showError, showSuccess, showWarning, timestamp2string } from '../helpers';
 import { renderQuota } from '../helpers/render';
 
 function renderTimestamp(timestamp) {
@@ -30,31 +15,31 @@ function renderStatus(status, t) {
   switch (status) {
     case 1:
       return (
-        <Label basic color='green'>
+        <Label basic color="green">
           {t('token.table.status_enabled')}
         </Label>
       );
     case 2:
       return (
-        <Label basic color='red'>
+        <Label basic color="red">
           {t('token.table.status_disabled')}
         </Label>
       );
     case 3:
       return (
-        <Label basic color='yellow'>
+        <Label basic color="yellow">
           {t('token.table.status_expired')}
         </Label>
       );
     case 4:
       return (
-        <Label basic color='grey'>
+        <Label basic color="grey">
           {t('token.table.status_depleted')}
         </Label>
       );
     default:
       return (
-        <Label basic color='black'>
+        <Label basic color="black">
           {t('token.table.status_unknown')}
         </Label>
       );
@@ -135,8 +120,7 @@ const TokensTable = () => {
     let nextUrl;
 
     if (nextLink) {
-      nextUrl =
-        nextLink + `/#/?settings={"key":"sk-${key}","url":"${serverAddress}"}`;
+      nextUrl = nextLink + `/#/?settings={"key":"sk-${key}","url":"${serverAddress}"}`;
     } else {
       nextUrl = `https://app.nextchat.dev/#/?settings={"key":"sk-${key}","url":"${serverAddress}"}`;
     }
@@ -183,8 +167,7 @@ const TokensTable = () => {
     let defaultUrl;
 
     if (chatLink) {
-      defaultUrl =
-        chatLink + `/#/?settings={"key":"sk-${key}","url":"${serverAddress}"}`;
+      defaultUrl = chatLink + `/#/?settings={"key":"sk-${key}","url":"${serverAddress}"}`;
     } else {
       defaultUrl = `https://app.nextchat.dev/#/?settings={"key":"sk-${key}","url":"${serverAddress}"}`;
     }
@@ -305,9 +288,9 @@ const TokensTable = () => {
     <>
       <Form onSubmit={searchTokens}>
         <Form.Input
-          icon='search'
+          icon="search"
           fluid
-          iconPosition='left'
+          iconPosition="left"
           placeholder={t('token.search')}
           value={searchKeyword}
           loading={searching}
@@ -315,7 +298,7 @@ const TokensTable = () => {
         />
       </Form>
 
-      <Table basic={'very'} compact size='small'>
+      <Table basic={'very'} compact size="small">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -372,10 +355,7 @@ const TokensTable = () => {
 
         <Table.Body>
           {tokens
-            .slice(
-              (activePage - 1) * ITEMS_PER_PAGE,
-              activePage * ITEMS_PER_PAGE,
-            )
+            .slice((activePage - 1) * ITEMS_PER_PAGE, activePage * ITEMS_PER_PAGE)
             .map((token, idx) => {
               if (token.deleted) return <></>;
 
@@ -386,20 +366,16 @@ const TokensTable = () => {
                 },
               }));
 
-              const openLinkOptionsWithHandlers = OPEN_LINK_OPTIONS.map(
-                (option) => ({
-                  ...option,
-                  onClick: async () => {
-                    await onOpenLink(option.value, token.key);
-                  },
-                }),
-              );
+              const openLinkOptionsWithHandlers = OPEN_LINK_OPTIONS.map((option) => ({
+                ...option,
+                onClick: async () => {
+                  await onOpenLink(option.value, token.key);
+                },
+              }));
 
               return (
                 <Table.Row key={token.id}>
-                  <Table.Cell>
-                    {token.name ? token.name : t('token.table.no_name')}
-                  </Table.Cell>
+                  <Table.Cell>{token.name ? token.name : t('token.table.no_name')}</Table.Cell>
                   <Table.Cell>{renderStatus(token.status, t)}</Table.Cell>
                   <Table.Cell>{renderQuota(token.used_quota, t)}</Table.Cell>
                   <Table.Cell>
@@ -415,7 +391,7 @@ const TokensTable = () => {
                   </Table.Cell>
                   <Table.Cell>
                     <div>
-                      <Button.Group color='green' size={'tiny'}>
+                      <Button.Group color="green" size={'tiny'}>
                         <Button
                           size={'tiny'}
                           positive
@@ -424,22 +400,18 @@ const TokensTable = () => {
                           {t('token.buttons.copy')}
                         </Button>
                         <Dropdown
-                          className='button icon'
+                          className="button icon"
                           floating
                           options={copyOptionsWithHandlers}
                           trigger={<></>}
                         />
                       </Button.Group>{' '}
-                      <Button.Group color='olive' size={'tiny'}>
-                        <Button
-                          size={'tiny'}
-                          positive
-                          onClick={() => onOpenLink('', token.key)}
-                        >
+                      <Button.Group color="olive" size={'tiny'}>
+                        <Button size={'tiny'} positive onClick={() => onOpenLink('', token.key)}>
                           {t('token.buttons.chat')}
                         </Button>
                         <Dropdown
-                          className='button icon'
+                          className="button icon"
                           floating
                           options={openLinkOptionsWithHandlers}
                           trigger={<></>}
@@ -447,11 +419,11 @@ const TokensTable = () => {
                       </Button.Group>{' '}
                       <Popup
                         trigger={
-                          <Button size='mini' negative>
+                          <Button size="mini" negative>
                             {t('token.buttons.delete')}
                           </Button>
                         }
-                        on='click'
+                        on="click"
                         flowing
                         hoverable
                       >
@@ -468,22 +440,14 @@ const TokensTable = () => {
                       <Button
                         size={'tiny'}
                         onClick={() => {
-                          manageToken(
-                            token.id,
-                            token.status === 1 ? 'disable' : 'enable',
-                            idx,
-                          );
+                          manageToken(token.id, token.status === 1 ? 'disable' : 'enable', idx);
                         }}
                       >
                         {token.status === 1
                           ? t('token.buttons.disable')
                           : t('token.buttons.enable')}
                       </Button>
-                      <Button
-                        size={'tiny'}
-                        as={Link}
-                        to={'/token/edit/' + token.id}
-                      >
+                      <Button size={'tiny'} as={Link} to={'/token/edit/' + token.id}>
                         {t('token.buttons.edit')}
                       </Button>
                     </div>
@@ -495,11 +459,11 @@ const TokensTable = () => {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan='7'>
-              <Button size='small' as={Link} to='/token/add' loading={loading}>
+            <Table.HeaderCell colSpan="7">
+              <Button size="small" as={Link} to="/token/add" loading={loading}>
                 {t('token.buttons.add')}
               </Button>
-              <Button size='small' onClick={refresh} loading={loading}>
+              <Button size="small" onClick={refresh} loading={loading}>
                 {t('token.buttons.refresh')}
               </Button>
               <Dropdown
@@ -523,10 +487,10 @@ const TokensTable = () => {
                 style={{ marginLeft: '10px' }}
               />
               <Pagination
-                floated='right'
+                floated="right"
                 activePage={activePage}
                 onPageChange={onPaginationChange}
-                size='small'
+                size="small"
                 siblingRange={1}
                 totalPages={
                   Math.ceil(tokens.length / ITEMS_PER_PAGE) +

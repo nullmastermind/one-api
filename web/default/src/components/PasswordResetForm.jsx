@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Card,
-  Message,
-} from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { API, getLogo, showError, showInfo, showSuccess } from '../helpers';
 import Turnstile from 'react-turnstile';
+import { Button, Card, Form, Grid, Header, Image, Message } from 'semantic-ui-react';
+
+import { API, getLogo, showError, showInfo, showSuccess } from '../helpers';
 
 const PasswordResetForm = () => {
   const { t } = useTranslation();
@@ -59,13 +52,13 @@ const PasswordResetForm = () => {
     setDisableButton(true);
     if (!email) return;
     if (turnstileEnabled && turnstileToken === '') {
-      showInfo('Please wait a few seconds and try again. Turnstile is checking the user environment!');
+      showInfo(
+        'Please wait a few seconds and try again. Turnstile is checking the user environment!',
+      );
       return;
     }
     setLoading(true);
-    const res = await API.get(
-      `/api/reset_password?email=${email}&turnstile=${turnstileToken}`,
-    );
+    const res = await API.get(`/api/reset_password?email=${email}&turnstile=${turnstileToken}`);
     const { success, message } = res.data;
     if (success) {
       showSuccess(t('auth.reset.notice'));
@@ -79,31 +72,23 @@ const PasswordResetForm = () => {
   }
 
   return (
-    <Grid textAlign='center' style={{ marginTop: '48px' }}>
+    <Grid textAlign="center" style={{ marginTop: '48px' }}>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Card
-          fluid
-          className='chart-card'
-          style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}
-        >
+        <Card fluid className="chart-card" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
           <Card.Content>
             <Card.Header>
-              <Header
-                as='h2'
-                textAlign='center'
-                style={{ marginBottom: '1.5em' }}
-              >
+              <Header as="h2" textAlign="center" style={{ marginBottom: '1.5em' }}>
                 <Image src={logo} style={{ marginBottom: '10px' }} />
                 <Header.Content>{t('auth.reset.title')}</Header.Content>
               </Header>
             </Card.Header>
-            <Form size='large'>
+            <Form size="large">
               <Form.Input
                 fluid
-                icon='mail'
-                iconPosition='left'
+                icon="mail"
+                iconPosition="left"
                 placeholder={t('auth.reset.email')}
-                name='email'
+                name="email"
                 value={email}
                 onChange={handleChange}
                 style={{ marginBottom: '1em' }}
@@ -125,9 +110,9 @@ const PasswordResetForm = () => {
                 </div>
               )}
               <Button
-                color='blue'
+                color="blue"
                 fluid
-                size='large'
+                size="large"
                 onClick={handleSubmit}
                 loading={loading}
                 disabled={disableButton}
@@ -143,9 +128,7 @@ const PasswordResetForm = () => {
               </Button>
             </Form>
             <Message style={{ background: 'transparent', boxShadow: 'none' }}>
-              <p style={{ fontSize: '0.9em', color: '#666' }}>
-                {t('auth.reset.notice')}
-              </p>
+              <p style={{ fontSize: '0.9em', color: '#666' }}>{t('auth.reset.notice')}</p>
             </Message>
           </Card.Content>
         </Card>

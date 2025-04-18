@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Card, Form, Input, Message } from 'semantic-ui-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Card, Form, Input, Message } from 'semantic-ui-react';
+
+import { CHANNEL_OPTIONS } from '../../constants';
 import {
   API,
   copy,
@@ -11,7 +13,6 @@ import {
   showSuccess,
   verifyJSON,
 } from '../../helpers';
-import { CHANNEL_OPTIONS } from '../../constants';
 import { renderChannelTip } from '../../helpers/render';
 
 const MODEL_MAPPING_EXAMPLE = {
@@ -103,11 +104,7 @@ const EditChannel = () => {
         data.groups = data.group.split(',');
       }
       if (data.model_mapping !== '') {
-        data.model_mapping = JSON.stringify(
-          JSON.parse(data.model_mapping),
-          null,
-          2,
-        );
+        data.model_mapping = JSON.stringify(JSON.parse(data.model_mapping), null, 2);
       }
       setInputs(data);
       if (data.config !== '') {
@@ -204,10 +201,7 @@ const EditChannel = () => {
       localInputs.key = ''; // prevent potential bug
     }
     if (localInputs.base_url && localInputs.base_url.endsWith('/')) {
-      localInputs.base_url = localInputs.base_url.slice(
-        0,
-        localInputs.base_url.length - 1,
-      );
+      localInputs.base_url = localInputs.base_url.slice(0, localInputs.base_url.length - 1);
     }
     if (localInputs.type === 3 && localInputs.other === '') {
       localInputs.other = '2024-03-01-preview';
@@ -256,19 +250,17 @@ const EditChannel = () => {
   };
 
   return (
-    <div className='dashboard-container'>
-      <Card fluid className='chart-card'>
+    <div className="dashboard-container">
+      <Card fluid className="chart-card">
         <Card.Content>
-          <Card.Header className='header'>
-            {isEdit
-              ? t('channel.edit.title_edit')
-              : t('channel.edit.title_create')}
+          <Card.Header className="header">
+            {isEdit ? t('channel.edit.title_edit') : t('channel.edit.title_create')}
           </Card.Header>
-          <Form loading={loading} autoComplete='new-password'>
+          <Form loading={loading} autoComplete="new-password">
             <Form.Field>
               <Form.Select
                 label={t('channel.edit.type')}
-                name='type'
+                name="type"
                 required
                 search
                 options={CHANNEL_OPTIONS}
@@ -279,7 +271,7 @@ const EditChannel = () => {
             <Form.Field>
               <Form.Input
                 label={t('channel.edit.name')}
-                name='name'
+                name="name"
                 placeholder={t('channel.edit.name_placeholder')}
                 onChange={handleInputChange}
                 value={inputs.name}
@@ -290,7 +282,7 @@ const EditChannel = () => {
               <Form.Dropdown
                 label={t('channel.edit.group')}
                 placeholder={t('channel.edit.group_placeholder')}
-                name='groups'
+                name="groups"
                 required
                 fluid
                 multiple
@@ -299,7 +291,7 @@ const EditChannel = () => {
                 additionLabel={t('channel.edit.group_addition')}
                 onChange={handleInputChange}
                 value={inputs.groups}
-                autoComplete='new-password'
+                autoComplete="new-password"
                 options={groupOptions}
               />
             </Form.Field>
@@ -309,10 +301,12 @@ const EditChannel = () => {
             {inputs.type === 3 && (
               <>
                 <Message>
-                  Heads up! Make sure your model deployment name matches your model name. One API swaps the 'model' parameter in the request body with your deployment name (dots in the model name get removed).
+                  Heads up! Make sure your model deployment name matches your model name. One API
+                  swaps the 'model' parameter in the request body with your deployment name (dots in
+                  the model name get removed).
                   <a
-                    target='_blank'
-                    href='https://github.com/songquanpeng/one-api/issues/133?notification_referrer_id=NT_kwDOAmJSYrM2NjIwMzI3NDgyOjM5OTk4MDUw#issuecomment-1571602271'
+                    target="_blank"
+                    href="https://github.com/songquanpeng/one-api/issues/133?notification_referrer_id=NT_kwDOAmJSYrM2NjIwMzI3NDgyOjM5OTk4MDUw#issuecomment-1571602271"
                   >
                     Image demo
                   </a>
@@ -320,22 +314,22 @@ const EditChannel = () => {
                 </Message>
                 <Form.Field>
                   <Form.Input
-                    label='AZURE_OPENAI_ENDPOINT'
-                    name='base_url'
-                    placeholder='Please enter your AZURE_OPENAI_ENDPOINT, e.g., https://docs-test-001.openai.azure.com'
+                    label="AZURE_OPENAI_ENDPOINT"
+                    name="base_url"
+                    placeholder="Please enter your AZURE_OPENAI_ENDPOINT, e.g., https://docs-test-001.openai.azure.com"
                     onChange={handleInputChange}
                     value={inputs.base_url}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
                 <Form.Field>
                   <Form.Input
-                    label='Default API Version'
-                    name='other'
-                    placeholder='Enter the default API version, e.g., 2024-03-01-preview. This setting can be overridden by the actual request query parameters.'
+                    label="Default API Version"
+                    name="other"
+                    placeholder="Enter the default API version, e.g., 2024-03-01-preview. This setting can be overridden by the actual request query parameters."
                     onChange={handleInputChange}
                     value={inputs.other}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
               </>
@@ -347,11 +341,11 @@ const EditChannel = () => {
                 <Form.Input
                   required
                   label={t('channel.edit.proxy_url')}
-                  name='base_url'
+                  name="base_url"
                   placeholder={t('channel.edit.proxy_url_placeholder')}
                   onChange={handleInputChange}
                   value={inputs.base_url}
-                  autoComplete='new-password'
+                  autoComplete="new-password"
                 />
               </Form.Field>
             )}
@@ -360,11 +354,11 @@ const EditChannel = () => {
                 <Form.Input
                   required
                   label={t('channel.edit.base_url')}
-                  name='base_url'
+                  name="base_url"
                   placeholder={t('channel.edit.base_url_placeholder')}
                   onChange={handleInputChange}
                   value={inputs.base_url}
-                  autoComplete='new-password'
+                  autoComplete="new-password"
                 />
               </Form.Field>
             )}
@@ -373,11 +367,11 @@ const EditChannel = () => {
               <Form.Field>
                 <Form.Input
                   label={t('channel.edit.spark_version')}
-                  name='other'
+                  name="other"
                   placeholder={t('channel.edit.spark_version_placeholder')}
                   onChange={handleInputChange}
                   value={inputs.other}
-                  autoComplete='new-password'
+                  autoComplete="new-password"
                 />
               </Form.Field>
             )}
@@ -385,11 +379,11 @@ const EditChannel = () => {
               <Form.Field>
                 <Form.Input
                   label={t('channel.edit.knowledge_id')}
-                  name='other'
+                  name="other"
                   placeholder={t('channel.edit.knowledge_id_placeholder')}
                   onChange={handleInputChange}
                   value={inputs.other}
-                  autoComplete='new-password'
+                  autoComplete="new-password"
                 />
               </Form.Field>
             )}
@@ -397,23 +391,21 @@ const EditChannel = () => {
               <Form.Field>
                 <Form.Input
                   label={t('channel.edit.plugin_param')}
-                  name='other'
+                  name="other"
                   placeholder={t('channel.edit.plugin_param_placeholder')}
                   onChange={handleInputChange}
                   value={inputs.other}
-                  autoComplete='new-password'
+                  autoComplete="new-password"
                 />
               </Form.Field>
             )}
-            {inputs.type === 34 && (
-              <Message>{t('channel.edit.coze_notice')}</Message>
-            )}
+            {inputs.type === 34 && <Message>{t('channel.edit.coze_notice')}</Message>}
             {inputs.type === 40 && (
               <Message>
                 {t('channel.edit.douban_notice')}
                 <a
-                  target='_blank'
-                  href='https://console.volcengine.com/ark/region:ark+cn-beijing/endpoint'
+                  target="_blank"
+                  href="https://console.volcengine.com/ark/region:ark+cn-beijing/endpoint"
                 >
                   {t('channel.edit.douban_notice_link')}
                 </a>
@@ -425,7 +417,7 @@ const EditChannel = () => {
                 <Form.Dropdown
                   label={t('channel.edit.models')}
                   placeholder={t('channel.edit.models_placeholder')}
-                  name='models'
+                  name="models"
                   required
                   fluid
                   multiple
@@ -436,7 +428,7 @@ const EditChannel = () => {
                   selection
                   onChange={handleInputChange}
                   value={inputs.models}
-                  autoComplete='new-password'
+                  autoComplete="new-password"
                   options={modelOptions}
                 />
               </Form.Field>
@@ -501,28 +493,28 @@ const EditChannel = () => {
                     placeholder={`${t(
                       'channel.edit.model_mapping_placeholder',
                     )}\n${JSON.stringify(MODEL_MAPPING_EXAMPLE, null, 2)}`}
-                    name='model_mapping'
+                    name="model_mapping"
                     onChange={handleInputChange}
                     value={inputs.model_mapping}
                     style={{
                       minHeight: 150,
                       fontFamily: 'JetBrains Mono, Consolas',
                     }}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
                 <Form.Field>
                   <Form.TextArea
                     label={t('channel.edit.system_prompt')}
                     placeholder={t('channel.edit.system_prompt_placeholder')}
-                    name='system_prompt'
+                    name="system_prompt"
                     onChange={handleInputChange}
                     value={inputs.system_prompt}
                     style={{
                       minHeight: 150,
                       fontFamily: 'JetBrains Mono, Consolas',
                     }}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
               </>
@@ -530,74 +522,74 @@ const EditChannel = () => {
             {inputs.type === 33 && (
               <Form.Field>
                 <Form.Input
-                  label='Region'
-                  name='region'
+                  label="Region"
+                  name="region"
                   required
                   placeholder={t('channel.edit.aws_region_placeholder')}
                   onChange={handleConfigChange}
                   value={config.region}
-                  autoComplete=''
+                  autoComplete=""
                 />
                 <Form.Input
-                  label='AK'
-                  name='ak'
+                  label="AK"
+                  name="ak"
                   required
                   placeholder={t('channel.edit.aws_ak_placeholder')}
                   onChange={handleConfigChange}
                   value={config.ak}
-                  autoComplete=''
+                  autoComplete=""
                 />
                 <Form.Input
-                  label='SK'
-                  name='sk'
+                  label="SK"
+                  name="sk"
                   required
                   placeholder={t('channel.edit.aws_sk_placeholder')}
                   onChange={handleConfigChange}
                   value={config.sk}
-                  autoComplete=''
+                  autoComplete=""
                 />
               </Form.Field>
             )}
             {inputs.type === 42 && (
               <Form.Field>
                 <Form.Input
-                  label='Region'
-                  name='region'
+                  label="Region"
+                  name="region"
                   required
                   placeholder={t('channel.edit.vertex_region_placeholder')}
                   onChange={handleConfigChange}
                   value={config.region}
-                  autoComplete=''
+                  autoComplete=""
                 />
                 <Form.Input
                   label={t('channel.edit.vertex_project_id')}
-                  name='vertex_ai_project_id'
+                  name="vertex_ai_project_id"
                   required
                   placeholder={t('channel.edit.vertex_project_id_placeholder')}
                   onChange={handleConfigChange}
                   value={config.vertex_ai_project_id}
-                  autoComplete=''
+                  autoComplete=""
                 />
                 <Form.Input
                   label={t('channel.edit.vertex_credentials')}
-                  name='vertex_ai_adc'
+                  name="vertex_ai_adc"
                   required
                   placeholder={t('channel.edit.vertex_credentials_placeholder')}
                   onChange={handleConfigChange}
                   value={config.vertex_ai_adc}
-                  autoComplete=''
+                  autoComplete=""
                 />
               </Form.Field>
             )}
             {inputs.type === 34 && (
               <Form.Input
                 label={t('channel.edit.user_id')}
-                name='user_id'
+                name="user_id"
                 required
                 placeholder={t('channel.edit.user_id_placeholder')}
                 onChange={handleConfigChange}
                 value={config.user_id}
-                autoComplete=''
+                autoComplete=""
               />
             )}
             {inputs.type !== 33 &&
@@ -606,7 +598,7 @@ const EditChannel = () => {
                 <Form.Field>
                   <Form.TextArea
                     label={t('channel.edit.key')}
-                    name='key'
+                    name="key"
                     required
                     placeholder={t('channel.edit.batch_placeholder')}
                     onChange={handleInputChange}
@@ -615,34 +607,32 @@ const EditChannel = () => {
                       minHeight: 150,
                       fontFamily: 'JetBrains Mono, Consolas',
                     }}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
               ) : (
                 <Form.Field>
                   <Form.Input
                     label={t('channel.edit.key')}
-                    name='key'
+                    name="key"
                     required
                     placeholder={type2secretPrompt(inputs.type, t)}
                     onChange={handleInputChange}
                     value={inputs.key}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
               ))}
             {inputs.type === 37 && (
               <Form.Field>
                 <Form.Input
-                  label='Account ID'
-                  name='user_id'
+                  label="Account ID"
+                  name="user_id"
                   required
-                  placeholder={
-                    'Enter Account ID, e.g., d8d7c61dbc334c32d3ced580e4bf42b4'
-                  }
+                  placeholder={'Enter Account ID, e.g., d8d7c61dbc334c32d3ced580e4bf42b4'}
                   onChange={handleConfigChange}
                   value={config.user_id}
-                  autoComplete=''
+                  autoComplete=""
                 />
               </Form.Field>
             )}
@@ -650,7 +640,7 @@ const EditChannel = () => {
               <Form.Checkbox
                 checked={batch}
                 label={t('channel.edit.batch')}
-                name='batch'
+                name="batch"
                 onChange={() => setBatch(!batch)}
               />
             )}
@@ -662,36 +652,30 @@ const EditChannel = () => {
                 <Form.Field>
                   <Form.Input
                     label={t('channel.edit.proxy_url')}
-                    name='base_url'
+                    name="base_url"
                     placeholder={t('channel.edit.proxy_url_placeholder')}
                     onChange={handleInputChange}
                     value={inputs.base_url}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
               )}
             {inputs.type === 22 && (
               <Form.Field>
                 <Form.Input
-                  label='Private deployment address'
-                  name='base_url'
+                  label="Private deployment address"
+                  name="base_url"
                   placeholder={
                     'Please enter your private deployment address, in the format: https://fastgpt.run/api/openapi'
                   }
                   onChange={handleInputChange}
                   value={inputs.base_url}
-                  autoComplete='new-password'
+                  autoComplete="new-password"
                 />
               </Form.Field>
             )}
-            <Button onClick={handleCancel}>
-              {t('channel.edit.buttons.cancel')}
-            </Button>
-            <Button
-              type={isEdit ? 'button' : 'submit'}
-              positive
-              onClick={submit}
-            >
+            <Button onClick={handleCancel}>{t('channel.edit.buttons.cancel')}</Button>
+            <Button type={isEdit ? 'button' : 'submit'} positive onClick={submit}>
               {t('channel.edit.buttons.submit')}
             </Button>
           </Form>

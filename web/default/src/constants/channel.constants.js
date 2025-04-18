@@ -91,8 +91,7 @@ export const CHANNEL_OPTIONS = [
     value: 8,
     color: 'pink',
     tip: 'This is not recommended. Please use the **OpenAI Compatible** channel type. Note that the proxy address entered here will only replace the domain part during the actual request. If you want to enter the Base URL required in the OpenAI SDK, please use the OpenAI Compatible channel type.',
-    description:
-      'Deprecated, please use OpenAI compatible channel type instead.',
+    description: 'Deprecated, please use OpenAI compatible channel type instead.',
   },
   { key: 22, text: 'Knowledge Base: FastGPT', value: 22, color: 'blue' },
   { key: 21, text: 'Knowledge Base: AI Proxy', value: 21, color: 'purple' },

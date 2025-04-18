@@ -1,6 +1,7 @@
-import { Label, Message } from 'semantic-ui-react';
-import { getChannelOption } from './helper';
 import React from 'react';
+import { Label, Message } from 'semantic-ui-react';
+
+import { getChannelOption } from './helper';
 
 export function renderText(text, limit) {
   if (text.length > limit) {
@@ -27,9 +28,9 @@ export function renderGroup(group) {
     >
       {groups.map((group) => {
         if (group === 'vip' || group === 'pro') {
-          return <Label color='yellow'>{group}</Label>;
+          return <Label color="yellow">{group}</Label>;
         } else if (group === 'svip' || group === 'premium') {
-          return <Label color='red'>{group}</Label>;
+          return <Label color="red">{group}</Label>;
         }
         return <Label>{group}</Label>;
       })}
@@ -50,11 +51,8 @@ export function renderNumber(num) {
 }
 
 export function renderQuota(quota, t, precision = 2) {
-  const displayInCurrency =
-    localStorage.getItem('display_in_currency') === 'true';
-  const quotaPerUnit = parseFloat(
-    localStorage.getItem('quota_per_unit') || '1',
-  );
+  const displayInCurrency = localStorage.getItem('display_in_currency') === 'true';
+  const quotaPerUnit = parseFloat(localStorage.getItem('quota_per_unit') || '1');
 
   if (displayInCurrency) {
     const amount = (quota / quotaPerUnit).toFixed(precision);
@@ -65,11 +63,8 @@ export function renderQuota(quota, t, precision = 2) {
 }
 
 export function renderQuotaWithPrompt(quota, t) {
-  const displayInCurrency =
-    localStorage.getItem('display_in_currency') === 'true';
-  const quotaPerUnit = parseFloat(
-    localStorage.getItem('quota_per_unit') || '1',
-  );
+  const displayInCurrency = localStorage.getItem('display_in_currency') === 'true';
+  const quotaPerUnit = parseFloat(localStorage.getItem('quota_per_unit') || '1');
 
   if (displayInCurrency) {
     const amount = (quota / quotaPerUnit).toFixed(2);

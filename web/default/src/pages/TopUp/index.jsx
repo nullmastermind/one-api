@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, Card, Form, Grid, Header, Statistic } from 'semantic-ui-react';
+
 import { API, showError, showInfo, showSuccess } from '../../helpers';
 import { renderQuota } from '../../helpers/render';
-import { useTranslation } from 'react-i18next';
 
 const TopUp = () => {
   const { t } = useTranslation();
@@ -76,11 +77,11 @@ const TopUp = () => {
   }, []);
 
   return (
-    <div className='dashboard-container'>
-      <Card fluid className='chart-card'>
+    <div className="dashboard-container">
+      <Card fluid className="chart-card">
         <Card.Content>
           <Card.Header>
-            <Header as='h2'>{t('topup.title')}</Header>
+            <Header as="h2">{t('topup.title')}</Header>
           </Card.Header>
 
           <Grid columns={2} stackable>
@@ -100,8 +101,8 @@ const TopUp = () => {
                   }}
                 >
                   <Card.Header>
-                    <Header as='h3' style={{ color: '#2185d0', margin: '1em' }}>
-                      <i className='credit card icon'></i>
+                    <Header as="h3" style={{ color: '#2185d0', margin: '1em' }}>
+                      <i className="credit card icon"></i>
                       {t('topup.get_code.title')}
                     </Header>
                   </Card.Header>
@@ -125,18 +126,14 @@ const TopUp = () => {
                           <Statistic.Value style={{ color: '#2185d0' }}>
                             {renderQuota(userQuota, t)}
                           </Statistic.Value>
-                          <Statistic.Label>
-                            {t('topup.get_code.current_quota')}
-                          </Statistic.Label>
+                          <Statistic.Label>{t('topup.get_code.current_quota')}</Statistic.Label>
                         </Statistic>
                       </div>
 
-                      <div
-                        style={{ textAlign: 'center', paddingBottom: '1em' }}
-                      >
+                      <div style={{ textAlign: 'center', paddingBottom: '1em' }}>
                         <Button
                           primary
-                          size='large'
+                          size="large"
                           onClick={openTopUpLink}
                           style={{ width: '80%' }}
                         >
@@ -165,8 +162,8 @@ const TopUp = () => {
                   }}
                 >
                   <Card.Header>
-                    <Header as='h3' style={{ color: '#21ba45', margin: '1em' }}>
-                      <i className='ticket alternate icon'></i>
+                    <Header as="h3" style={{ color: '#21ba45', margin: '1em' }}>
+                      <i className="ticket alternate icon"></i>
                       {t('topup.redeem_code.title')}
                     </Header>
                   </Card.Header>
@@ -187,8 +184,8 @@ const TopUp = () => {
                     >
                       <Form.Input
                         fluid
-                        icon='key'
-                        iconPosition='left'
+                        icon="key"
+                        iconPosition="left"
                         placeholder={t('topup.redeem_code.placeholder')}
                         value={redemptionCode}
                         onChange={(e) => {
@@ -201,12 +198,11 @@ const TopUp = () => {
                         }}
                         action={
                           <Button
-                            icon='paste'
+                            icon="paste"
                             content={t('topup.redeem_code.paste')}
                             onClick={async () => {
                               try {
-                                const text =
-                                  await navigator.clipboard.readText();
+                                const text = await navigator.clipboard.readText();
                                 setRedemptionCode(text.trim());
                               } catch (err) {
                                 showError(t('topup.redeem_code.paste_error'));
@@ -218,9 +214,9 @@ const TopUp = () => {
 
                       <div style={{ paddingBottom: '1em' }}>
                         <Button
-                          color='green'
+                          color="green"
                           fluid
-                          size='large'
+                          size="large"
                           onClick={topUp}
                           loading={isSubmitting}
                           disabled={isSubmitting}

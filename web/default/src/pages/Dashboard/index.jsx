@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, Grid } from 'semantic-ui-react';
 import {
   Bar,
   BarChart,
@@ -13,7 +13,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import axios from 'axios';
+import { Card, Grid } from 'semantic-ui-react';
+
 import './Dashboard.css';
 
 // Add custom configurations to the Dashboard component.
@@ -95,12 +96,8 @@ const Dashboard = () => {
     const todayData = dashboardData.filter((item) => item.Day === today);
 
     const summary = {
-      todayRequests: todayData.reduce(
-        (sum, item) => sum + item.RequestCount,
-        0,
-      ),
-      todayQuota:
-        todayData.reduce((sum, item) => sum + item.Quota, 0) / 1000000,
+      todayRequests: todayData.reduce((sum, item) => sum + item.RequestCount, 0),
+      todayQuota: todayData.reduce((sum, item) => sum + item.Quota, 0) / 1000000,
       todayTokens: todayData.reduce(
         (sum, item) => sum + item.PromptTokens + item.CompletionTokens,
         0,
@@ -116,9 +113,7 @@ const Dashboard = () => {
     const dates = data.map((item) => item.Day);
     const maxDate = new Date();
     let minDate =
-      dates.length > 0
-        ? new Date(Math.min(...dates.map((d) => new Date(d))))
-        : new Date();
+      dates.length > 0 ? new Date(Math.min(...dates.map((d) => new Date(d)))) : new Date();
 
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // -6 because it includes today
@@ -142,9 +137,7 @@ const Dashboard = () => {
       dailyData[item.Day].tokens += item.PromptTokens + item.CompletionTokens;
     });
 
-    return Object.values(dailyData).sort((a, b) =>
-      a.date.localeCompare(b.date),
-    );
+    return Object.values(dailyData).sort((a, b) => a.date.localeCompare(b.date));
   };
 
   // Processing data for stacked bar charts!
@@ -155,9 +148,7 @@ const Dashboard = () => {
     const dates = data.map((item) => item.Day);
     const maxDate = new Date(); // Always treat today as if it's your last.
     let minDate =
-      dates.length > 0
-        ? new Date(Math.min(...dates.map((d) => new Date(d))))
-        : new Date();
+      dates.length > 0 ? new Date(Math.min(...dates.map((d) => new Date(d)))) : new Date();
 
     // Make sure to display at least 7 days of data!
     const sevenDaysAgo = new Date();
@@ -182,8 +173,7 @@ const Dashboard = () => {
 
     // Fill in the actual data
     data.forEach((item) => {
-      timeData[item.Day][item.ModelName] =
-        item.PromptTokens + item.CompletionTokens;
+      timeData[item.Day][item.ModelName] = item.PromptTokens + item.CompletionTokens;
     });
 
     return Object.values(timeData).sort((a, b) => a.date.localeCompare(b.date));
@@ -229,25 +219,21 @@ const Dashboard = () => {
   };
 
   return (
-    <div className='dashboard-container'>
+    <div className="dashboard-container">
       {/* Three line charts, side by side! */}
-      <Grid columns={3} stackable className='charts-grid'>
+      <Grid columns={3} stackable className="charts-grid">
         <Grid.Column>
-          <Card fluid className='chart-card'>
+          <Card fluid className="chart-card">
             <Card.Content>
               <Card.Header>
                 {t('dashboard.charts.requests.title')}
                 {/* <span className='stat-value'>{summaryData.todayRequests}</span> */}
               </Card.Header>
-              <div className='chart-container'>
-                <ResponsiveContainer
-                  width='100%'
-                  height={120}
-                  margin={{ left: 10, right: 10 }}
-                >
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={120} margin={{ left: 10, right: 10 }}>
                   <LineChart data={timeSeriesData}>
                     <CartesianGrid
-                      strokeDasharray='3 3'
+                      strokeDasharray="3 3"
                       vertical={chartConfig.lineChart.grid.vertical}
                       horizontal={chartConfig.lineChart.grid.horizontal}
                       opacity={chartConfig.lineChart.grid.opacity}
@@ -261,19 +247,14 @@ const Dashboard = () => {
                         borderRadius: '4px',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                       }}
-                      formatter={(value) => [
-                        value,
-                        t('dashboard.charts.requests.tooltip'),
-                      ]}
+                      formatter={(value) => [value, t('dashboard.charts.requests.tooltip')]}
                       labelFormatter={(label) =>
-                        `${t(
-                          'dashboard.statistics.tooltip.date',
-                        )}: ${formatDate(label)}`
+                        `${t('dashboard.statistics.tooltip.date')}: ${formatDate(label)}`
                       }
                     />
                     <Line
-                      type='monotone'
-                      dataKey='requests'
+                      type="monotone"
+                      dataKey="requests"
                       stroke={chartConfig.colors.requests}
                       strokeWidth={chartConfig.lineChart.line.strokeWidth}
                       dot={chartConfig.lineChart.line.dot}
@@ -287,7 +268,7 @@ const Dashboard = () => {
         </Grid.Column>
 
         <Grid.Column>
-          <Card fluid className='chart-card'>
+          <Card fluid className="chart-card">
             <Card.Content>
               <Card.Header>
                 {t('dashboard.charts.quota.title')}
@@ -295,15 +276,11 @@ const Dashboard = () => {
                   ${summaryData.todayQuota.toFixed(3)}
                 </span> */}
               </Card.Header>
-              <div className='chart-container'>
-                <ResponsiveContainer
-                  width='100%'
-                  height={120}
-                  margin={{ left: 10, right: 10 }}
-                >
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={120} margin={{ left: 10, right: 10 }}>
                   <LineChart data={timeSeriesData}>
                     <CartesianGrid
-                      strokeDasharray='3 3'
+                      strokeDasharray="3 3"
                       vertical={chartConfig.lineChart.grid.vertical}
                       horizontal={chartConfig.lineChart.grid.horizontal}
                       opacity={chartConfig.lineChart.grid.opacity}
@@ -317,19 +294,14 @@ const Dashboard = () => {
                         borderRadius: '4px',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                       }}
-                      formatter={(value) => [
-                        value.toFixed(6),
-                        t('dashboard.charts.quota.tooltip'),
-                      ]}
+                      formatter={(value) => [value.toFixed(6), t('dashboard.charts.quota.tooltip')]}
                       labelFormatter={(label) =>
-                        `${t(
-                          'dashboard.statistics.tooltip.date',
-                        )}: ${formatDate(label)}`
+                        `${t('dashboard.statistics.tooltip.date')}: ${formatDate(label)}`
                       }
                     />
                     <Line
-                      type='monotone'
-                      dataKey='quota'
+                      type="monotone"
+                      dataKey="quota"
                       stroke={chartConfig.colors.quota}
                       strokeWidth={chartConfig.lineChart.line.strokeWidth}
                       dot={chartConfig.lineChart.line.dot}
@@ -343,21 +315,17 @@ const Dashboard = () => {
         </Grid.Column>
 
         <Grid.Column>
-          <Card fluid className='chart-card'>
+          <Card fluid className="chart-card">
             <Card.Content>
               <Card.Header>
                 {t('dashboard.charts.tokens.title')}
                 {/* <span className='stat-value'>{summaryData.todayTokens}</span> */}
               </Card.Header>
-              <div className='chart-container'>
-                <ResponsiveContainer
-                  width='100%'
-                  height={120}
-                  margin={{ left: 10, right: 10 }}
-                >
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={120} margin={{ left: 10, right: 10 }}>
                   <LineChart data={timeSeriesData}>
                     <CartesianGrid
-                      strokeDasharray='3 3'
+                      strokeDasharray="3 3"
                       vertical={chartConfig.lineChart.grid.vertical}
                       horizontal={chartConfig.lineChart.grid.horizontal}
                       opacity={chartConfig.lineChart.grid.opacity}
@@ -371,19 +339,14 @@ const Dashboard = () => {
                         borderRadius: '4px',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                       }}
-                      formatter={(value) => [
-                        value,
-                        t('dashboard.charts.tokens.tooltip'),
-                      ]}
+                      formatter={(value) => [value, t('dashboard.charts.tokens.tooltip')]}
                       labelFormatter={(label) =>
-                        `${t(
-                          'dashboard.statistics.tooltip.date',
-                        )}: ${formatDate(label)}`
+                        `${t('dashboard.statistics.tooltip.date')}: ${formatDate(label)}`
                       }
                     />
                     <Line
-                      type='monotone'
-                      dataKey='tokens'
+                      type="monotone"
+                      dataKey="tokens"
                       stroke={chartConfig.colors.tokens}
                       strokeWidth={chartConfig.lineChart.line.strokeWidth}
                       dot={chartConfig.lineChart.line.dot}
@@ -398,23 +361,15 @@ const Dashboard = () => {
       </Grid>
 
       {/* Model usage stats */}
-      <Card fluid className='chart-card'>
+      <Card fluid className="chart-card">
         <Card.Content>
           <Card.Header>{t('dashboard.statistics.title')}</Card.Header>
-          <div className='chart-container'>
-            <ResponsiveContainer width='100%' height={300}>
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height={300}>
               <BarChart data={modelData}>
-                <CartesianGrid
-                  strokeDasharray='3 3'
-                  vertical={false}
-                  opacity={0.1}
-                />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.1} />
                 <XAxis {...xAxisConfig} />
-                <YAxis
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fontSize: 12, fill: '#A3AED0' }}
-                />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#A3AED0' }} />
                 <Tooltip
                   contentStyle={{
                     background: '#fff',
@@ -423,9 +378,7 @@ const Dashboard = () => {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                   }}
                   labelFormatter={(label) =>
-                    `${t('dashboard.statistics.tooltip.date')}: ${formatDate(
-                      label,
-                    )}`
+                    `${t('dashboard.statistics.tooltip.date')}: ${formatDate(label)}`
                   }
                 />
                 <Legend
@@ -437,7 +390,7 @@ const Dashboard = () => {
                   <Bar
                     key={model}
                     dataKey={model}
-                    stackId='a'
+                    stackId="a"
                     fill={getRandomColor(index)}
                     name={model}
                     radius={[4, 4, 0, 0]}

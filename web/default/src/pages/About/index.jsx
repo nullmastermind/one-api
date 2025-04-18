@@ -1,8 +1,9 @@
+import { marked } from 'marked';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card } from 'semantic-ui-react';
+
 import { API, showError } from '../../helpers';
-import { marked } from 'marked';
 
 const About = () => {
   const { t } = useTranslation();
@@ -34,13 +35,13 @@ const About = () => {
   return (
     <>
       {aboutLoaded && about === '' ? (
-        <div className='dashboard-container'>
-          <Card fluid className='chart-card'>
+        <div className="dashboard-container">
+          <Card fluid className="chart-card">
             <Card.Content>
-              <Card.Header className='header'>{t('about.title')}</Card.Header>
+              <Card.Header className="header">{t('about.title')}</Card.Header>
               <p>{t('about.description')}</p>
               {t('about.repository')}
-              <a href='https://github.com/songquanpeng/one-api'>
+              <a href="https://github.com/songquanpeng/one-api">
                 https://github.com/songquanpeng/one-api
               </a>
             </Card.Content>
@@ -49,13 +50,10 @@ const About = () => {
       ) : (
         <>
           {about.startsWith('https://') ? (
-            <iframe
-              src={about}
-              style={{ width: '100%', height: '100vh', border: 'none' }}
-            />
+            <iframe src={about} style={{ width: '100%', height: '100vh', border: 'none' }} />
           ) : (
-            <div className='dashboard-container'>
-              <Card fluid className='chart-card'>
+            <div className="dashboard-container">
+              <Card fluid className="chart-card">
                 <Card.Content>
                   <div
                     style={{ fontSize: 'larger' }}

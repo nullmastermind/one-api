@@ -1,11 +1,12 @@
+import { marked } from 'marked';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, Grid, Header } from 'semantic-ui-react';
-import { API, showError, showNotice, timestamp2string } from '../../helpers';
-import { StatusContext } from '../../context/Status';
-import { marked } from 'marked';
-import { UserContext } from '../../context/User';
 import { Link } from 'react-router-dom';
+import { Card, Grid, Header } from 'semantic-ui-react';
+
+import { StatusContext } from '../../context/Status';
+import { UserContext } from '../../context/User';
+import { API, showError, showNotice, timestamp2string } from '../../helpers';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -60,39 +61,35 @@ const Home = () => {
   return (
     <>
       {homePageContentLoaded && homePageContent === '' ? (
-        <div className='dashboard-container'>
-          <Card fluid className='chart-card'>
+        <div className="dashboard-container">
+          <Card fluid className="chart-card">
             <Card.Content>
-              <Card.Header className='header'>
-                {t('home.welcome.title')}
-              </Card.Header>
+              <Card.Header className="header">{t('home.welcome.title')}</Card.Header>
               <Card.Description style={{ lineHeight: '1.6' }}>
                 <p>{t('home.welcome.description')}</p>
                 {!userState.user && <p>{t('home.welcome.login_notice')}</p>}
               </Card.Description>
             </Card.Content>
           </Card>
-          <Card fluid className='chart-card'>
+          <Card fluid className="chart-card">
             <Card.Content>
               <Card.Header>
-                <Header as='h3'>{t('home.system_status.title')}</Header>
+                <Header as="h3">{t('home.system_status.title')}</Header>
               </Card.Header>
               <Grid columns={2} stackable>
                 <Grid.Column>
                   <Card
                     fluid
-                    className='chart-card'
+                    className="chart-card"
                     style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}
                   >
                     <Card.Content>
                       <Card.Header>
-                        <Header as='h3' style={{ color: '#444' }}>
+                        <Header as="h3" style={{ color: '#444' }}>
                           {t('home.system_status.info.title')}
                         </Header>
                       </Card.Header>
-                      <Card.Description
-                        style={{ lineHeight: '2', marginTop: '1em' }}
-                      >
+                      <Card.Description style={{ lineHeight: '2', marginTop: '1em' }}>
                         <p
                           style={{
                             display: 'flex',
@@ -100,7 +97,7 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='info circle icon'></i>
+                          <i className="info circle icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.info.name')}
                           </span>
@@ -113,13 +110,11 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='code branch icon'></i>
+                          <i className="code branch icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.info.version')}
                           </span>
-                          <span>
-                            {statusState?.status?.version || 'unknown'}
-                          </span>
+                          <span>{statusState?.status?.version || 'unknown'}</span>
                         </p>
                         <p
                           style={{
@@ -128,13 +123,13 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='github icon'></i>
+                          <i className="github icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.info.source')}
                           </span>
                           <a
-                            href='https://github.com/songquanpeng/one-api'
-                            target='_blank'
+                            href="https://github.com/songquanpeng/one-api"
+                            target="_blank"
                             style={{ color: '#2185d0' }}
                           >
                             {t('home.system_status.info.source_link')}
@@ -147,7 +142,7 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='clock outline icon'></i>
+                          <i className="clock outline icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.info.start_time')}
                           </span>
@@ -161,18 +156,16 @@ const Home = () => {
                 <Grid.Column>
                   <Card
                     fluid
-                    className='chart-card'
+                    className="chart-card"
                     style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}
                   >
                     <Card.Content>
                       <Card.Header>
-                        <Header as='h3' style={{ color: '#444' }}>
+                        <Header as="h3" style={{ color: '#444' }}>
                           {t('home.system_status.config.title')}
                         </Header>
                       </Card.Header>
-                      <Card.Description
-                        style={{ lineHeight: '2', marginTop: '1em' }}
-                      >
+                      <Card.Description style={{ lineHeight: '2', marginTop: '1em' }}>
                         <p
                           style={{
                             display: 'flex',
@@ -180,7 +173,7 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='envelope icon'></i>
+                          <i className="envelope icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.config.email_verify')}
                           </span>
@@ -204,15 +197,13 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='github icon'></i>
+                          <i className="github icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.config.github_oauth')}
                           </span>
                           <span
                             style={{
-                              color: statusState?.status?.github_oauth
-                                ? '#21ba45'
-                                : '#db2828',
+                              color: statusState?.status?.github_oauth ? '#21ba45' : '#db2828',
                               fontWeight: '500',
                             }}
                           >
@@ -228,15 +219,13 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='wechat icon'></i>
+                          <i className="wechat icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.config.wechat_login')}
                           </span>
                           <span
                             style={{
-                              color: statusState?.status?.wechat_login
-                                ? '#21ba45'
-                                : '#db2828',
+                              color: statusState?.status?.wechat_login ? '#21ba45' : '#db2828',
                               fontWeight: '500',
                             }}
                           >
@@ -252,15 +241,13 @@ const Home = () => {
                             gap: '0.5em',
                           }}
                         >
-                          <i className='shield alternate icon'></i>
+                          <i className="shield alternate icon"></i>
                           <span style={{ fontWeight: 'bold' }}>
                             {t('home.system_status.config.turnstile')}
                           </span>
                           <span
                             style={{
-                              color: statusState?.status?.turnstile_check
-                                ? '#21ba45'
-                                : '#db2828',
+                              color: statusState?.status?.turnstile_check ? '#21ba45' : '#db2828',
                               fontWeight: '500',
                             }}
                           >

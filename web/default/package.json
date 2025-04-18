@@ -1,11 +1,11 @@
 {
   "name": "llmaivn",
-  "private": true,
   "version": "0.0.1",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build && rm -rf ../build/default && mv -f dist ../build/default",
+    "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.14.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -47,6 +48,11 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-packagejson": "^2.5.10",
+    "prettier-plugin-sh": "^0.17.2",
+    "prettier-plugin-sort-json": "^4.1.1",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.3.1"

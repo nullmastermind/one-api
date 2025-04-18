@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Card, Form } from 'semantic-ui-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Card, Form } from 'semantic-ui-react';
+
 import { API, showError, showSuccess } from '../../helpers';
 import { renderQuotaWithPrompt } from '../../helpers/render';
 
@@ -21,15 +22,7 @@ const EditUser = () => {
     group: 'default',
   });
   const [groupOptions, setGroupOptions] = useState([]);
-  const {
-    username,
-    display_name,
-    password,
-    github_id,
-    wechat_id,
-    email,
-    quota,
-  } = inputs;
+  const { username, display_name, password, github_id, wechat_id, email, quota } = inputs;
 
   const handleInputChange = (e, { name, value }) => {
     setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -96,40 +89,40 @@ const EditUser = () => {
   };
 
   return (
-    <div className='dashboard-container'>
-      <Card fluid className='chart-card'>
+    <div className="dashboard-container">
+      <Card fluid className="chart-card">
         <Card.Content>
-          <Card.Header className='header'>{t('user.edit.title')}</Card.Header>
-          <Form loading={loading} autoComplete='new-password'>
+          <Card.Header className="header">{t('user.edit.title')}</Card.Header>
+          <Form loading={loading} autoComplete="new-password">
             <Form.Field>
               <Form.Input
                 label={t('user.edit.username')}
-                name='username'
+                name="username"
                 placeholder={t('user.edit.username_placeholder')}
                 onChange={handleInputChange}
                 value={username}
-                autoComplete='new-password'
+                autoComplete="new-password"
               />
             </Form.Field>
             <Form.Field>
               <Form.Input
                 label={t('user.edit.password')}
-                name='password'
+                name="password"
                 type={'password'}
                 placeholder={t('user.edit.password_placeholder')}
                 onChange={handleInputChange}
                 value={password}
-                autoComplete='new-password'
+                autoComplete="new-password"
               />
             </Form.Field>
             <Form.Field>
               <Form.Input
                 label={t('user.edit.display_name')}
-                name='display_name'
+                name="display_name"
                 placeholder={t('user.edit.display_name_placeholder')}
                 onChange={handleInputChange}
                 value={display_name}
-                autoComplete='new-password'
+                autoComplete="new-password"
               />
             </Form.Field>
             {userId && (
@@ -138,7 +131,7 @@ const EditUser = () => {
                   <Form.Dropdown
                     label={t('user.edit.group')}
                     placeholder={t('user.edit.group_placeholder')}
-                    name='group'
+                    name="group"
                     fluid
                     search
                     selection
@@ -146,22 +139,19 @@ const EditUser = () => {
                     additionLabel={t('user.edit.group_addition')}
                     onChange={handleInputChange}
                     value={inputs.group}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                     options={groupOptions}
                   />
                 </Form.Field>
                 <Form.Field>
                   <Form.Input
-                    label={`${t('user.edit.quota')}${renderQuotaWithPrompt(
-                      quota,
-                      t,
-                    )}`}
-                    name='quota'
+                    label={`${t('user.edit.quota')}${renderQuotaWithPrompt(quota, t)}`}
+                    name="quota"
                     placeholder={t('user.edit.quota_placeholder')}
                     onChange={handleInputChange}
                     value={quota}
                     type={'number'}
-                    autoComplete='new-password'
+                    autoComplete="new-password"
                   />
                 </Form.Field>
               </>
@@ -169,9 +159,9 @@ const EditUser = () => {
             <Form.Field>
               <Form.Input
                 label={t('user.edit.github_id')}
-                name='github_id'
+                name="github_id"
                 value={github_id}
-                autoComplete='new-password'
+                autoComplete="new-password"
                 placeholder={t('user.edit.github_id_placeholder')}
                 readOnly
               />
@@ -179,9 +169,9 @@ const EditUser = () => {
             <Form.Field>
               <Form.Input
                 label={t('user.edit.wechat_id')}
-                name='wechat_id'
+                name="wechat_id"
                 value={wechat_id}
-                autoComplete='new-password'
+                autoComplete="new-password"
                 placeholder={t('user.edit.wechat_id_placeholder')}
                 readOnly
               />
@@ -189,16 +179,14 @@ const EditUser = () => {
             <Form.Field>
               <Form.Input
                 label={t('user.edit.email')}
-                name='email'
+                name="email"
                 value={email}
-                autoComplete='new-password'
+                autoComplete="new-password"
                 placeholder={t('user.edit.email_placeholder')}
                 readOnly
               />
             </Form.Field>
-            <Button onClick={handleCancel}>
-              {t('user.edit.buttons.cancel')}
-            </Button>
+            <Button onClick={handleCancel}>{t('user.edit.buttons.cancel')}</Button>
             <Button positive onClick={submit}>
               {t('user.edit.buttons.submit')}
             </Button>

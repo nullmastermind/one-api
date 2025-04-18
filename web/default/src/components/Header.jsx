@@ -1,10 +1,10 @@
-import React, {useContext, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {UserContext} from '../context/User';
-import {useTranslation} from 'react-i18next';
+import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Container, Dropdown, Icon, Menu, Segment } from 'semantic-ui-react';
 
-import {Button, Container, Dropdown, Icon, Menu, Segment,} from 'semantic-ui-react';
-import {API, getLogo, getSystemName, isAdmin, isMobile, showSuccess,} from '../helpers';
+import { UserContext } from '../context/User';
+import { API, getLogo, getSystemName, isAdmin, isMobile, showSuccess } from '../helpers';
 import '../index.css';
 
 // Header Buttons
@@ -139,7 +139,7 @@ const Header = () => {
       <>
         <Menu
           borderless
-          size='large'
+          size="large"
           style={
             showSidebar
               ? {
@@ -158,13 +158,13 @@ const Header = () => {
               padding: isMobile() ? '0 10px' : '0 20px',
             }}
           >
-            <Menu.Item as={Link} to='/'>
-              <img src={logo} alt='logo' style={{ marginRight: '0.75em' }} />
+            <Menu.Item as={Link} to="/">
+              <img src={logo} alt="logo" style={{ marginRight: '0.75em' }} />
               <div style={{ fontSize: '20px' }}>
                 <b>{systemName}</b>
               </div>
             </Menu.Item>
-            <Menu.Menu position='right'>
+            <Menu.Menu position="right">
               <Menu.Item onClick={toggleSidebar}>
                 <Icon name={showSidebar ? 'close' : 'sidebar'} />
               </Menu.Item>
@@ -178,12 +178,7 @@ const Header = () => {
               <Menu.Item>
                 <Dropdown
                   selection
-                  trigger={
-                    <Icon
-                      name='language'
-                      style={{ margin: 0, fontSize: '18px' }}
-                    />
-                  }
+                  trigger={<Icon name="language" style={{ margin: 0, fontSize: '18px' }} />}
                   options={languageOptions}
                   value={i18n.language}
                   onChange={(_, { value }) => changeLanguage(value)}
@@ -241,8 +236,8 @@ const Header = () => {
             padding: isMobile() ? '0 10px' : '0 20px',
           }}
         >
-          <Menu.Item as={Link} to='/' className={'hide-on-mobile'}>
-            <img src={logo} alt='logo' style={{ marginRight: '0.75em' }} />
+          <Menu.Item as={Link} to="/" className={'hide-on-mobile'}>
+            <img src={logo} alt="logo" style={{ marginRight: '0.75em' }} />
             <div
               style={{
                 fontSize: '18px',
@@ -254,12 +249,10 @@ const Header = () => {
             </div>
           </Menu.Item>
           {renderButtons(false)}
-          <Menu.Menu position='right'>
+          <Menu.Menu position="right">
             <Dropdown
               item
-              trigger={
-                <Icon name='language' style={{ margin: 0, fontSize: '18px' }} />
-              }
+              trigger={<Icon name="language" style={{ margin: 0, fontSize: '18px' }} />}
               options={languageOptions}
               value={i18n.language}
               onChange={(_, { value }) => changeLanguage(value)}
@@ -274,7 +267,7 @@ const Header = () => {
               <Dropdown
                 text={userState.user.username}
                 pointing
-                className='link item'
+                className="link item"
                 style={{
                   fontSize: '15px',
                   fontWeight: '400',
@@ -298,8 +291,8 @@ const Header = () => {
               <Menu.Item
                 name={t('header.login')}
                 as={Link}
-                to='/login'
-                className='btn btn-link'
+                to="/login"
+                className="btn btn-link"
                 style={{
                   fontSize: '15px',
                   fontWeight: '400',

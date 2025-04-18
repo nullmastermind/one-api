@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Card } from 'semantic-ui-react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Card, Form } from 'semantic-ui-react';
+
 import { API, downloadTextAsFile, showError, showSuccess } from '../../helpers';
 import { renderQuota, renderQuotaWithPrompt } from '../../helpers/render';
 
@@ -81,35 +82,33 @@ const EditRedemption = () => {
   };
 
   return (
-    <div className='dashboard-container'>
-      <Card fluid className='chart-card'>
+    <div className="dashboard-container">
+      <Card fluid className="chart-card">
         <Card.Content>
-          <Card.Header className='header'>
-            {isEdit
-              ? t('redemption.edit.title_edit')
-              : t('redemption.edit.title_create')}
+          <Card.Header className="header">
+            {isEdit ? t('redemption.edit.title_edit') : t('redemption.edit.title_create')}
           </Card.Header>
-          <Form loading={loading} autoComplete='new-password'>
+          <Form loading={loading} autoComplete="new-password">
             <Form.Field>
               <Form.Input
                 label={t('redemption.edit.name')}
-                name='name'
+                name="name"
                 placeholder={t('redemption.edit.name_placeholder')}
                 onChange={handleInputChange}
                 value={name}
-                autoComplete='new-password'
+                autoComplete="new-password"
                 required={!isEdit}
               />
             </Form.Field>
             <Form.Field>
               <Form.Input
                 label={`${t('redemption.edit.quota')}${renderQuotaWithPrompt(quota, t)}`}
-                name='quota'
+                name="quota"
                 placeholder={t('redemption.edit.quota_placeholder')}
                 onChange={handleInputChange}
                 value={quota}
-                autoComplete='new-password'
-                type='number'
+                autoComplete="new-password"
+                type="number"
               />
             </Form.Field>
             {!isEdit && (
@@ -117,12 +116,12 @@ const EditRedemption = () => {
                 <Form.Field>
                   <Form.Input
                     label={t('redemption.edit.count')}
-                    name='count'
+                    name="count"
                     placeholder={t('redemption.edit.count_placeholder')}
                     onChange={handleInputChange}
                     value={count}
-                    autoComplete='new-password'
-                    type='number'
+                    autoComplete="new-password"
+                    type="number"
                   />
                 </Form.Field>
               </>
@@ -130,9 +129,7 @@ const EditRedemption = () => {
             <Button positive onClick={submit}>
               {t('redemption.edit.buttons.submit')}
             </Button>
-            <Button onClick={handleCancel}>
-              {t('redemption.edit.buttons.cancel')}
-            </Button>
+            <Button onClick={handleCancel}>{t('redemption.edit.buttons.cancel')}</Button>
           </Form>
         </Card.Content>
       </Card>

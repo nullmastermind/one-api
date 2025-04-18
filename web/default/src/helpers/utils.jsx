@@ -1,6 +1,7 @@
-import { toast } from 'react-toastify';
-import { toastConstants } from '../constants';
 import React from 'react';
+import { toast } from 'react-toastify';
+
+import { toastConstants } from '../constants';
 import { API } from './api';
 
 const HTMLToastContent = ({ htmlContent }) => {
@@ -87,7 +88,10 @@ export function showError(error) {
           toast.error('Error: Too many requests, please try again later!', showErrorOptions);
           break;
         case 500:
-          toast.error('Error: Internal server error, please contact the administrator!', showErrorOptions);
+          toast.error(
+            'Error: Internal server error, please contact the administrator!',
+            showErrorOptions,
+          );
           break;
         case 405:
           toast.info('This site is for demo purposes only and has no backend!');
@@ -158,9 +162,7 @@ export function timestamp2string(timestamp) {
   if (second.length === 1) {
     second = '0' + second;
   }
-  return (
-    year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
-  );
+  return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
 
 export function downloadTextAsFile(text, filename) {
