@@ -1,7 +1,12 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 .main-content {
   padding: 4px;
@@ -73,7 +78,7 @@
 @media screen and (min-width: 1367px) {
   .ui.container {
     width: calc(100% - 3rem) !important;
-    max-width: 1200px !important;
+    max-width: 1366px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     padding: 0 !important;

@@ -272,10 +272,16 @@ const Home = () => {
               style={{ width: '100%', height: '100vh', border: 'none' }}
             />
           ) : (
-            <div
-              style={{ fontSize: 'larger' }}
-              dangerouslySetInnerHTML={{ __html: homePageContent }}
-            ></div>
+            <div className="dashboard-container">
+              <Card fluid className="chart-card">
+                <Card.Content>
+                  <div
+                    style={{ fontSize: 'larger' }}
+                    dangerouslySetInnerHTML={{ __html: homePageContent }}
+                  ></div>
+                </Card.Content>
+              </Card>
+            </div>
           )}
         </>
       )}

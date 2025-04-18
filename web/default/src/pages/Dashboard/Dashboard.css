@@ -33,10 +33,10 @@
 
 .chart-card {
   height: 100%;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
-  border: none !important;
-  border-radius: 16px !important;
-  padding: 8px !important;
+  /*box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;*/
+  /*border: none !important;*/
+  /*border-radius: 16px !important;*/
+  /*padding: 8px !important;*/
 }
 
 .chart-container {

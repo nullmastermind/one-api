@@ -29,7 +29,7 @@ var SessionSecret = uuid.New().String()
 var OptionMap map[string]string
 var OptionMapRWMutex sync.RWMutex
 
-var ItemsPerPage = 10
+var ItemsPerPage = 30
 var MaxRecentItems = 100
 
 var PasswordLoginEnabled = true

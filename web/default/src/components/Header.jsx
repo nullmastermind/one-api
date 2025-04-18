@@ -224,9 +224,9 @@ const Header = () => {
       <Menu
         borderless
         style={{
-          borderTop: 'none',
-          boxShadow: 'rgba(0, 0, 0, 0.04) 0px 2px 12px 0px',
-          border: 'none',
+          position: 'sticky',
+          top: 0,
+          zIndex: 1000,
         }}
       >
         <Container
@@ -252,7 +252,7 @@ const Header = () => {
           <Menu.Menu position="right">
             <Dropdown
               item
-              trigger={<Icon name="language" style={{ margin: 0, fontSize: '18px' }} />}
+              trigger={'Language'}
               options={languageOptions}
               value={i18n.language}
               onChange={(_, { value }) => changeLanguage(value)}

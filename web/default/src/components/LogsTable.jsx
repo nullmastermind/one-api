@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  Form,
-  Header,
-  Label,
-  Pagination,
-  Popup,
-  Segment,
-  Select,
-  Table,
-} from 'semantic-ui-react';
+import { Button, Form, Header, Label, Pagination, Select, Table } from 'semantic-ui-react';
 
 import { ITEMS_PER_PAGE } from '../constants';
 import {
@@ -99,9 +89,9 @@ function getColorByElapsedTime(elapsedTime) {
 
 function renderDetail(log) {
   return (
-    <>
-      {log.content}
-      <br />
+    <div className="whitespace-nowrap">
+      {/*{log.content}*/}
+      {/*<br />*/}
       {log.elapsed_time && (
         <Label basic size={'mini'} color={getColorByElapsedTime(log.elapsed_time)}>
           {log.elapsed_time} ms
@@ -121,7 +111,7 @@ function renderDetail(log) {
           </Label>
         </>
       )}
-    </>
+    </div>
   );
 }
 
@@ -244,6 +234,7 @@ const LogsTable = () => {
 
   const refresh = async () => {
     setLoading(true);
+    setShowStat(false);
     setActivePage(1);
     await loadLogs(0);
   };
@@ -300,13 +291,16 @@ const LogsTable = () => {
   return (
     <>
       <Header as="h3">
-        {t('log.usage_details')}（{t('log.total_quota')}：{showStat && renderQuota(stat.quota, t)}
-        {!showStat && (
-          <span onClick={handleEyeClick} style={{ cursor: 'pointer', color: 'gray' }}>
-            {t('log.click_to_view')}
-          </span>
-        )}
-        ）
+        <div>
+          {t('log.usage_details')} ({t('log.total_quota')}：
+          {showStat && <span onClick={() => setShowStat(false)}>{renderQuota(stat.quota, t)}</span>}
+          {!showStat && (
+            <span onClick={handleEyeClick} style={{ cursor: 'pointer', color: 'gray' }}>
+              {t('log.click_to_view')}
+            </span>
+          )}
+          )
+        </div>
       </Header>
       <Form>
         <Form.Group>
@@ -416,15 +410,17 @@ const LogsTable = () => {
                 {t('log.table.channel')}
               </Table.HeaderCell>
             )}
-            <Table.HeaderCell
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                sortLog('type');
-              }}
-              width={1}
-            >
-              {t('log.table.type')}
-            </Table.HeaderCell>
+            {isAdminUser && (
+              <Table.HeaderCell
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  sortLog('type');
+                }}
+                width={1}
+              >
+                {t('log.table.type')}
+              </Table.HeaderCell>
+            )}
             <Table.HeaderCell
               style={{ cursor: 'pointer' }}
               onClick={() => {
@@ -508,7 +504,7 @@ const LogsTable = () => {
                       )}
                     </Table.Cell>
                   )}
-                  <Table.Cell>{renderType(log.type)}</Table.Cell>
+                  {isAdminUser && <Table.Cell>{renderType(log.type)}</Table.Cell>}
                   <Table.Cell>{log.model_name ? renderColorLabel(log.model_name) : ''}</Table.Cell>
                   {showUserTokenQuota() && (
                     <>
@@ -529,7 +525,13 @@ const LogsTable = () => {
 
                       <Table.Cell>{log.prompt_tokens ? log.prompt_tokens : ''}</Table.Cell>
                       <Table.Cell>{log.completion_tokens ? log.completion_tokens : ''}</Table.Cell>
-                      <Table.Cell>{log.quota ? renderQuota(log.quota, t, 6) : ''}</Table.Cell>
+                      <Table.Cell className="whitespace-nowrap">
+                        {log.quota ? (
+                          renderQuota(log.quota, t, 6)
+                        ) : (
+                          <span style={{ color: '#21ba45', fontWeight: 'bold' }}>FREE</span>
+                        )}
+                      </Table.Cell>
                     </>
                   )}
 

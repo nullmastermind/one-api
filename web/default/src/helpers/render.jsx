@@ -56,7 +56,14 @@ export function renderQuota(quota, t, precision = 2) {
 
   if (displayInCurrency) {
     const amount = (quota / quotaPerUnit).toFixed(precision);
-    return t('common.quota.display_short', { amount });
+    return (
+      <span>
+        <span>{t('common.quota.display_short', { amount })}</span>
+        <span style={{ color: '#888', marginLeft: 6, fontSize: '90%' }}>
+          ({renderNumber(Math.round(amount * 25000))} VND)
+        </span>
+      </span>
+    );
   }
 
   return renderNumber(quota);
