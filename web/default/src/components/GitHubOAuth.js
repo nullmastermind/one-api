@@ -7,9 +7,9 @@ import { UserContext } from '../context/User';
 const GitHubOAuth = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [userState, userDispatch] = useContext(UserContext);
+  const [_userState, userDispatch] = useContext(UserContext);
   const [prompt, setPrompt] = useState('处理中...');
-  const [processing, setProcessing] = useState(true);
+  const [_processing, _setProcessing] = useState(true);
 
   let navigate = useNavigate();
 

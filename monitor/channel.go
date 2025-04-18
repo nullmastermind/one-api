@@ -31,13 +31,13 @@ func notifyRootUser(subject string, content string) {
 func DisableChannel(channelId int, channelName string, reason string) {
 	model.UpdateChannelStatusById(channelId, model.ChannelStatusAutoDisabled)
 	logger.SysLog(fmt.Sprintf("channel #%d has been disabled: %s", channelId, reason))
-	subject := fmt.Sprintf("渠道状态变更提醒")
+	subject := fmt.Sprintf("Channel status change alert!")
 	content := message.EmailTemplate(
 		subject,
 		fmt.Sprintf(`
-			<p>您好！</p>
-			<p>渠道「<strong>%s</strong>」（#%d）已被禁用。</p>
-			<p>禁用原因：</p>
+			<p>Hello!</p>
+			The channel "<strong>%s</strong>" (#%d) has been disabled.
+			Reason for ban:
 			<p style="background-color: #f8f8f8; padding: 10px; border-radius: 4px;">%s</p>
 		`, channelName, channelId, reason),
 	)
@@ -51,10 +51,10 @@ func MetricDisableChannel(channelId int, successRate float64) {
 	content := message.EmailTemplate(
 		subject,
 		fmt.Sprintf(`
-			<p>您好！</p>
-			<p>渠道 #%d 已被系统自动禁用。</p>
-			<p>禁用原因：</p>
-			<p style="background-color: #f8f8f8; padding: 10px; border-radius: 4px;">该渠道在最近 %d 次调用中成功率为 <strong>%.2f%%</strong>，低于系统阈值 <strong>%.2f%%</strong>。</p>
+			Hi there!
+			Channel #%d has been automatically disabled by the system.
+			Reason for ban:
+			<p style="background-color: #f8f8f8; padding: 10px; border-radius: 4px;">This channel's success rate in the last %d calls: <strong>%.2f%%</strong>, below system threshold <strong>%.2f%%</strong>.</p>
 		`, channelId, config.MetricQueueSize, successRate*100, config.MetricSuccessRateThreshold*100),
 	)
 	notifyRootUser(subject, content)
@@ -64,13 +64,13 @@ func MetricDisableChannel(channelId int, successRate float64) {
 func EnableChannel(channelId int, channelName string) {
 	model.UpdateChannelStatusById(channelId, model.ChannelStatusEnabled)
 	logger.SysLog(fmt.Sprintf("channel #%d has been enabled", channelId))
-	subject := fmt.Sprintf("渠道状态变更提醒")
+	subject := fmt.Sprintf("Channel status change alert!")
 	content := message.EmailTemplate(
 		subject,
 		fmt.Sprintf(`
-			<p>您好！</p>
-			<p>渠道「<strong>%s</strong>」（#%d）已被重新启用。</p>
-			<p>您现在可以继续使用该渠道了。</p>
+			<p>Hello!</p>
+			<p>Channel "<strong>%s</strong>" (#%d) has been re-enabled.</p>
+			<p>You can continue using the channel now.</p>
 		`, channelName, channelId),
 	)
 	notifyRootUser(subject, content)

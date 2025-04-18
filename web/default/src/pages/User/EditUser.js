@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Card } from 'semantic-ui-react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Button, Card, Form } from 'semantic-ui-react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { API, showError, showSuccess } from '../../helpers';
-import { renderQuota, renderQuotaWithPrompt } from '../../helpers/render';
+import { renderQuotaWithPrompt } from '../../helpers/render';
 
 const EditUser = () => {
   const { t } = useTranslation();
@@ -29,8 +29,8 @@ const EditUser = () => {
     wechat_id,
     email,
     quota,
-    group,
   } = inputs;
+
   const handleInputChange = (e, { name, value }) => {
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
@@ -68,6 +68,7 @@ const EditUser = () => {
     }
     setLoading(false);
   };
+
   useEffect(() => {
     loadUser().then();
     if (userId) {

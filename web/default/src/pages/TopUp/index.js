@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Card,
-  Statistic,
-  Divider,
-} from 'semantic-ui-react';
+import { Button, Card, Form, Grid, Header, Statistic } from 'semantic-ui-react';
 import { API, showError, showInfo, showSuccess } from '../../helpers';
 import { renderQuota } from '../../helpers/render';
 import { useTranslation } from 'react-i18next';
