@@ -1,827 +1,827 @@
 {
   "header": {
-    "home": "首页",
-    "channel": "渠道",
-    "token": "令牌",
-    "redemption": "兑换",
-    "topup": "充值",
-    "user": "用户",
-    "dashboard": "总览",
-    "log": "日志",
-    "setting": "设置",
-    "about": "关于",
-    "chat": "聊天",
-    "login": "登录",
-    "logout": "注销",
-    "register": "注册"
+    "home": "Trang chủ",
+    "channel": "Kênh",
+    "token": "Mã thông báo",
+    "redemption": "Đổi thưởng",
+    "topup": "Nạp tiền",
+    "user": "Người dùng",
+    "dashboard": "Tổng quan",
+    "log": "Nhật ký",
+    "setting": "Cài đặt",
+    "about": "Giới thiệu",
+    "chat": "Trò chuyện",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "register": "Đăng ký"
   },
   "topup": {
-    "title": "充值中心",
+    "title": "Trung tâm nạp tiền",
     "get_code": {
-      "title": "获取兑换码",
-      "current_quota": "当前可用额度",
-      "button": "立即获取兑换码"
+      "title": "Nhận mã đổi thưởng",
+      "current_quota": "Hạn mức khả dụng hiện tại",
+      "button": "Nhận mã đổi thưởng ngay"
     },
     "redeem_code": {
-      "title": "兑换码充值",
-      "placeholder": "请输入兑换码",
-      "paste": "粘贴",
-      "paste_error": "无法访问剪贴板，请手动粘贴",
-      "submit": "立即兑换",
-      "submitting": "兑换中...",
-      "empty_code": "请输入兑换码！",
-      "success": "充值成功！",
-      "request_failed": "请求失败",
-      "no_link": "超级管理员未设置充值链接！"
+      "title": "Nạp tiền bằng mã đổi thưởng",
+      "placeholder": "Vui lòng nhập mã đổi thưởng",
+      "paste": "Dán",
+      "paste_error": "Không thể truy cập clipboard, vui lòng dán thủ công",
+      "submit": "Đổi ngay",
+      "submitting": "Đang đổi...",
+      "empty_code": "Vui lòng nhập mã đổi thưởng!",
+      "success": "Nạp tiền thành công!",
+      "request_failed": "Yêu cầu thất bại",
+      "no_link": "Quản trị viên chưa thiết lập liên kết nạp tiền!"
     }
   },
   "channel": {
-    "title": "管理渠道",
-    "search": "搜索渠道的 ID，名称和密钥 ...",
-    "balance_notice": "OpenAI 渠道已经不再支持通过 key 获取余额，因此余额显示为 0。对于支持的渠道类型，请点击余额进行刷新。",
-    "test_notice": "渠道测试仅支持 chat 模型，优先使用 gpt-3.5-turbo，如果该模型不可用则使用你所配置的模型列表中的第一个模型。",
-    "detail_notice": "点击下方详情按钮可以显示余额以及设置额外的测试模型。",
+    "title": "Quản lý kênh",
+    "search": "Tìm kiếm ID, tên và khóa của kênh ...",
+    "balance_notice": "Kênh OpenAI không còn hỗ trợ lấy số dư qua key, do đó số dư hiển thị là 0. Đối với các loại kênh được hỗ trợ, vui lòng nhấn vào số dư để làm mới.",
+    "test_notice": "Chỉ hỗ trợ kiểm tra kênh với mô hình chat, ưu tiên sử dụng gpt-3.5-turbo, nếu mô hình này không khả dụng sẽ sử dụng mô hình đầu tiên trong danh sách bạn đã cấu hình.",
+    "detail_notice": "Nhấn nút chi tiết bên dưới để hiển thị số dư và thiết lập mô hình kiểm tra bổ sung.",
     "table": {
       "id": "ID",
-      "name": "名称",
-      "group": "分组",
-      "type": "类型",
-      "status": "状态",
-      "response_time": "响应时间",
-      "balance": "余额",
-      "priority": "优先级",
-      "test_model": "测试模型",
-      "actions": "操作",
-      "no_name": "无",
-      "status_enabled": "已启用",
-      "status_disabled": "已禁用",
-      "status_auto_disabled": "已禁用",
-      "status_disabled_tip": "本渠道被手动禁用",
-      "status_auto_disabled_tip": "本渠道被程序自动禁用",
-      "status_unknown": "未知状态",
-      "not_tested": "未测试",
-      "priority_tip": "渠道选择优先级，越高越优先",
-      "select_test_model": "请选择测试模型",
-      "click_to_update": "点击更新",
+      "name": "Tên",
+      "group": "Nhóm",
+      "type": "Loại",
+      "status": "Trạng thái",
+      "response_time": "Thời gian phản hồi",
+      "balance": "Số dư",
+      "priority": "Ưu tiên",
+      "test_model": "Mô hình kiểm tra",
+      "actions": "Thao tác",
+      "no_name": "Không có",
+      "status_enabled": "Đã bật",
+      "status_disabled": "Đã tắt",
+      "status_auto_disabled": "Đã tắt",
+      "status_disabled_tip": "Kênh này đã bị tắt thủ công",
+      "status_auto_disabled_tip": "Kênh này đã bị tắt tự động bởi hệ thống",
+      "status_unknown": "Trạng thái không xác định",
+      "not_tested": "Chưa kiểm tra",
+      "priority_tip": "Ưu tiên chọn kênh, càng cao càng ưu tiên",
+      "select_test_model": "Vui lòng chọn mô hình kiểm tra",
+      "click_to_update": "Nhấn để cập nhật",
       "balance_not_supported": "-"
     },
     "buttons": {
-      "test": "测试",
-      "delete": "删除",
-      "confirm_delete": "删除渠道",
-      "enable": "启用",
-      "disable": "禁用",
-      "edit": "编辑",
-      "add": "添加新的渠道",
-      "test_all": "测试所有渠道",
-      "test_disabled": "测试禁用渠道",
-      "delete_disabled": "删除禁用渠道",
-      "confirm_delete_disabled": "确认删除",
-      "refresh": "刷新",
-      "show_detail": "详情",
-      "hide_detail": "隐藏详情"
+      "test": "Kiểm tra",
+      "delete": "Xóa",
+      "confirm_delete": "Xác nhận xóa kênh",
+      "enable": "Bật",
+      "disable": "Tắt",
+      "edit": "Chỉnh sửa",
+      "add": "Thêm kênh mới",
+      "test_all": "Kiểm tra tất cả kênh",
+      "test_disabled": "Kiểm tra kênh đã tắt",
+      "delete_disabled": "Xóa kênh đã tắt",
+      "confirm_delete_disabled": "Xác nhận xóa",
+      "refresh": "Làm mới",
+      "show_detail": "Chi tiết",
+      "hide_detail": "Ẩn chi tiết"
     },
     "messages": {
-      "test_success": "渠道 {{name}} 测试成功，模型 {{model}}，耗时 {{time}} 秒，模型输出：{{message}}",
-      "test_all_started": "已成功开始测试渠道，请刷新页面查看结果。",
-      "delete_disabled_success": "已删除所有禁用渠道，共计 {{count}} 个",
-      "balance_update_success": "渠道 {{name}} 余额更新成功！",
-      "all_balance_updated": "已更新完毕所有已启用渠道余额！",
-      "operation_success": "操作成功完成！"
+      "test_success": "Kiểm tra kênh {{name}} thành công, mô hình {{model}}, mất {{time}} giây, kết quả mô hình: {{message}}",
+      "test_all_started": "Đã bắt đầu kiểm tra kênh, vui lòng làm mới trang để xem kết quả.",
+      "delete_disabled_success": "Đã xóa tất cả kênh đã tắt, tổng cộng {{count}} kênh",
+      "balance_update_success": "Cập nhật số dư kênh {{name}} thành công!",
+      "all_balance_updated": "Đã cập nhật xong số dư cho tất cả kênh đã bật!",
+      "operation_success": "Thao tác thành công!"
     },
     "edit": {
-      "title_edit": "更新渠道信息",
-      "title_create": "创建新的渠道",
-      "type": "类型",
-      "name": "名称",
-      "name_placeholder": "请输入名称",
-      "group": "分组",
-      "group_placeholder": "请选择可以使用该渠道的分组",
-      "group_addition": "请在系统设置页面编辑分组倍率以添加新的分组：",
-      "models": "模型",
-      "models_placeholder": "请选择该渠道所支持的模型",
-      "model_mapping": "模型重定向",
-      "model_mapping_placeholder": "此项可选，用于修改请求体中的模型名称，为一个 JSON 字符串，键为请求中模型名称，值为要替换的模型名称",
-      "system_prompt": "系统提示词",
-      "system_prompt_placeholder": "此项可选，用于强制设置给定的系统提示词，请配合自定义模型 & 模型重定向使用，首先创建一个唯一的自定义模型名称并在上面填入，之后将该自定义模型重定向映射到该渠道一个原生支持的模型",
-      "proxy_url": "代理",
-      "proxy_url_placeholder": "此项可选，用于通过代理站来进行 API 调用，请输入代理站地址，格式为：https://domain.com。注意，这里所需要填入的代理地址仅会在实际请求时替换域名部分，如果你想填入 OpenAI SDK 中所要求的 Base URL，请使用 OpenAI 兼容渠道类型",
+      "title_edit": "Cập nhật thông tin kênh",
+      "title_create": "Tạo kênh mới",
+      "type": "Loại",
+      "name": "Tên",
+      "name_placeholder": "Vui lòng nhập tên",
+      "group": "Nhóm",
+      "group_placeholder": "Vui lòng chọn nhóm có thể sử dụng kênh này",
+      "group_addition": "Vui lòng chỉnh sửa tỷ lệ nhóm trong trang cài đặt hệ thống để thêm nhóm mới:",
+      "models": "Mô hình",
+      "models_placeholder": "Vui lòng chọn các mô hình mà kênh này hỗ trợ",
+      "model_mapping": "Chuyển hướng mô hình",
+      "model_mapping_placeholder": "Tùy chọn, dùng để thay đổi tên mô hình trong request, là một chuỗi JSON, key là tên mô hình trong request, value là tên mô hình thay thế",
+      "system_prompt": "Prompt hệ thống",
+      "system_prompt_placeholder": "Tùy chọn, dùng để thiết lập prompt hệ thống bắt buộc, hãy kết hợp với mô hình tùy chỉnh & chuyển hướng mô hình, trước tiên tạo một tên mô hình tùy chỉnh duy nhất và điền vào trên, sau đó chuyển hướng mô hình này sang một mô hình gốc được kênh hỗ trợ",
+      "proxy_url": "Proxy",
+      "proxy_url_placeholder": "Tùy chọn, dùng để gọi API qua proxy, vui lòng nhập địa chỉ proxy, định dạng: https://domain.com. Lưu ý, địa chỉ proxy này chỉ thay thế phần domain khi thực hiện request, nếu bạn muốn nhập Base URL yêu cầu bởi OpenAI SDK, hãy sử dụng loại kênh tương thích OpenAI",
       "base_url": "Base URL",
-      "base_url_placeholder": "OpenAPI SDK 中所要求的 Base URL",
-      "key": "密钥",
-      "key_placeholder": "请输入密钥",
-      "batch": "批量创建",
-      "batch_placeholder": "请输入密钥，一行一个",
+      "base_url_placeholder": "Base URL yêu cầu bởi OpenAPI SDK",
+      "key": "Khóa",
+      "key_placeholder": "Vui lòng nhập khóa",
+      "batch": "Tạo hàng loạt",
+      "batch_placeholder": "Vui lòng nhập khóa, mỗi dòng một khóa",
       "buttons": {
-        "cancel": "取消",
-        "submit": "提交",
-        "fill_models": "填入相关模型",
-        "fill_all": "填入所有模型",
-        "clear": "清除所有模型",
-        "add_custom": "填入",
-        "custom_placeholder": "输入自定义模型名称"
+        "cancel": "Hủy",
+        "submit": "Gửi",
+        "fill_models": "Điền mô hình liên quan",
+        "fill_all": "Điền tất cả mô hình",
+        "clear": "Xóa tất cả mô hình",
+        "add_custom": "Điền",
+        "custom_placeholder": "Nhập tên mô hình tùy chỉnh"
       },
       "messages": {
-        "name_required": "请填写渠道名称和渠道密钥！",
-        "models_required": "请至少选择一个模型！",
-        "model_mapping_invalid": "模型映射必须是合法的 JSON 格式！",
-        "update_success": "渠道更新成功！",
-        "create_success": "渠道创建成功！"
+        "name_required": "Vui lòng nhập tên kênh và khóa kênh!",
+        "models_required": "Vui lòng chọn ít nhất một mô hình!",
+        "model_mapping_invalid": "Chuyển hướng mô hình phải là định dạng JSON hợp lệ!",
+        "update_success": "Cập nhật kênh thành công!",
+        "create_success": "Tạo kênh thành công!"
       },
-      "spark_version": "模型版本",
-      "spark_version_placeholder": "请输入星火大模型版本，注意是接口地址中的版本号，例如：v2.1",
-      "knowledge_id": "知识库 ID",
-      "knowledge_id_placeholder": "请输入知识库 ID，例如：123456",
-      "plugin_param": "插件参数",
-      "plugin_param_placeholder": "请输入插件参数，即 X-DashScope-Plugin 请求头的取值",
-      "coze_notice": "对于 Coze 而言，模型名称即 Bot ID，你可以添加一个前缀 `bot-`，例如：`bot-123456`。",
-      "douban_notice": "对于豆包而言，需要手动去",
-      "douban_notice_link": "模型推理页面",
-      "douban_notice_2": "创建推理接入点，以接入点名称作为模型名称，例如：`ep-20240608051426-tkxvl`。你可以结合模型重定向功能将其转换为常规的模型名称，例如：doubao-lite-4k -> ep-20240608051426-tkxvl（前者作为 JSON 的 key，后者作为 value）。注意，doubao-lite-4k 和 ep-20240608051426-tkxvl 都需要通过自定义模型的方式填入到本渠道的模型列表中。",
-      "aws_region_placeholder": "region，例如：us-west-2",
+      "spark_version": "Phiên bản mô hình",
+      "spark_version_placeholder": "Vui lòng nhập phiên bản mô hình Xinghuo, lưu ý là số phiên bản trong địa chỉ API, ví dụ: v2.1",
+      "knowledge_id": "ID kho tri thức",
+      "knowledge_id_placeholder": "Vui lòng nhập ID kho tri thức, ví dụ: 123456",
+      "plugin_param": "Tham số plugin",
+      "plugin_param_placeholder": "Vui lòng nhập tham số plugin, tức là giá trị của header X-DashScope-Plugin",
+      "coze_notice": "Đối với Coze, tên mô hình chính là Bot ID, bạn có thể thêm tiền tố `bot-`, ví dụ: `bot-123456`.",
+      "douban_notice": "Đối với Doubao, cần tự thao tác tại",
+      "douban_notice_link": "trang suy luận mô hình",
+      "douban_notice_2": "tạo điểm truy cập suy luận, dùng tên điểm truy cập làm tên mô hình, ví dụ: `ep-20240608051426-tkxvl`. Bạn có thể dùng chức năng chuyển hướng mô hình để chuyển thành tên mô hình thông thường, ví dụ: doubao-lite-4k -> ep-20240608051426-tkxvl (bên trái là key JSON, bên phải là value). Lưu ý, cả doubao-lite-4k và ep-20240608051426-tkxvl đều cần được thêm vào danh sách mô hình của kênh này dưới dạng mô hình tùy chỉnh.",
+      "aws_region_placeholder": "region, ví dụ: us-west-2",
       "aws_ak_placeholder": "AWS IAM Access Key",
       "aws_sk_placeholder": "AWS IAM Secret Key",
-      "vertex_region_placeholder": "Vertex AI Region，例如：us-east5",
+      "vertex_region_placeholder": "Vertex AI Region, ví dụ: us-east5",
       "vertex_project_id": "Vertex AI Project ID",
       "vertex_project_id_placeholder": "Vertex AI Project ID",
       "vertex_credentials": "Google Cloud Application Default Credentials JSON",
       "vertex_credentials_placeholder": "Google Cloud Application Default Credentials JSON",
       "user_id": "User ID",
-      "user_id_placeholder": "生成该密钥的用户 ID",
+      "user_id_placeholder": "User ID tạo khóa này",
       "key_prompts": {
-        "default": "请输入渠道对应的鉴权密钥",
-        "zhipu": "按照如下格式输入：APIKey|SecretKey",
-        "spark": "按照如下格式输入：APPID|APISecret|APIKey",
-        "fastgpt": "按照如下格式输入：APIKey-AppId，例如：fastgpt-0sp2gtvfdgyi4k30jwlgwf1i-64f335d84283f05518e9e041",
-        "tencent": "按照如下格式输入：AppId|SecretId|SecretKey"
+        "default": "Vui lòng nhập khóa xác thực của kênh",
+        "zhipu": "Nhập theo định dạng: APIKey|SecretKey",
+        "spark": "Nhập theo định dạng: APPID|APISecret|APIKey",
+        "fastgpt": "Nhập theo định dạng: APIKey-AppId, ví dụ: fastgpt-0sp2gtvfdgyi4k30jwlgwf1i-64f335d84283f05518e9e041",
+        "tencent": "Nhập theo định dạng: AppId|SecretId|SecretKey"
       }
     }
   },
   "token": {
-    "title": "令牌管理",
-    "search": "搜索令牌的名称 ...",
+    "title": "Quản lý token",
+    "search": "Tìm kiếm tên token ...",
     "table": {
-      "name": "名称",
-      "status": "状态",
-      "used_quota": "已用额度",
-      "remain_quota": "剩余额度",
-      "created_time": "创建时间",
-      "expired_time": "过期时间",
-      "actions": "操作",
-      "no_name": "无",
-      "never_expire": "永不过期",
-      "unlimited": "无限制",
-      "status_enabled": "已启用",
-      "status_disabled": "已禁用",
-      "status_expired": "已过期",
-      "status_depleted": "已耗尽",
-      "status_unknown": "未知状态"
+      "name": "Tên",
+      "status": "Trạng thái",
+      "used_quota": "Hạn mức đã dùng",
+      "remain_quota": "Hạn mức còn lại",
+      "created_time": "Thời gian tạo",
+      "expired_time": "Thời gian hết hạn",
+      "actions": "Thao tác",
+      "no_name": "Không có",
+      "never_expire": "Không bao giờ hết hạn",
+      "unlimited": "Không giới hạn",
+      "status_enabled": "Đã kích hoạt",
+      "status_disabled": "Đã vô hiệu hóa",
+      "status_expired": "Đã hết hạn",
+      "status_depleted": "Đã sử dụng hết",
+      "status_unknown": "Trạng thái không xác định"
     },
     "buttons": {
-      "copy": "复制",
-      "chat": "聊天",
-      "delete": "删除",
-      "confirm_delete": "删除令牌",
-      "enable": "启用",
-      "disable": "禁用",
-      "edit": "编辑",
-      "add": "添加新的令牌",
-      "refresh": "刷新"
+      "copy": "Sao chép",
+      "chat": "Trò chuyện",
+      "delete": "Xóa",
+      "confirm_delete": "Xác nhận xóa token",
+      "enable": "Kích hoạt",
+      "disable": "Vô hiệu hóa",
+      "edit": "Chỉnh sửa",
+      "add": "Thêm token mới",
+      "refresh": "Làm mới"
     },
     "edit": {
-      "title_edit": "更新令牌信息",
-      "title_create": "创建新的令牌",
-      "name": "名称",
-      "name_placeholder": "请输入名称",
-      "models": "模型范围",
-      "models_placeholder": "请选择允许使用的模型，留空则不进行限制",
-      "ip_limit": "IP 限制",
-      "ip_limit_placeholder": "请输入允许访问的网段，例如：192.168.0.0/24，请使用英文逗号分隔多个网段",
-      "expire_time": "过期时间",
-      "expire_time_placeholder": "请输入过期时间，格式为 yyyy-MM-dd HH:mm:ss，-1 表示无限制",
-      "quota_notice": "注意，令牌的额度仅用于限制令牌本身的最大额度使用量，实际的使用受到账户的剩余额度限制。",
-      "quota": "额度",
-      "quota_placeholder": "请输入额度",
+      "title_edit": "Cập nhật thông tin token",
+      "title_create": "Tạo token mới",
+      "name": "Tên",
+      "name_placeholder": "Vui lòng nhập tên",
+      "models": "Phạm vi mô hình",
+      "models_placeholder": "Vui lòng chọn các mô hình được phép sử dụng, để trống nếu không giới hạn",
+      "ip_limit": "Giới hạn IP",
+      "ip_limit_placeholder": "Vui lòng nhập dải mạng được phép truy cập, ví dụ: 192.168.0.0/24, dùng dấu phẩy để phân tách nhiều dải mạng",
+      "expire_time": "Thời gian hết hạn",
+      "expire_time_placeholder": "Vui lòng nhập thời gian hết hạn, định dạng yyyy-MM-dd HH:mm:ss, -1 là không giới hạn",
+      "quota_notice": "Lưu ý, hạn mức của token chỉ dùng để giới hạn mức sử dụng tối đa của token này, việc sử dụng thực tế còn phụ thuộc vào hạn mức còn lại của tài khoản.",
+      "quota": "Hạn mức",
+      "quota_placeholder": "Vui lòng nhập hạn mức",
       "buttons": {
-        "never_expire": "永不过期",
-        "expire_1_month": "一个月后过期",
-        "expire_1_day": "一天后过期",
-        "expire_1_hour": "一小时后过期",
-        "expire_1_minute": "一分钟后过期",
-        "unlimited_quota": "设为无限额度",
-        "cancel_unlimited": "取消无限额度",
-        "submit": "提交",
-        "cancel": "取消"
+        "never_expire": "Không bao giờ hết hạn",
+        "expire_1_month": "Hết hạn sau 1 tháng",
+        "expire_1_day": "Hết hạn sau 1 ngày",
+        "expire_1_hour": "Hết hạn sau 1 giờ",
+        "expire_1_minute": "Hết hạn sau 1 phút",
+        "unlimited_quota": "Đặt thành không giới hạn",
+        "cancel_unlimited": "Hủy không giới hạn",
+        "submit": "Gửi",
+        "cancel": "Hủy"
       },
       "messages": {
-        "update_success": "令牌更新成功！",
-        "create_success": "令牌创建成功，请在列表页面点击复制获取令牌！",
-        "expire_time_invalid": "过期时间格式错误！"
+        "update_success": "Cập nhật token thành công!",
+        "create_success": "Tạo token thành công, vui lòng nhấn sao chép trong danh sách để lấy token!",
+        "expire_time_invalid": "Định dạng thời gian hết hạn không hợp lệ!"
       }
     },
     "copy_options": {
-      "raw": "复制原始令牌",
-      "ama": "复制 AMA 链接",
-      "opencat": "复制 OpenCat 链接",
-      "next": "复制 NextChat 链接",
-      "lobe": "复制 LobeChat 链接"
+      "raw": "Sao chép token gốc",
+      "ama": "Sao chép liên kết AMA",
+      "opencat": "Sao chép liên kết OpenCat",
+      "next": "Sao chép liên kết NextChat",
+      "lobe": "Sao chép liên kết LobeChat"
     },
     "messages": {
-      "copy_success": "已复制到剪贴板！",
-      "copy_failed": "无法复制到剪贴板，请手动复制，已将令牌填入搜索框。",
-      "operation_success": "操作成功完成！"
+      "copy_success": "Đã sao chép vào clipboard!",
+      "copy_failed": "Không thể sao chép vào clipboard, vui lòng sao chép thủ công, token đã được điền vào ô tìm kiếm.",
+      "operation_success": "Thao tác thành công!"
     },
     "sort": {
-      "placeholder": "排序方式",
-      "default": "默认排序",
-      "by_remain": "按剩余额度排序",
-      "by_used": "按已用额度排序"
+      "placeholder": "Cách sắp xếp",
+      "default": "Sắp xếp mặc định",
+      "by_remain": "Sắp xếp theo hạn mức còn lại",
+      "by_used": "Sắp xếp theo hạn mức đã dùng"
     }
   },
   "common": {
     "quota": {
-      "display": "等价金额：${{amount}}",
+      "display": "Số tiền tương đương: ${{amount}}",
       "display_short": "${{amount}}",
       "unit": "$"
     }
   },
   "redemption": {
-    "title": "兑换管理",
-    "search": "搜索兑换码的 ID 和名称 ...",
+    "title": "Quản lý mã đổi thưởng",
+    "search": "Tìm kiếm ID và tên mã đổi thưởng ...",
     "table": {
       "id": "ID",
-      "name": "名称",
-      "status": "状态",
-      "quota": "额度",
-      "created_time": "创建时间",
-      "redeemed_time": "兑换时间",
-      "actions": "操作",
-      "no_name": "无",
-      "not_redeemed": "尚未兑换"
+      "name": "Tên",
+      "status": "Trạng thái",
+      "quota": "Hạn mức",
+      "created_time": "Thời gian tạo",
+      "redeemed_time": "Thời gian đổi",
+      "actions": "Thao tác",
+      "no_name": "Không có",
+      "not_redeemed": "Chưa được đổi"
     },
     "buttons": {
-      "copy": "复制",
-      "delete": "删除",
-      "confirm_delete": "确认删除",
-      "enable": "启用",
-      "disable": "禁用",
-      "edit": "编辑",
-      "add": "添加新的兑换码",
-      "refresh": "刷新"
+      "copy": "Sao chép",
+      "delete": "Xóa",
+      "confirm_delete": "Xác nhận xóa",
+      "enable": "Kích hoạt",
+      "disable": "Vô hiệu hóa",
+      "edit": "Chỉnh sửa",
+      "add": "Thêm mã đổi thưởng mới",
+      "refresh": "Làm mới"
     },
     "status": {
-      "unused": "未使用",
-      "disabled": "已禁用",
-      "used": "已使用",
-      "unknown": "未知状态"
+      "unused": "Chưa sử dụng",
+      "disabled": "Đã vô hiệu hóa",
+      "used": "Đã sử dụng",
+      "unknown": "Trạng thái không xác định"
     },
     "edit": {
-      "title_edit": "更新兑换码信息",
-      "title_create": "创建新的兑换码",
-      "name": "名称",
-      "name_placeholder": "请输入名称",
-      "quota": "额度",
-      "quota_placeholder": "请输入单个兑换码中包含的额度",
-      "count": "生成数量",
-      "count_placeholder": "请输入生成数量",
+      "title_edit": "Cập nhật thông tin mã đổi thưởng",
+      "title_create": "Tạo mã đổi thưởng mới",
+      "name": "Tên",
+      "name_placeholder": "Vui lòng nhập tên",
+      "quota": "Hạn mức",
+      "quota_placeholder": "Vui lòng nhập hạn mức cho mỗi mã đổi thưởng",
+      "count": "Số lượng tạo",
+      "count_placeholder": "Vui lòng nhập số lượng cần tạo",
       "buttons": {
-        "submit": "提交",
-        "cancel": "取消"
+        "submit": "Gửi",
+        "cancel": "Hủy"
       }
     },
     "messages": {
-      "update_success": "兑换码更新成功！",
-      "create_success": "兑换码创建成功！"
+      "update_success": "Cập nhật mã đổi thưởng thành công!",
+      "create_success": "Tạo mã đổi thưởng thành công!"
     }
   },
   "log": {
-    "title": "操作日志",
-    "search": "搜索日志...",
-    "usage_details": "使用明细",
-    "total_quota": "总消耗额度",
-    "click_to_view": "点击查看",
+    "title": "Nhật ký thao tác",
+    "search": "Tìm kiếm nhật ký...",
+    "usage_details": "Chi tiết sử dụng",
+    "total_quota": "Tổng hạn mức đã tiêu thụ",
+    "click_to_view": "Nhấn để xem",
     "type": {
-      "select": "选择明细分类",
-      "all": "全部",
-      "topup": "充值",
-      "usage": "消费",
-      "admin": "管理",
-      "system": "系统",
-      "test": "测试"
+      "select": "Chọn loại chi tiết",
+      "all": "Tất cả",
+      "topup": "Nạp tiền",
+      "usage": "Tiêu dùng",
+      "admin": "Quản trị",
+      "system": "Hệ thống",
+      "test": "Kiểm thử"
     },
     "table": {
-      "time": "时间",
-      "channel": "渠道",
-      "type": "类型",
-      "model": "模型",
-      "username": "用户名",
-      "token_name": "令牌名称",
-      "token_name_placeholder": "可选值",
-      "model_name": "模型名称",
-      "model_name_placeholder": "可选值",
-      "start_time": "起始时间",
-      "end_time": "结束时间",
-      "channel_id": "渠道 ID",
-      "channel_id_placeholder": "可选值",
-      "username_placeholder": "可选值",
-      "prompt_tokens": "提示词消耗",
-      "completion_tokens": "补全消耗",
-      "quota": "额度",
-      "detail": "详情"
+      "time": "Thời gian",
+      "channel": "Kênh",
+      "type": "Loại",
+      "model": "Mô hình",
+      "username": "Tên người dùng",
+      "token_name": "Tên token",
+      "token_name_placeholder": "Giá trị tùy chọn",
+      "model_name": "Tên mô hình",
+      "model_name_placeholder": "Giá trị tùy chọn",
+      "start_time": "Thời gian bắt đầu",
+      "end_time": "Thời gian kết thúc",
+      "channel_id": "ID kênh",
+      "channel_id_placeholder": "Giá trị tùy chọn",
+      "username_placeholder": "Giá trị tùy chọn",
+      "prompt_tokens": "Tiêu thụ prompt",
+      "completion_tokens": "Tiêu thụ completion",
+      "quota": "Hạn mức",
+      "detail": "Chi tiết"
     },
     "buttons": {
-      "query": "操作",
-      "submit": "查询",
-      "refresh": "刷新"
+      "query": "Thao tác",
+      "submit": "Tìm kiếm",
+      "refresh": "Làm mới"
     }
   },
   "user": {
-    "title": "用户管理",
+    "title": "Quản lý người dùng",
     "edit": {
-      "title": "更新用户信息",
-      "username": "用户名",
-      "username_placeholder": "请输入新的用户名",
-      "password": "密码",
-      "password_placeholder": "请输入新的密码，最短 8 位",
-      "display_name": "显示名称",
-      "display_name_placeholder": "请输入新的显示名称",
-      "group": "分组",
-      "group_placeholder": "请选择分组",
-      "group_addition": "请在系统设置页面编辑分组倍率以添加新的分组：",
-      "quota": "剩余额度",
-      "quota_placeholder": "请输入新的剩余额度",
-      "github_id": "已绑定的 GitHub 账户",
-      "github_id_placeholder": "此项只读，需要用户通过个人设置页面的相关绑定按钮进行绑定，不可直接修改",
-      "wechat_id": "已绑定的微信账户",
-      "wechat_id_placeholder": "此项只读，需要用户通过个人设置页面的相关绑定按钮进行绑定，不可直接修改",
-      "email": "已绑定的邮箱账户",
-      "email_placeholder": "此项只读，需要用户通过个人设置页面的相关绑定按钮进行绑定，不可直接修改",
+      "title": "Cập nhật thông tin người dùng",
+      "username": "Tên người dùng",
+      "username_placeholder": "Vui lòng nhập tên người dùng mới",
+      "password": "Mật khẩu",
+      "password_placeholder": "Vui lòng nhập mật khẩu mới, tối thiểu 8 ký tự",
+      "display_name": "Tên hiển thị",
+      "display_name_placeholder": "Vui lòng nhập tên hiển thị mới",
+      "group": "Nhóm",
+      "group_placeholder": "Vui lòng chọn nhóm",
+      "group_addition": "Vui lòng chỉnh sửa hệ số nhóm trong trang cài đặt hệ thống để thêm nhóm mới:",
+      "quota": "Hạn mức còn lại",
+      "quota_placeholder": "Vui lòng nhập hạn mức còn lại mới",
+      "github_id": "Tài khoản GitHub đã liên kết",
+      "github_id_placeholder": "Trường này chỉ đọc, người dùng cần liên kết qua nút tương ứng trong trang cài đặt cá nhân, không thể chỉnh sửa trực tiếp",
+      "wechat_id": "Tài khoản WeChat đã liên kết",
+      "wechat_id_placeholder": "Trường này chỉ đọc, người dùng cần liên kết qua nút tương ứng trong trang cài đặt cá nhân, không thể chỉnh sửa trực tiếp",
+      "email": "Tài khoản email đã liên kết",
+      "email_placeholder": "Trường này chỉ đọc, người dùng cần liên kết qua nút tương ứng trong trang cài đặt cá nhân, không thể chỉnh sửa trực tiếp",
       "buttons": {
-        "submit": "提交",
-        "cancel": "取消"
+        "submit": "Gửi",
+        "cancel": "Hủy"
       }
     },
     "add": {
-      "title": "创建新用户账户"
+      "title": "Tạo tài khoản người dùng mới"
     },
     "messages": {
-      "update_success": "用户信息更新成功！",
-      "create_success": "用户账户创建成功！",
-      "operation_success": "操作成功完成！"
+      "update_success": "Cập nhật thông tin người dùng thành công!",
+      "create_success": "Tạo tài khoản người dùng thành công!",
+      "operation_success": "Thao tác thành công!"
     },
-    "search": "搜索用户...",
+    "search": "Tìm kiếm người dùng...",
     "table": {
       "id": "ID",
-      "username": "用户名",
-      "group": "分组",
-      "quota": "额度",
-      "role_text": "角色",
-      "status_text": "状态",
-      "actions": "操作",
-      "remaining_quota": "剩余额度",
-      "used_quota": "已用额度",
-      "request_count": "请求次数",
+      "username": "Tên người dùng",
+      "group": "Nhóm",
+      "quota": "Hạn mức",
+      "role_text": "Vai trò",
+      "status_text": "Trạng thái",
+      "actions": "Thao tác",
+      "remaining_quota": "Hạn mức còn lại",
+      "used_quota": "Hạn mức đã dùng",
+      "request_count": "Số lần yêu cầu",
       "role_types": {
-        "normal": "普通用户",
-        "admin": "管理员",
-        "super_admin": "超级管理员",
-        "unknown": "未知身份"
+        "normal": "Người dùng thường",
+        "admin": "Quản trị viên",
+        "super_admin": "Quản trị viên cấp cao",
+        "unknown": "Không rõ"
       },
       "status_types": {
-        "activated": "已激活",
-        "banned": "已封禁",
-        "unknown": "未知状态"
+        "activated": "Đã kích hoạt",
+        "banned": "Đã bị khóa",
+        "unknown": "Không rõ"
       },
       "sort": {
-        "default": "默认排序",
-        "by_quota": "按剩余额度排序",
-        "by_used_quota": "按已用额度排序",
-        "by_request_count": "按请求次数排序"
+        "default": "Sắp xếp mặc định",
+        "by_quota": "Sắp xếp theo hạn mức còn lại",
+        "by_used_quota": "Sắp xếp theo hạn mức đã dùng",
+        "by_request_count": "Sắp xếp theo số lần yêu cầu"
       },
-      "sort_by": "排序方式"
+      "sort_by": "Cách sắp xếp"
     },
     "buttons": {
-      "add": "添加新的用户",
-      "delete": "删除",
-      "delete_user": "删除用户",
-      "enable": "启用",
-      "disable": "禁用",
-      "edit": "编辑",
-      "promote": "提升",
-      "demote": "降级"
+      "add": "Thêm người dùng mới",
+      "delete": "Xóa",
+      "delete_user": "Xóa người dùng",
+      "enable": "Kích hoạt",
+      "disable": "Vô hiệu hóa",
+      "edit": "Chỉnh sửa",
+      "promote": "Thăng cấp",
+      "demote": "Giáng cấp"
     }
   },
   "dashboard": {
     "charts": {
       "requests": {
-        "title": "模型请求趋势",
-        "tooltip": "请求次数"
+        "title": "Xu hướng yêu cầu mô hình",
+        "tooltip": "Số lần yêu cầu"
       },
       "quota": {
-        "title": "额度消费趋势",
-        "tooltip": "消费额度"
+        "title": "Xu hướng tiêu thụ hạn mức",
+        "tooltip": "Hạn mức tiêu thụ"
       },
       "tokens": {
-        "title": "Token 消费趋势",
-        "tooltip": "Token 数量"
+        "title": "Xu hướng tiêu thụ Token",
+        "tooltip": "Số lượng Token"
       }
     },
     "statistics": {
-      "title": "统计",
+      "title": "Thống kê",
       "tooltip": {
-        "date": "日期",
-        "value": "数值"
+        "date": "Ngày",
+        "value": "Giá trị"
       }
     }
   },
   "setting": {
-    "title": "系统设置",
+    "title": "Cài đặt hệ thống",
     "tabs": {
-      "personal": "个人设置",
-      "operation": "运营设置",
-      "system": "系统设置",
-      "other": "其他设置"
+      "personal": "Cài đặt cá nhân",
+      "operation": "Cài đặt vận hành",
+      "system": "Cài đặt hệ thống",
+      "other": "Cài đặt khác"
     },
     "personal": {
       "general": {
-        "title": "通用设置",
-        "system_token_notice": "注意，此处生成的令牌用于系统管理，而非用于请求 OpenAI 相关的服务，请知悉。",
+        "title": "Cài đặt chung",
+        "system_token_notice": "Lưu ý, mã token được tạo ở đây chỉ dùng cho quản trị hệ thống, không dùng để truy cập các dịch vụ liên quan đến OpenAI.",
         "buttons": {
-          "update_profile": "更新个人信息",
-          "generate_token": "生成系统访问令牌",
-          "copy_invite": "复制邀请链接",
-          "delete_account": "删除个人账户"
+          "update_profile": "Cập nhật thông tin cá nhân",
+          "generate_token": "Tạo mã truy cập hệ thống",
+          "copy_invite": "Sao chép liên kết mời",
+          "delete_account": "Xóa tài khoản cá nhân"
         }
       },
       "binding": {
-        "title": "账号绑定",
+        "title": "Liên kết tài khoản",
         "buttons": {
-          "bind_wechat": "绑定微信账号",
-          "bind_github": "绑定 GitHub 账号",
-          "bind_email": "绑定邮箱地址",
-          "bind_lark": "绑定飞书账号"
+          "bind_wechat": "Liên kết tài khoản WeChat",
+          "bind_github": "Liên kết tài khoản GitHub",
+          "bind_email": "Liên kết địa chỉ email",
+          "bind_lark": "Liên kết tài khoản Lark"
         },
         "wechat": {
-          "title": "微信绑定",
-          "description": "微信扫码关注公众号，输入「验证码」获取验证码（三分钟内有效）",
-          "verification_code": "验证码",
-          "bind": "绑定"
+          "title": "Liên kết WeChat",
+          "description": "Quét mã QR WeChat để theo dõi tài khoản chính thức, nhập 'mã xác minh' để nhận mã xác minh (có hiệu lực trong 3 phút)",
+          "verification_code": "Mã xác minh",
+          "bind": "Liên kết"
         },
         "email": {
-          "title": "绑定邮箱地址",
-          "email_placeholder": "输入邮箱地址",
-          "code_placeholder": "验证码",
-          "get_code": "获取验证码",
-          "get_code_retry": "重新发送({{countdown}})",
-          "bind": "确认绑定",
-          "cancel": "取消"
+          "title": "Liên kết địa chỉ email",
+          "email_placeholder": "Nhập địa chỉ email",
+          "code_placeholder": "Mã xác minh",
+          "get_code": "Lấy mã xác minh",
+          "get_code_retry": "Gửi lại ({{countdown}})",
+          "bind": "Xác nhận liên kết",
+          "cancel": "Hủy"
         }
       },
       "delete_account": {
-        "title": "危险操作",
-        "warning": "您正在删除自己的帐户，将清空所有数据且不可恢复",
-        "confirm_placeholder": "输入你的账户名 {{username}} 以确认删除",
+        "title": "Thao tác nguy hiểm",
+        "warning": "Bạn đang xóa tài khoản của mình, tất cả dữ liệu sẽ bị xóa và không thể khôi phục",
+        "confirm_placeholder": "Nhập tên tài khoản {{username}} để xác nhận xóa",
         "buttons": {
-          "confirm": "确认删除",
-          "cancel": "取消"
+          "confirm": "Xác nhận xóa",
+          "cancel": "Hủy"
         }
       }
     },
     "system": {
       "general": {
-        "title": "通用设置",
-        "server_address": "服务器地址",
-        "server_address_placeholder": "例如：https://yourdomain.com",
+        "title": "Cài đặt chung",
+        "server_address": "Địa chỉ máy chủ",
+        "server_address_placeholder": "Ví dụ: https://yourdomain.com",
         "buttons": {
-          "update": "更新服务器地址"
+          "update": "Cập nhật địa chỉ máy chủ"
         }
       },
       "login": {
-        "title": "配置登录注册",
-        "password_login": "允许通过密码进行登录",
-        "password_register": "允许通过密码进行注册",
-        "email_verification": "通过密码注册时需要进行邮箱验证",
-        "github_oauth": "允许通过 GitHub 账户登录 & 注册",
-        "wechat_login": "允许通过微信登录 & 注册",
-        "registration": "允许新用户注册（此项为否时，新用户将无法以任何方式进行注册）",
-        "turnstile": "启用 Turnstile 用户校验"
+        "title": "Cấu hình đăng nhập & đăng ký",
+        "password_login": "Cho phép đăng nhập bằng mật khẩu",
+        "password_register": "Cho phép đăng ký bằng mật khẩu",
+        "email_verification": "Yêu cầu xác minh email khi đăng ký bằng mật khẩu",
+        "github_oauth": "Cho phép đăng nhập & đăng ký bằng tài khoản GitHub",
+        "wechat_login": "Cho phép đăng nhập & đăng ký bằng WeChat",
+        "registration": "Cho phép người dùng mới đăng ký (Nếu tắt, người dùng mới sẽ không thể đăng ký bằng bất kỳ cách nào)",
+        "turnstile": "Bật xác thực người dùng Turnstile"
       },
       "email_restriction": {
-        "title": "配置邮箱域名白名单",
-        "subtitle": "用以防止恶意用户利用临时邮箱批量注册",
-        "enable": "启用邮箱域名白名单",
-        "allowed_domains": "允许的邮箱域名",
-        "add_domain": "添加新的允许的邮箱域名",
-        "add_domain_placeholder": "输入新的允许的邮箱域名",
+        "title": "Cấu hình danh sách trắng tên miền email",
+        "subtitle": "Ngăn chặn người dùng xấu sử dụng email tạm thời để đăng ký hàng loạt",
+        "enable": "Bật danh sách trắng tên miền email",
+        "allowed_domains": "Tên miền email được phép",
+        "add_domain": "Thêm tên miền email mới được phép",
+        "add_domain_placeholder": "Nhập tên miền email mới được phép",
         "buttons": {
-          "fill": "填入",
-          "save": "保存邮箱域名白名单设置"
+          "fill": "Điền vào",
+          "save": "Lưu cấu hình danh sách trắng email"
         }
       },
       "smtp": {
-        "title": "配置 SMTP",
-        "subtitle": "用以支持系统的邮件发送",
-        "server": "SMTP 服务器地址",
-        "server_placeholder": "例如：smtp.qq.com",
-        "port": "SMTP 端口",
-        "port_placeholder": "默认: 587",
-        "account": "SMTP 账户",
-        "account_placeholder": "通常是邮箱地址",
-        "from": "SMTP 发送者邮箱",
-        "from_placeholder": "通常和邮箱地址保持一致",
-        "token": "SMTP 访问凭证",
-        "token_placeholder": "敏感信息不会发送到前端显示",
+        "title": "Cấu hình SMTP",
+        "subtitle": "Hỗ trợ gửi email hệ thống",
+        "server": "Địa chỉ máy chủ SMTP",
+        "server_placeholder": "Ví dụ: smtp.qq.com",
+        "port": "Cổng SMTP",
+        "port_placeholder": "Mặc định: 587",
+        "account": "Tài khoản SMTP",
+        "account_placeholder": "Thường là địa chỉ email",
+        "from": "Email người gửi SMTP",
+        "from_placeholder": "Thường giống với địa chỉ email",
+        "token": "Mã truy cập SMTP",
+        "token_placeholder": "Thông tin nhạy cảm sẽ không hiển thị ở phía trước",
         "buttons": {
-          "save": "保存 SMTP 设置"
+          "save": "Lưu cấu hình SMTP"
         }
       },
       "github": {
-        "title": "配置 GitHub OAuth App",
-        "subtitle": "用以支持通过 GitHub 进行登录注册",
-        "manage_link": "点击此处",
-        "manage_text": "管理你的 GitHub OAuth App",
-        "url_notice": "Homepage URL 填 {{server_url}}，Authorization callback URL 填 {{callback_url}}",
+        "title": "Cấu hình GitHub OAuth App",
+        "subtitle": "Hỗ trợ đăng nhập & đăng ký qua GitHub",
+        "manage_link": "Nhấn vào đây",
+        "manage_text": "Quản lý GitHub OAuth App của bạn",
+        "url_notice": "Homepage URL điền {{server_url}}, Authorization callback URL điền {{callback_url}}",
         "client_id": "GitHub Client ID",
-        "client_id_placeholder": "输入你注册的 GitHub OAuth APP 的 ID",
+        "client_id_placeholder": "Nhập ID của GitHub OAuth APP bạn đã đăng ký",
         "client_secret": "GitHub Client Secret",
-        "client_secret_placeholder": "敏感信息不会发送到前端显示",
+        "client_secret_placeholder": "Thông tin nhạy cảm sẽ không hiển thị ở phía trước",
         "buttons": {
-          "save": "保存 GitHub OAuth 设置"
+          "save": "Lưu cấu hình GitHub OAuth"
         }
       },
       "lark": {
-        "title": "配置飞书授权登录",
-        "subtitle": "用以支持通过飞书进行登录注册",
-        "manage_link": "点击此处",
-        "manage_text": "管理你的飞书应用",
-        "url_notice": "主页链接填 {{server_url}}，重定向 URL 填 {{callback_url}}",
+        "title": "Cấu hình đăng nhập ủy quyền Lark",
+        "subtitle": "Hỗ trợ đăng nhập & đăng ký qua Lark",
+        "manage_link": "Nhấn vào đây",
+        "manage_text": "Quản lý ứng dụng Lark của bạn",
+        "url_notice": "Liên kết trang chủ điền {{server_url}}, URL chuyển hướng điền {{callback_url}}",
         "client_id": "App ID",
-        "client_id_placeholder": "输入 App ID",
+        "client_id_placeholder": "Nhập App ID",
         "client_secret": "App Secret",
-        "client_secret_placeholder": "敏感信息不会发送到前端显示",
+        "client_secret_placeholder": "Thông tin nhạy cảm sẽ không hiển thị ở phía trước",
         "buttons": {
-          "save": "保存飞书 OAuth 设置"
+          "save": "Lưu cấu hình Lark OAuth"
         }
       },
       "wechat": {
-        "title": "配置 WeChat Server",
-        "subtitle": "用以支持通过微信进行登录注册",
-        "learn_more": "了解 WeChat Server",
-        "server_address": "WeChat Server 服务器地址",
-        "server_address_placeholder": "例如：https://yourdomain.com",
-        "token": "WeChat Server 访问凭证",
-        "token_placeholder": "敏感信息不会发送到前端显示",
-        "qrcode": "微信公众号二维码图片链接",
-        "qrcode_placeholder": "输入一个图片链接",
+        "title": "Cấu hình WeChat Server",
+        "subtitle": "Hỗ trợ đăng nhập & đăng ký qua WeChat",
+        "learn_more": "Tìm hiểu về WeChat Server",
+        "server_address": "Địa chỉ máy chủ WeChat Server",
+        "server_address_placeholder": "Ví dụ: https://yourdomain.com",
+        "token": "Mã truy cập WeChat Server",
+        "token_placeholder": "Thông tin nhạy cảm sẽ không hiển thị ở phía trước",
+        "qrcode": "Liên kết hình ảnh mã QR WeChat Official Account",
+        "qrcode_placeholder": "Nhập liên kết hình ảnh",
         "buttons": {
-          "save": "保存 WeChat Server 设置"
+          "save": "Lưu cấu hình WeChat Server"
         }
       },
       "turnstile": {
-        "title": "配置 Turnstile",
-        "subtitle": "用以支持用户校验",
-        "manage_link": "点击此处",
-        "manage_text": "管理你的 Turnstile Sites，推荐选择 Invisible Widget Type",
+        "title": "Cấu hình Turnstile",
+        "subtitle": "Hỗ trợ xác thực người dùng",
+        "manage_link": "Nhấn vào đây",
+        "manage_text": "Quản lý Turnstile Sites của bạn, khuyến nghị chọn Invisible Widget Type",
         "site_key": "Turnstile Site Key",
-        "site_key_placeholder": "输入你注册的 Turnstile Site Key",
+        "site_key_placeholder": "Nhập Turnstile Site Key bạn đã đăng ký",
         "secret_key": "Turnstile Secret Key",
-        "secret_key_placeholder": "敏感信息不会发送到前端显示",
+        "secret_key_placeholder": "Thông tin nhạy cảm sẽ không hiển thị ở phía trước",
         "buttons": {
-          "save": "保存 Turnstile 设置"
+          "save": "Lưu cấu hình Turnstile"
         }
       },
       "password_login": {
         "warning": {
-          "title": "警告",
-          "content": "取消密码登录将导致所有未绑定其他登录方式的用户（包括管理员）无法通过密码登录，确认取消？",
+          "title": "Cảnh báo",
+          "content": "Tắt đăng nhập bằng mật khẩu sẽ khiến tất cả người dùng chưa liên kết phương thức đăng nhập khác (bao gồm cả quản trị viên) không thể đăng nhập bằng mật khẩu. Bạn có chắc chắn muốn tắt?",
           "buttons": {
-            "confirm": "确定",
-            "cancel": "取消"
+            "confirm": "Xác nhận",
+            "cancel": "Hủy"
           }
         }
       }
     },
     "operation": {
       "quota": {
-        "title": "额度设置",
-        "new_user": "新用户初始额度",
-        "new_user_placeholder": "例如：100",
-        "pre_consume": "请求预扣费额度",
-        "pre_consume_placeholder": "请求结束后多退少补",
-        "inviter_reward": "邀请新用户奖励额度",
-        "inviter_reward_placeholder": "例如：2000",
-        "invitee_reward": "新用户使用邀请码奖励额度",
-        "invitee_reward_placeholder": "例如：1000",
+        "title": "Cài đặt hạn mức",
+        "new_user": "Hạn mức khởi tạo cho người dùng mới",
+        "new_user_placeholder": "Ví dụ: 100",
+        "pre_consume": "Hạn mức tạm giữ khi yêu cầu",
+        "pre_consume_placeholder": "Sẽ điều chỉnh lại sau khi yêu cầu kết thúc",
+        "inviter_reward": "Hạn mức thưởng cho người mời",
+        "inviter_reward_placeholder": "Ví dụ: 2000",
+        "invitee_reward": "Hạn mức thưởng cho người được mời",
+        "invitee_reward_placeholder": "Ví dụ: 1000",
         "buttons": {
-          "save": "保存额度设置"
+          "save": "Lưu cài đặt hạn mức"
         }
       },
       "ratio": {
-        "title": "倍率设置",
+        "title": "Cài đặt hệ số",
         "model": {
-          "title": "模型倍率",
-          "placeholder": "为一个 JSON 文本，键为模型名称，值为倍率"
+          "title": "Hệ số mô hình",
+          "placeholder": "Là một chuỗi JSON, khóa là tên mô hình, giá trị là hệ số"
         },
         "completion": {
-          "title": "补全倍率",
-          "placeholder": "为一个 JSON 文本，键为模型名称，值为倍率，此处的倍率设置是模型补全倍率相较于提示倍率的比例，使用该设置可强制覆盖 One API 的内部比例"
+          "title": "Hệ số hoàn thành",
+          "placeholder": "Là một chuỗi JSON, khóa là tên mô hình, giá trị là hệ số. Hệ số này là tỷ lệ hoàn thành so với hệ số prompt, dùng để ghi đè tỷ lệ nội bộ của One API"
         },
         "group": {
-          "title": "分组倍率",
-          "placeholder": "为一个 JSON 文本，键为分组名称，值为倍率"
+          "title": "Hệ số nhóm",
+          "placeholder": "Là một chuỗi JSON, khóa là tên nhóm, giá trị là hệ số"
         },
         "buttons": {
-          "save": "保存倍率设置"
+          "save": "Lưu cài đặt hệ số"
         }
       },
       "log": {
-        "title": "日志设置",
-        "enable_consume": "启用额度消费日志记录",
-        "target_time": "目标时间",
+        "title": "Cài đặt nhật ký",
+        "enable_consume": "Bật ghi nhật ký tiêu thụ hạn mức",
+        "target_time": "Thời gian mục tiêu",
         "buttons": {
-          "clean": "清理历史日志"
+          "clean": "Xóa nhật ký cũ"
         }
       },
       "monitor": {
-        "title": "监控设置",
-        "max_response_time": "最长响应时间",
-        "max_response_time_placeholder": "单位秒，当运行渠道全部测试时，超过此时间将自动禁用渠道",
-        "quota_reminder": "额度提醒阈值",
-        "quota_reminder_placeholder": "低于此额度时将发送邮件提醒用户",
-        "auto_disable": "失败时自动禁用渠道",
-        "auto_enable": "成功时自动启用渠道",
+        "title": "Cài đặt giám sát",
+        "max_response_time": "Thời gian phản hồi tối đa",
+        "max_response_time_placeholder": "Đơn vị: giây. Khi kiểm tra tất cả các kênh, nếu vượt quá thời gian này sẽ tự động vô hiệu hóa kênh",
+        "quota_reminder": "Ngưỡng nhắc nhở hạn mức",
+        "quota_reminder_placeholder": "Khi hạn mức thấp hơn giá trị này sẽ gửi email nhắc nhở người dùng",
+        "auto_disable": "Tự động vô hiệu hóa kênh khi thất bại",
+        "auto_enable": "Tự động kích hoạt kênh khi thành công",
         "buttons": {
-          "save": "保存监控设置"
+          "save": "Lưu cài đặt giám sát"
         }
       },
       "general": {
-        "title": "通用设置",
-        "topup_link": "充值链接",
-        "topup_link_placeholder": "例如发卡网站的购买链接",
-        "chat_link": "聊天页面链接",
-        "chat_link_placeholder": "例如 ChatGPT Next Web 的部署地址",
-        "quota_per_unit": "单位美元额度",
-        "quota_per_unit_placeholder": "一单位货币能兑换的额度",
-        "retry_times": "失败重试次数",
-        "retry_times_placeholder": "失败重试次数",
-        "display_in_currency": "以货币形式显示额度",
-        "display_token_stat": "Billing 相关 API 显示令牌额度而非用户额度",
-        "approximate_token": "使用近似的方式估算 token 数以减少计算量",
+        "title": "Cài đặt chung",
+        "topup_link": "Liên kết nạp tiền",
+        "topup_link_placeholder": "Ví dụ: liên kết mua hàng của trang bán thẻ",
+        "chat_link": "Liên kết trang chat",
+        "chat_link_placeholder": "Ví dụ: địa chỉ triển khai ChatGPT Next Web",
+        "quota_per_unit": "Hạn mức mỗi đơn vị USD",
+        "quota_per_unit_placeholder": "Số hạn mức đổi được cho mỗi đơn vị tiền tệ",
+        "retry_times": "Số lần thử lại khi thất bại",
+        "retry_times_placeholder": "Số lần thử lại khi thất bại",
+        "display_in_currency": "Hiển thị hạn mức dưới dạng tiền tệ",
+        "display_token_stat": "API liên quan đến Billing hiển thị hạn mức token thay vì hạn mức người dùng",
+        "approximate_token": "Ước tính số token gần đúng để giảm tải tính toán",
         "buttons": {
-          "save": "保存通用设置"
+          "save": "Lưu cài đặt chung"
         }
       }
     },
     "other": {
       "notice": {
-        "title": "公告设置",
-        "content": "公告内容",
-        "content_placeholder": "在此输入新的公告内容，支持 Markdown & HTML 代码",
+        "title": "Cài đặt thông báo",
+        "content": "Nội dung thông báo",
+        "content_placeholder": "Nhập nội dung thông báo mới tại đây, hỗ trợ Markdown & HTML",
         "buttons": {
-          "save": "保存公告"
+          "save": "Lưu thông báo"
         }
       },
       "system": {
-        "title": "系统设置",
-        "name": "系统名称",
-        "name_placeholder": "请输入系统名称",
-        "logo": "Logo 图片地址",
-        "logo_placeholder": "在此输入 Logo 图片地址",
+        "title": "Cài đặt hệ thống",
+        "name": "Tên hệ thống",
+        "name_placeholder": "Vui lòng nhập tên hệ thống",
+        "logo": "Địa chỉ hình ảnh Logo",
+        "logo_placeholder": "Nhập địa chỉ hình ảnh Logo tại đây",
         "theme": {
-          "title": "主题名称",
-          "link": "当前可用主题",
-          "placeholder": "请输入主题名称"
+          "title": "Tên chủ đề",
+          "link": "Chủ đề hiện có",
+          "placeholder": "Vui lòng nhập tên chủ đề"
         },
         "buttons": {
-          "save_name": "设置系统名称",
-          "save_logo": "设置 Logo",
-          "save_theme": "设置主题（重启生效）"
+          "save_name": "Đặt tên hệ thống",
+          "save_logo": "Đặt Logo",
+          "save_theme": "Đặt chủ đề (có hiệu lực sau khi khởi động lại)"
         }
       },
       "content": {
-        "title": "内容设置",
+        "title": "Cài đặt nội dung",
         "homepage": {
-          "title": "首页内容",
-          "placeholder": "在此输入首页内容，支持 Markdown & HTML 代码，设置后首页的状态信息将不再显示。如果输入的是一个链接，则会使用该链接作为 iframe 的 src 属性，这允许你设置任意网页作为首页。"
+          "title": "Nội dung trang chủ",
+          "placeholder": "Nhập nội dung trang chủ tại đây, hỗ trợ Markdown & HTML. Sau khi thiết lập, thông tin trạng thái trang chủ sẽ không còn hiển thị. Nếu nhập một liên kết, liên kết đó sẽ được dùng làm src của iframe, cho phép bạn đặt bất kỳ trang web nào làm trang chủ."
         },
         "about": {
-          "title": "关于",
-          "placeholder": "在此输入新的关于内容，支持 Markdown & HTML 代码。如果输入的是一个链接，则会使用该链接作为 iframe 的 src 属性，这允许你设置任意网页作为关于页面。"
+          "title": "Giới thiệu",
+          "placeholder": "Nhập nội dung giới thiệu mới tại đây, hỗ trợ Markdown & HTML. Nếu nhập một liên kết, liên kết đó sẽ được dùng làm src của iframe, cho phép bạn đặt bất kỳ trang web nào làm trang giới thiệu."
         },
         "footer": {
-          "title": "页脚",
-          "placeholder": "在此输入新的页脚，留空则使用默认页脚，支持 HTML 代码"
+          "title": "Chân trang",
+          "placeholder": "Nhập chân trang mới tại đây, để trống sẽ dùng chân trang mặc định, hỗ trợ HTML"
         },
         "buttons": {
-          "save_homepage": "保存首页内容",
-          "save_about": "保存关于",
-          "save_footer": "设置页脚"
+          "save_homepage": "Lưu nội dung trang chủ",
+          "save_about": "Lưu giới thiệu",
+          "save_footer": "Đặt chân trang"
         }
       },
       "copyright": {
-        "notice": "移除 One API 的版权标识必须首先获得授权，项目维护需要花费大量精力，如果本项目对你有意义，请主动支持本项目。"
+        "notice": "Việc xóa bản quyền One API phải được cấp phép trước. Việc duy trì dự án tốn nhiều công sức, nếu dự án này có ý nghĩa với bạn, hãy chủ động ủng hộ dự án."
       }
     }
   },
   "about": {
-    "title": "关于",
-    "description": "One API 是一个开源的接口管理和代理平台。",
-    "repository": "项目地址：",
-    "loading_failed": "加载失败"
+    "title": "Giới thiệu",
+    "description": "One API là một nền tảng mã nguồn mở để quản lý và làm proxy cho các API.",
+    "repository": "Địa chỉ dự án:",
+    "loading_failed": "Tải thất bại"
   },
   "footer": {
-    "built_by": "由",
+    "built_by": "Được xây dựng bởi",
     "built_by_name": "JustSong",
-    "license": "构建，源代码遵循",
-    "mit": "MIT 协议"
+    "license": "mã nguồn tuân theo",
+    "mit": "Giấy phép MIT"
   },
   "home": {
     "welcome": {
-      "title": "欢迎使用 One API",
-      "description": "One API 是一个 LLM API 接口管理和分发系统，可以帮助您更好地管理和使用各大厂商的 LLM API。",
-      "login_notice": "如需使用，请先登录或注册。"
+      "title": "Chào mừng bạn đến với One API",
+      "description": "One API là một hệ thống quản lý và phân phối API LLM, giúp bạn quản lý và sử dụng API LLM của các nhà cung cấp một cách hiệu quả hơn.",
+      "login_notice": "Vui lòng đăng nhập hoặc đăng ký để sử dụng."
     },
     "system_status": {
-      "title": "系统状况",
+      "title": "Trạng thái hệ thống",
       "info": {
-        "title": "系统信息",
-        "name": "名称：",
-        "version": "版本：",
-        "source": "源码：",
-        "source_link": "GitHub 仓库",
-        "start_time": "启动时间："
+        "title": "Thông tin hệ thống",
+        "name": "Tên:",
+        "version": "Phiên bản:",
+        "source": "Mã nguồn:",
+        "source_link": "Kho GitHub",
+        "start_time": "Thời gian khởi động:"
       },
       "config": {
-        "title": "系统配置",
-        "email_verify": "邮箱验证：",
-        "github_oauth": "GitHub 身份验证：",
-        "wechat_login": "微信身份验证：",
-        "turnstile": "Turnstile 校验：",
-        "enabled": "已启用",
-        "disabled": "未启用"
+        "title": "Cấu hình hệ thống",
+        "email_verify": "Xác thực email:",
+        "github_oauth": "Xác thực GitHub:",
+        "wechat_login": "Xác thực WeChat:",
+        "turnstile": "Kiểm tra Turnstile:",
+        "enabled": "Đã bật",
+        "disabled": "Chưa bật"
       }
     },
-    "loading_failed": "加载首页内容失败..."
+    "loading_failed": "Tải nội dung trang chủ thất bại..."
   },
   "auth": {
     "login": {
-      "title": "用户登录",
-      "username": "用户名 / 邮箱地址",
-      "password": "密码",
-      "button": "登录",
-      "forgot_password": "忘记密码？",
-      "reset_password": "点击重置",
-      "no_account": "没有账户？",
-      "register": "点击注册",
-      "other_methods": "使用其他方式登录",
+      "title": "Đăng nhập người dùng",
+      "username": "Tên người dùng / Địa chỉ email",
+      "password": "Mật khẩu",
+      "button": "Đăng nhập",
+      "forgot_password": "Quên mật khẩu?",
+      "reset_password": "Nhấn để đặt lại",
+      "no_account": "Chưa có tài khoản?",
+      "register": "Nhấn để đăng ký",
+      "other_methods": "Đăng nhập bằng phương thức khác",
       "wechat": {
-        "scan_tip": "微信扫码关注公众号，输入「验证码」获取验证码（三分钟内有效）",
-        "code_placeholder": "验证码"
+        "scan_tip": "Quét mã QR WeChat để theo dõi tài khoản chính thức, nhập 'mã xác minh' để nhận mã xác minh (có hiệu lực trong ba phút)",
+        "code_placeholder": "Mã xác minh"
       }
     },
     "register": {
-      "title": "新用户注册",
-      "username": "输入用户名，最长 12 位",
-      "password": "输入密码，最短 8 位，最长 20 位",
-      "confirm_password": "再次输入密码",
-      "email": "输入邮箱地址",
-      "verification_code": "输入验证码",
-      "get_code": "获取验证码",
-      "get_code_retry": "重试 ({{countdown}})",
-      "button": "注册",
-      "has_account": "已有账户？",
-      "login": "点击登录"
+      "title": "Đăng ký người dùng mới",
+      "username": "Nhập tên người dùng, tối đa 12 ký tự",
+      "password": "Nhập mật khẩu, tối thiểu 8 ký tự, tối đa 20 ký tự",
+      "confirm_password": "Nhập lại mật khẩu",
+      "email": "Nhập địa chỉ email",
+      "verification_code": "Nhập mã xác minh",
+      "get_code": "Lấy mã xác minh",
+      "get_code_retry": "Thử lại ({{countdown}})",
+      "button": "Đăng ký",
+      "has_account": "Đã có tài khoản?",
+      "login": "Nhấn để đăng nhập"
     },
     "reset": {
-      "title": "密码重置",
-      "email": "邮箱地址",
-      "button": "提交",
-      "notice": "系统将向您的邮箱发送一封包含重置链接的邮件，请注意查收。",
+      "title": "Đặt lại mật khẩu",
+      "email": "Địa chỉ email",
+      "button": "Gửi",
+      "notice": "Hệ thống sẽ gửi một email chứa liên kết đặt lại mật khẩu đến địa chỉ email của bạn, vui lòng kiểm tra hộp thư.",
       "confirm": {
-        "title": "密码重置确认",
-        "new_password": "新密码",
-        "button": "提交",
-        "button_disabled": "密码重置完成",
-        "notice": "新密码已生成，请点击密码框或上方按钮复制。请及时登录并修改密码！"
+        "title": "Xác nhận đặt lại mật khẩu",
+        "new_password": "Mật khẩu mới",
+        "button": "Gửi",
+        "button_disabled": "Đặt lại mật khẩu thành công",
+        "notice": "Mật khẩu mới đã được tạo, hãy nhấp vào ô mật khẩu hoặc nút phía trên để sao chép. Vui lòng đăng nhập và thay đổi mật khẩu ngay!"
       }
     }
   },
   "messages": {
     "success": {
-      "login": "登录成功！",
-      "register": "注册成功！",
-      "verification_code": "验证码发送成功，请检查你的邮箱！",
-      "password_reset": "重置邮件发送成功，请检查邮箱！"
+      "login": "Đăng nhập thành công!",
+      "register": "Đăng ký thành công!",
+      "verification_code": "Gửi mã xác minh thành công, vui lòng kiểm tra email của bạn!",
+      "password_reset": "Gửi email đặt lại mật khẩu thành công, vui lòng kiểm tra email!"
     },
     "error": {
-      "login_expired": "未登录或登录已过期，请重新登录！",
-      "password_length": "密码长度不得小于 8 位！",
-      "password_mismatch": "两次输入的密码不一致",
-      "turnstile_wait": "请稍后几秒重试，Turnstile 正在检查用户环境！",
-      "root_password": "请立刻修改默认密码！"
+      "login_expired": "Chưa đăng nhập hoặc phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại!",
+      "password_length": "Mật khẩu phải có ít nhất 8 ký tự!",
+      "password_mismatch": "Hai mật khẩu nhập không khớp",
+      "turnstile_wait": "Vui lòng thử lại sau vài giây, Turnstile đang kiểm tra môi trường người dùng!",
+      "root_password": "Vui lòng thay đổi mật khẩu mặc định ngay lập tức!"
     },
     "notice": {
-      "password_copied": "新密码已复制到剪贴板：{{password}}"
+      "password_copied": "Mật khẩu mới đã được sao chép vào clipboard: {{password}}"
     }
   }
 }
