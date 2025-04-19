@@ -349,7 +349,7 @@ const TokensTable = () => {
             >
               {t('token.table.expired_time')}
             </Table.HeaderCell>
-            <Table.HeaderCell>{t('token.table.actions')}</Table.HeaderCell>
+            <Table.HeaderCell textAlign={'right'}>{t('token.table.actions')}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -390,7 +390,7 @@ const TokensTable = () => {
                       : renderTimestamp(token.expired_time)}
                   </Table.Cell>
                   <Table.Cell>
-                    <div>
+                    <div className={'flex gap-1 flex-row justify-end'}>
                       <Button.Group color="green" size={'tiny'}>
                         <Button
                           size={'tiny'}
@@ -399,24 +399,24 @@ const TokensTable = () => {
                         >
                           {t('token.buttons.copy')}
                         </Button>
-                        <Dropdown
-                          className="button icon"
-                          floating
-                          options={copyOptionsWithHandlers}
-                          trigger={<></>}
-                        />
-                      </Button.Group>{' '}
-                      <Button.Group color="olive" size={'tiny'}>
-                        <Button size={'tiny'} positive onClick={() => onOpenLink('', token.key)}>
-                          {t('token.buttons.chat')}
-                        </Button>
-                        <Dropdown
-                          className="button icon"
-                          floating
-                          options={openLinkOptionsWithHandlers}
-                          trigger={<></>}
-                        />
-                      </Button.Group>{' '}
+                        {/*<Dropdown*/}
+                        {/*  className="button icon"*/}
+                        {/*  floating*/}
+                        {/*  options={copyOptionsWithHandlers}*/}
+                        {/*  trigger={<></>}*/}
+                        {/*/>*/}
+                      </Button.Group>
+                      {/*<Button.Group color="olive" size={'tiny'}>*/}
+                      {/*  <Button size={'tiny'} positive onClick={() => onOpenLink('', token.key)}>*/}
+                      {/*    {t('token.buttons.chat')}*/}
+                      {/*  </Button>*/}
+                      {/*  <Dropdown*/}
+                      {/*    className="button icon"*/}
+                      {/*    floating*/}
+                      {/*    options={openLinkOptionsWithHandlers}*/}
+                      {/*    trigger={<></>}*/}
+                      {/*  />*/}
+                      {/*</Button.Group>*/}
                       <Popup
                         trigger={
                           <Button size="mini" negative>
