@@ -80,23 +80,18 @@ function renderType(type) {
 
 function getColorByElapsedTime(elapsedTime) {
   if (elapsedTime === undefined || 0) return 'black';
-  if (elapsedTime < 1000) return 'green';
-  if (elapsedTime < 3000) return 'olive';
-  if (elapsedTime < 5000) return 'yellow';
-  if (elapsedTime < 10000) return 'orange';
+  if (elapsedTime < 3000) return 'green';
+  if (elapsedTime < 10000) return 'olive';
+  if (elapsedTime < 20000) return 'yellow';
+  if (elapsedTime < 30000) return 'orange';
   return 'red';
 }
 
 function renderDetail(log) {
   return (
-    <div className="whitespace-nowrap">
+    <div className="flex flex-row whitespace-nowrap justify-end">
       {/*{log.content}*/}
       {/*<br />*/}
-      {log.elapsed_time && (
-        <Label basic size={'mini'} color={getColorByElapsedTime(log.elapsed_time)}>
-          {log.elapsed_time} ms
-        </Label>
-      )}
       {log.is_stream && (
         <>
           <Label size={'mini'} color="pink">
@@ -110,6 +105,16 @@ function renderDetail(log) {
             System Prompt Reset
           </Label>
         </>
+      )}
+      {log.elapsed_time && (
+        <Label
+          basic
+          size={'mini'}
+          color={getColorByElapsedTime(log.elapsed_time)}
+          className={'min-w-14 text-center'}
+        >
+          <span title={log.elapsed_time + 'ms'}>{(log.elapsed_time / 1000).toFixed(2)}s</span>
+        </Label>
       )}
     </div>
   );
@@ -459,7 +464,10 @@ const LogsTable = () => {
                   }}
                   width={1}
                 >
-                  {t('log.table.prompt_tokens')}
+                  {/*{t('log.table.prompt_tokens')}*/}
+                  <div className={'whitespace-nowrap'}>
+                    Input <span className={'text-xs opacity-50'}>(tokens)</span>
+                  </div>
                 </Table.HeaderCell>
                 <Table.HeaderCell
                   style={{ cursor: 'pointer' }}
@@ -468,7 +476,10 @@ const LogsTable = () => {
                   }}
                   width={1}
                 >
-                  {t('log.table.completion_tokens')}
+                  {/*{t('log.table.completion_tokens')}*/}
+                  <div className={'whitespace-nowrap'}>
+                    Output <span className={'text-xs opacity-50'}>(tokens)</span>
+                  </div>
                 </Table.HeaderCell>
                 <Table.HeaderCell
                   style={{ cursor: 'pointer' }}
@@ -481,7 +492,9 @@ const LogsTable = () => {
                 </Table.HeaderCell>
               </>
             )}
-            <Table.HeaderCell>{t('log.table.detail')}</Table.HeaderCell>
+            <Table.HeaderCell width={1} textAlign="right">
+              {t('log.table.detail')}
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
