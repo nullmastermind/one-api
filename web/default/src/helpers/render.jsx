@@ -50,7 +50,7 @@ export function renderNumber(num) {
   }
 }
 
-export function renderQuota(quota, t, precision = 2) {
+export function renderQuota(quota, t, precision = 2, showVND = true) {
   const displayInCurrency = localStorage.getItem('display_in_currency') === 'true';
   const quotaPerUnit = parseFloat(localStorage.getItem('quota_per_unit') || '1');
 
@@ -59,9 +59,11 @@ export function renderQuota(quota, t, precision = 2) {
     return (
       <span>
         <span>{t('common.quota.display_short', { amount })}</span>
-        <span style={{ color: '#888', marginLeft: 6, fontSize: '90%' }}>
-          ({renderNumber(Math.round(amount * 25000))} VND)
-        </span>
+        {showVND && (
+          <span style={{ color: '#888', marginLeft: 6, fontSize: '90%' }}>
+            ({renderNumber(Math.round(amount * 25000))} VND)
+          </span>
+        )}
       </span>
     );
   }

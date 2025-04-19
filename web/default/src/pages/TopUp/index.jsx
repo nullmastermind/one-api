@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Grid, Header, Icon, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Icon, Label, Segment } from 'semantic-ui-react';
 
 import { API, showError, showInfo, showSuccess } from '../../helpers';
 import { renderQuota } from '../../helpers/render';
@@ -84,7 +84,10 @@ const TopUp = () => {
           <Header.Content>
             {t('topup.title')}
             <Header.Subheader>
-              {t('topup.get_code.current_quota')}: {renderQuota(userQuota, t)}
+              {t('topup.get_code.current_quota')}:{' '}
+              <Label color="green" size="large">
+                {renderQuota(userQuota, t, 2, false)}
+              </Label>
             </Header.Subheader>
           </Header.Content>
         </Header>
