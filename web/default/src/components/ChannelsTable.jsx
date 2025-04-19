@@ -574,61 +574,69 @@ const ChannelsTable = () => {
                     />
                   </Table.Cell>
                   <Table.Cell>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexWrap: 'wrap',
-                        gap: '2px',
-                        rowGap: '6px',
-                      }}
-                    >
-                      <Button
-                        size={'tiny'}
-                        positive
-                        onClick={() => {
-                          testChannel(channel.id, channel.name, idx, channel.test_model);
-                        }}
-                      >
-                        {t('channel.buttons.test')}
-                      </Button>
+                    <div className={'flex gap-1 flex-row'}>
                       <Popup
+                        content={t('channel.buttons.test')}
                         trigger={
-                          <Button size="tiny" negative>
-                            {t('channel.buttons.delete')}
+                          <Button
+                            icon="play"
+                            size={'tiny'}
+                            positive
+                            onClick={() => {
+                              void testChannel(channel.id, channel.name, idx, channel.test_model);
+                            }}
+                          />
+                        }
+                      />
+
+                      <Popup
+                        trigger={<Button icon="trash" size="tiny" negative />}
+                        content={
+                          <Button
+                            size={'tiny'}
+                            negative
+                            onClick={() => {
+                              manageChannel(channel.id, 'delete', idx);
+                            }}
+                          >
+                            {t('channel.buttons.confirm_delete')} {channel.name}
                           </Button>
                         }
                         on="click"
                         flowing
                         hoverable
-                      >
-                        <Button
-                          size={'tiny'}
-                          negative
-                          onClick={() => {
-                            manageChannel(channel.id, 'delete', idx);
-                          }}
-                        >
-                          {t('channel.buttons.confirm_delete')} {channel.name}
-                        </Button>
-                      </Popup>
-                      <Button
-                        size={'tiny'}
-                        onClick={() => {
-                          manageChannel(
-                            channel.id,
-                            channel.status === 1 ? 'disable' : 'enable',
-                            idx,
-                          );
-                        }}
-                      >
-                        {channel.status === 1
-                          ? t('channel.buttons.disable')
-                          : t('channel.buttons.enable')}
-                      </Button>
-                      <Button size={'tiny'} as={Link} to={'/channel/edit/' + channel.id}>
-                        {t('channel.buttons.edit')}
-                      </Button>
+                      />
+                      <Popup
+                        content={
+                          channel.status === 1
+                            ? t('channel.buttons.disable')
+                            : t('channel.buttons.enable')
+                        }
+                        trigger={
+                          <Button
+                            icon={channel.status === 1 ? 'toggle on' : 'toggle off'}
+                            size={'tiny'}
+                            onClick={() => {
+                              manageChannel(
+                                channel.id,
+                                channel.status === 1 ? 'disable' : 'enable',
+                                idx,
+                              );
+                            }}
+                          />
+                        }
+                      />
+                      <Popup
+                        content={t('channel.buttons.edit')}
+                        trigger={
+                          <Button
+                            icon="edit"
+                            size={'tiny'}
+                            as={Link}
+                            to={'/channel/edit/' + channel.id}
+                          />
+                        }
+                      />
                     </div>
                   </Table.Cell>
                 </Table.Row>
