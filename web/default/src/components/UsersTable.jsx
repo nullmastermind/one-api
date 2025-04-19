@@ -157,6 +157,11 @@ const UsersTable = () => {
     setActivePage(1);
   };
 
+  const refresh = async () => {
+    setLoading(true);
+    await loadUsers(0);
+  };
+
   return (
     <>
       <Form onSubmit={searchUsers}>
@@ -173,6 +178,38 @@ const UsersTable = () => {
 
       <Table basic={'very'} compact size="small">
         <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell colSpan="7">
+              <Button size="small" as={Link} to="/user/add" loading={loading}>
+                {t('user.buttons.add')}
+              </Button>
+              <Dropdown
+                placeholder={t('user.table.sort_by')}
+                selection
+                options={[
+                  { key: '', text: t('user.table.sort.default'), value: '' },
+                  {
+                    key: 'quota',
+                    text: t('user.table.sort.by_quota'),
+                    value: 'quota',
+                  },
+                  {
+                    key: 'used_quota',
+                    text: t('user.table.sort.by_used_quota'),
+                    value: 'used_quota',
+                  },
+                  {
+                    key: 'request_count',
+                    text: t('user.table.sort.by_request_count'),
+                    value: 'request_count',
+                  },
+                ]}
+                value={orderBy}
+                onChange={handleOrderByChange}
+                style={{ marginLeft: '10px' }}
+              />
+            </Table.HeaderCell>
+          </Table.Row>
           <Table.Row>
             <Table.HeaderCell
               style={{ cursor: 'pointer' }}
@@ -222,7 +259,7 @@ const UsersTable = () => {
             >
               {t('user.table.status_text')}
             </Table.HeaderCell>
-            <Table.HeaderCell>{t('user.table.actions')}</Table.HeaderCell>
+            <Table.HeaderCell textAlign="right">{t('user.table.actions')}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -244,9 +281,6 @@ const UsersTable = () => {
                     />
                   </Table.Cell>
                   <Table.Cell>{renderGroup(user.group)}</Table.Cell>
-                  {/*<Table.Cell>*/}
-                  {/*  {user.email ? <Popup hoverable content={user.email} trigger={<span>{renderText(user.email, 24)}</span>} /> : 'None'}*/}
-                  {/*</Table.Cell>*/}
                   <Table.Cell>
                     <Popup
                       content={t('user.table.remaining_quota')}
@@ -264,32 +298,38 @@ const UsersTable = () => {
                   <Table.Cell>{renderRole(user.role, t)}</Table.Cell>
                   <Table.Cell>{renderStatus(user.status)}</Table.Cell>
                   <Table.Cell>
-                    <div>
-                      <Button
-                        size={'tiny'}
-                        positive
-                        onClick={() => {
-                          manageUser(user.username, 'promote', idx);
-                        }}
-                        disabled={user.role === 100}
-                      >
-                        {t('user.buttons.promote')}
-                      </Button>
-                      <Button
-                        size={'tiny'}
-                        color={'yellow'}
-                        onClick={() => {
-                          manageUser(user.username, 'demote', idx);
-                        }}
-                        disabled={user.role === 100}
-                      >
-                        {t('user.buttons.demote')}
-                      </Button>
+                    <div className={'flex gap-1 flex-row justify-end'}>
+                      <Popup
+                        content={t('user.buttons.promote')}
+                        trigger={
+                          <Button
+                            icon="arrow up"
+                            size="tiny"
+                            positive
+                            onClick={() => {
+                              manageUser(user.username, 'promote', idx);
+                            }}
+                            disabled={user.role === 100}
+                          />
+                        }
+                      />
+                      <Popup
+                        content={t('user.buttons.demote')}
+                        trigger={
+                          <Button
+                            icon="arrow down"
+                            size="tiny"
+                            color="yellow"
+                            onClick={() => {
+                              manageUser(user.username, 'demote', idx);
+                            }}
+                            disabled={user.role === 100}
+                          />
+                        }
+                      />
                       <Popup
                         trigger={
-                          <Button size="tiny" negative disabled={user.role === 100}>
-                            {t('user.buttons.delete')}
-                          </Button>
+                          <Button icon="trash" size="tiny" negative disabled={user.role === 100} />
                         }
                         on="click"
                         flowing
@@ -297,7 +337,7 @@ const UsersTable = () => {
                       >
                         <Button
                           negative
-                          size={'tiny'}
+                          size="tiny"
                           onClick={() => {
                             manageUser(user.username, 'delete', idx);
                           }}
@@ -305,18 +345,31 @@ const UsersTable = () => {
                           {t('user.buttons.delete_user')} {user.username}
                         </Button>
                       </Popup>
-                      <Button
-                        size={'tiny'}
-                        onClick={() => {
-                          manageUser(user.username, user.status === 1 ? 'disable' : 'enable', idx);
-                        }}
-                        disabled={user.role === 100}
-                      >
-                        {user.status === 1 ? t('user.buttons.disable') : t('user.buttons.enable')}
-                      </Button>
-                      <Button size={'tiny'} as={Link} to={'/user/edit/' + user.id}>
-                        {t('user.buttons.edit')}
-                      </Button>
+                      <Popup
+                        content={
+                          user.status === 1 ? t('user.buttons.disable') : t('user.buttons.enable')
+                        }
+                        trigger={
+                          <Button
+                            icon={user.status === 1 ? 'toggle on' : 'toggle off'}
+                            size="tiny"
+                            onClick={() => {
+                              manageUser(
+                                user.username,
+                                user.status === 1 ? 'disable' : 'enable',
+                                idx,
+                              );
+                            }}
+                            disabled={user.role === 100}
+                          />
+                        }
+                      />
+                      <Popup
+                        content={t('user.buttons.edit')}
+                        trigger={
+                          <Button icon="edit" size="tiny" as={Link} to={'/user/edit/' + user.id} />
+                        }
+                      />
                     </div>
                   </Table.Cell>
                 </Table.Row>
@@ -327,34 +380,6 @@ const UsersTable = () => {
         <Table.Footer>
           <Table.Row>
             <Table.HeaderCell colSpan="7">
-              <Button size="small" as={Link} to="/user/add" loading={loading}>
-                {t('user.buttons.add')}
-              </Button>
-              <Dropdown
-                placeholder={t('user.table.sort_by')}
-                selection
-                options={[
-                  { key: '', text: t('user.table.sort.default'), value: '' },
-                  {
-                    key: 'quota',
-                    text: t('user.table.sort.by_quota'),
-                    value: 'quota',
-                  },
-                  {
-                    key: 'used_quota',
-                    text: t('user.table.sort.by_used_quota'),
-                    value: 'used_quota',
-                  },
-                  {
-                    key: 'request_count',
-                    text: t('user.table.sort.by_request_count'),
-                    value: 'request_count',
-                  },
-                ]}
-                value={orderBy}
-                onChange={handleOrderByChange}
-                style={{ marginLeft: '10px' }}
-              />
               <Pagination
                 floated="right"
                 activePage={activePage}
