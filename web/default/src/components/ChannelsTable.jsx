@@ -499,7 +499,7 @@ const ChannelsTable = () => {
             <Table.HeaderCell hidden={!showDetail}>
               {t('channel.table.test_model')}
             </Table.HeaderCell>
-            <Table.HeaderCell>{t('channel.table.actions')}</Table.HeaderCell>
+            <Table.HeaderCell textAlign="right">{t('channel.table.actions')}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -574,7 +574,7 @@ const ChannelsTable = () => {
                     />
                   </Table.Cell>
                   <Table.Cell>
-                    <div className={'flex gap-1 flex-row'}>
+                    <div className={'flex gap-1 flex-row justify-end'}>
                       <Popup
                         content={t('channel.buttons.test')}
                         trigger={
