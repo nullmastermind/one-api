@@ -4,15 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Form, Label, Pagination, Popup, Table } from 'semantic-ui-react';
 
 import { ITEMS_PER_PAGE } from '../constants';
-import {
-  API,
-  copy,
-  showError,
-  showInfo,
-  showSuccess,
-  showWarning,
-  timestamp2string,
-} from '../helpers';
+import { API, copy, showError, showSuccess, showWarning, timestamp2string } from '../helpers';
 import { renderQuota } from '../helpers/render';
 
 function renderTimestamp(timestamp) {
@@ -190,6 +182,16 @@ const RedemptionsTable = () => {
       <Table basic={'very'} compact size="small">
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell colSpan="7">
+              <Button size="small" as={Link} to="/redemption/add" loading={loading}>
+                {t('redemption.buttons.add')}
+              </Button>
+              <Button size="small" onClick={refresh} loading={loading}>
+                {t('redemption.buttons.refresh')}
+              </Button>
+            </Table.HeaderCell>
+          </Table.Row>
+          <Table.Row>
             <Table.HeaderCell
               style={{ cursor: 'pointer' }}
               onClick={() => {
@@ -238,7 +240,7 @@ const RedemptionsTable = () => {
             >
               {t('redemption.table.redeemed_time')}
             </Table.HeaderCell>
-            <Table.HeaderCell>{t('redemption.table.actions')}</Table.HeaderCell>
+            <Table.HeaderCell textAlign="right">{t('redemption.table.actions')}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -262,58 +264,73 @@ const RedemptionsTable = () => {
                       : t('redemption.table.not_redeemed')}{' '}
                   </Table.Cell>
                   <Table.Cell>
-                    <div>
-                      <Button
-                        size={'tiny'}
-                        positive
-                        onClick={async () => {
-                          if (await copy(redemption.key)) {
-                            showSuccess(t('token.messages.copy_success'));
-                          } else {
-                            showWarning(t('token.messages.copy_failed'));
-                            setSearchKeyword(redemption.key);
-                          }
-                        }}
-                      >
-                        {t('redemption.buttons.copy')}
-                      </Button>
+                    <div className={'flex gap-1 flex-row justify-end'}>
                       <Popup
+                        content={t('redemption.buttons.copy')}
                         trigger={
-                          <Button size="tiny" negative>
-                            {t('redemption.buttons.delete')}
-                          </Button>
+                          <Button
+                            icon="copy"
+                            size={'tiny'}
+                            positive
+                            onClick={async () => {
+                              if (await copy(redemption.key)) {
+                                showSuccess(t('token.messages.copy_success'));
+                              } else {
+                                showWarning(t('token.messages.copy_failed'));
+                                setSearchKeyword(redemption.key);
+                              }
+                            }}
+                          />
                         }
+                      />
+                      <Popup
+                        trigger={<Button icon="trash" size="tiny" negative />}
                         on="click"
                         flowing
                         hoverable
-                      >
-                        <Button
-                          negative
-                          onClick={() => {
-                            manageRedemption(redemption.id, 'delete', idx);
-                          }}
-                        >
-                          {t('redemption.buttons.confirm_delete')}
-                        </Button>
-                      </Popup>
-                      <Button
-                        size={'tiny'}
-                        disabled={redemption.status === 3} // used
-                        onClick={() => {
-                          manageRedemption(
-                            redemption.id,
-                            redemption.status === 1 ? 'disable' : 'enable',
-                            idx,
-                          );
-                        }}
-                      >
-                        {redemption.status === 1
-                          ? t('redemption.buttons.disable')
-                          : t('redemption.buttons.enable')}
-                      </Button>
-                      <Button size={'tiny'} as={Link} to={'/redemption/edit/' + redemption.id}>
-                        {t('redemption.buttons.edit')}
-                      </Button>
+                        content={
+                          <Button
+                            negative
+                            onClick={() => {
+                              manageRedemption(redemption.id, 'delete', idx);
+                            }}
+                          >
+                            {t('redemption.buttons.confirm_delete')}
+                          </Button>
+                        }
+                      />
+                      <Popup
+                        content={
+                          redemption.status === 1
+                            ? t('redemption.buttons.disable')
+                            : t('redemption.buttons.enable')
+                        }
+                        trigger={
+                          <Button
+                            icon={redemption.status === 1 ? 'toggle on' : 'toggle off'}
+                            size={'tiny'}
+                            disabled={redemption.status === 3}
+                            onClick={() => {
+                              manageRedemption(
+                                redemption.id,
+                                redemption.status === 1 ? 'disable' : 'enable',
+                                idx,
+                              );
+                            }}
+                          />
+                        }
+                      />
+                      <Popup
+                        content={t('redemption.buttons.edit')}
+                        trigger={
+                          <Button
+                            icon="edit"
+                            size={'tiny'}
+                            as={Link}
+                            to={'/redemption/edit/' + redemption.id}
+                          />
+                        }
+                      />
                     </div>
                   </Table.Cell>
                 </Table.Row>
@@ -324,12 +341,6 @@ const RedemptionsTable = () => {
         <Table.Footer>
           <Table.Row>
             <Table.HeaderCell colSpan="7">
-              <Button size="small" as={Link} to="/redemption/add" loading={loading}>
-                {t('redemption.buttons.add')}
-              </Button>
-              <Button size="small" onClick={refresh} loading={loading}>
-                {t('redemption.buttons.refresh')}
-              </Button>
               <Pagination
                 floated="right"
                 activePage={activePage}
