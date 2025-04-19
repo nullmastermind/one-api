@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc -b && vite build && rm -rf ../build/default && mv -f dist ../build/default",
     "build-no-copy": "tsc -b && vite build",
+    "build:windows": "tsc -b && vite build && if exist ..\\build\\default rmdir /s /q ..\\build\\default && move /y dist ..\\build\\default",
     "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview"
