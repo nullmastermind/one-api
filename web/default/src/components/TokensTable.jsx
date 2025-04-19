@@ -301,6 +301,35 @@ const TokensTable = () => {
       <Table basic={'very'} compact size="small">
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell colSpan="7">
+              <Button size="tiny" as={Link} to="/token/add" loading={loading}>
+                {t('token.buttons.add')}
+              </Button>
+              <Button size="tiny" onClick={refresh} loading={loading}>
+                {t('token.buttons.refresh')}
+              </Button>
+              <Dropdown
+                placeholder={t('token.sort.placeholder')}
+                selection
+                options={[
+                  { key: '', text: t('token.sort.default'), value: '' },
+                  {
+                    key: 'remain_quota',
+                    text: t('token.sort.by_remain'),
+                    value: 'remain_quota',
+                  },
+                  {
+                    key: 'used_quota',
+                    text: t('token.sort.by_used'),
+                    value: 'used_quota',
+                  },
+                ]}
+                value={orderBy}
+                onChange={handleOrderByChange}
+              />
+            </Table.HeaderCell>
+          </Table.Row>
+          <Table.Row>
             <Table.HeaderCell
               style={{ cursor: 'pointer' }}
               onClick={() => {
@@ -464,32 +493,6 @@ const TokensTable = () => {
         <Table.Footer>
           <Table.Row>
             <Table.HeaderCell colSpan="7">
-              <Button size="small" as={Link} to="/token/add" loading={loading}>
-                {t('token.buttons.add')}
-              </Button>
-              <Button size="small" onClick={refresh} loading={loading}>
-                {t('token.buttons.refresh')}
-              </Button>
-              <Dropdown
-                placeholder={t('token.sort.placeholder')}
-                selection
-                options={[
-                  { key: '', text: t('token.sort.default'), value: '' },
-                  {
-                    key: 'remain_quota',
-                    text: t('token.sort.by_remain'),
-                    value: 'remain_quota',
-                  },
-                  {
-                    key: 'used_quota',
-                    text: t('token.sort.by_used'),
-                    value: 'used_quota',
-                  },
-                ]}
-                value={orderBy}
-                onChange={handleOrderByChange}
-                style={{ marginLeft: '10px' }}
-              />
               <Pagination
                 floated="right"
                 activePage={activePage}
