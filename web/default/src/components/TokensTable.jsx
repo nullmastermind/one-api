@@ -391,44 +391,30 @@ const TokensTable = () => {
                   </Table.Cell>
                   <Table.Cell>
                     <div className={'flex gap-1 flex-row justify-end'}>
-                      <Button.Group color="green" size={'tiny'}>
-                        <Button
-                          size={'tiny'}
-                          positive
-                          onClick={async () => await onCopy('', token.key)}
-                        >
-                          {t('token.buttons.copy')}
-                        </Button>
-                        {/*<Dropdown*/}
-                        {/*  className="button icon"*/}
-                        {/*  floating*/}
-                        {/*  options={copyOptionsWithHandlers}*/}
-                        {/*  trigger={<></>}*/}
-                        {/*/>*/}
-                      </Button.Group>
-                      {/*<Button.Group color="olive" size={'tiny'}>*/}
-                      {/*  <Button size={'tiny'} positive onClick={() => onOpenLink('', token.key)}>*/}
-                      {/*    {t('token.buttons.chat')}*/}
-                      {/*  </Button>*/}
-                      {/*  <Dropdown*/}
-                      {/*    className="button icon"*/}
-                      {/*    floating*/}
-                      {/*    options={openLinkOptionsWithHandlers}*/}
-                      {/*    trigger={<></>}*/}
-                      {/*  />*/}
-                      {/*</Button.Group>*/}
                       <Popup
+                        content={t('token.buttons.copy')}
                         trigger={
-                          <Button size="mini" negative>
-                            {t('token.buttons.delete')}
-                          </Button>
+                          <Button
+                            icon="copy"
+                            color="green"
+                            size="small"
+                            onClick={async () => await onCopy('', token.key)}
+                          />
                         }
+                        basic
+                        position="top center"
+                      />
+                      <Popup
+                        content={t('token.buttons.delete')}
+                        trigger={<Button icon="trash alternate" size="small" negative />}
+                        basic
+                        position="top center"
                         on="click"
                         flowing
                         hoverable
                       >
                         <Button
-                          size={'tiny'}
+                          size="small"
                           negative
                           onClick={() => {
                             manageToken(token.id, 'delete', idx);
@@ -437,19 +423,37 @@ const TokensTable = () => {
                           {t('token.buttons.confirm_delete')} {token.name}
                         </Button>
                       </Popup>
-                      <Button
-                        size={'tiny'}
-                        onClick={() => {
-                          manageToken(token.id, token.status === 1 ? 'disable' : 'enable', idx);
-                        }}
-                      >
-                        {token.status === 1
-                          ? t('token.buttons.disable')
-                          : t('token.buttons.enable')}
-                      </Button>
-                      <Button size={'tiny'} as={Link} to={'/token/edit/' + token.id}>
-                        {t('token.buttons.edit')}
-                      </Button>
+                      <Popup
+                        content={
+                          token.status === 1
+                            ? t('token.buttons.disable')
+                            : t('token.buttons.enable')
+                        }
+                        trigger={
+                          <Button
+                            icon={token.status === 1 ? 'toggle on' : 'toggle off'}
+                            size="small"
+                            onClick={() => {
+                              manageToken(token.id, token.status === 1 ? 'disable' : 'enable', idx);
+                            }}
+                          />
+                        }
+                        basic
+                        position="top center"
+                      />
+                      <Popup
+                        content={t('token.buttons.edit')}
+                        trigger={
+                          <Button
+                            icon="edit"
+                            as={Link}
+                            to={'/token/edit/' + token.id}
+                            size="small"
+                          />
+                        }
+                        basic
+                        position="top center"
+                      />
                     </div>
                   </Table.Cell>
                 </Table.Row>
