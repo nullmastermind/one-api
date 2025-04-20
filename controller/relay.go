@@ -4,10 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"io"
-	"net/http"
-	"strconv"
-
 	"github.com/gin-gonic/gin"
 	"github.com/songquanpeng/one-api/common"
 	"github.com/songquanpeng/one-api/common/config"
@@ -20,6 +16,8 @@ import (
 	"github.com/songquanpeng/one-api/relay/controller"
 	"github.com/songquanpeng/one-api/relay/model"
 	"github.com/songquanpeng/one-api/relay/relaymode"
+	"io"
+	"net/http"
 )
 
 // https://platform.openai.com/docs/api-reference/chat
@@ -52,9 +50,6 @@ func Relay(c *gin.Context) {
 	}
 	channelId := c.GetInt(ctxkey.ChannelId)
 	userId := c.GetInt(ctxkey.Id)
-
-	c.Request.Header.Set("x-user-id", strconv.Itoa(userId))
-	c.Request.Header.Set("x-from-ip", c.ClientIP())
 
 	bizErr := relayHelper(c, relayMode)
 	if bizErr == nil {

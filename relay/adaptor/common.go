@@ -8,6 +8,7 @@ import (
 	"github.com/songquanpeng/one-api/relay/meta"
 	"io"
 	"net/http"
+	"strconv"
 )
 
 func SetupCommonRequestHeader(c *gin.Context, req *http.Request, meta *meta.Meta) {
@@ -16,6 +17,11 @@ func SetupCommonRequestHeader(c *gin.Context, req *http.Request, meta *meta.Meta
 	if meta.IsStream && c.Request.Header.Get("Accept") == "" {
 		req.Header.Set("Accept", "text/event-stream")
 	}
+
+	req.Header.Set("x-from-ip", c.ClientIP())
+	req.Header.Set("x-user-id", strconv.Itoa(meta.UserId))
+	req.Header.Set("x-channel-id", strconv.Itoa(meta.ChannelId))
+	req.Header.Set("x-api-key", c.Request.Header.Get("X-Api-Key"))
 }
 
 func DoRequestHelper(a Adaptor, c *gin.Context, meta *meta.Meta, requestBody io.Reader) (*http.Response, error) {
