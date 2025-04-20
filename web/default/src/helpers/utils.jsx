@@ -147,6 +147,11 @@ export function timestamp2string(timestamp) {
   let hour = date.getHours().toString();
   let minute = date.getMinutes().toString();
   let second = date.getSeconds().toString();
+
+  if (timestamp === 0) {
+    hour = (+hour + date.getTimezoneOffset() / 60).toString();
+  }
+
   if (month.length === 1) {
     month = '0' + month;
   }
@@ -162,6 +167,7 @@ export function timestamp2string(timestamp) {
   if (second.length === 1) {
     second = '0' + second;
   }
+
   return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
 
