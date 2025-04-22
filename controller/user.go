@@ -707,14 +707,14 @@ func ManageUser(c *gin.Context) {
 
 func EmailBind(c *gin.Context) {
 	email := c.Query("email")
-	code := c.Query("code")
-	if !common.VerifyCodeWithKey(email, code, common.EmailVerificationPurpose) {
-		c.JSON(http.StatusOK, gin.H{
-			"success": false,
-			"message": "Verification code is incorrect or has expired.",
-		})
-		return
-	}
+	//code := c.Query("code")
+	//if !common.VerifyCodeWithKey(email, code, common.EmailVerificationPurpose) {
+	//	c.JSON(http.StatusOK, gin.H{
+	//		"success": false,
+	//		"message": "Verification code is incorrect or has expired.",
+	//	})
+	//	return
+	//}
 	id := c.GetInt("id")
 	user := model.User{
 		Id: id,
@@ -727,6 +727,15 @@ func EmailBind(c *gin.Context) {
 		})
 		return
 	}
+
+	if model.IsEmailAlreadyTaken(email) {
+		c.JSON(http.StatusOK, gin.H{
+			"success": false,
+			"message": "Email address is already taken!",
+		})
+		return
+	}
+
 	user.Email = email
 	// no need to check if this email already taken, because we have used verification code to check it
 	err = user.Update(false)

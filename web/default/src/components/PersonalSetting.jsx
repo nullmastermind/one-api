@@ -155,7 +155,7 @@ const PersonalSetting = () => {
   };
 
   const bindEmail = async () => {
-    if (inputs.email_verification_code === '') return;
+    // if (inputs.email_verification_code === '') return;
     setLoading(true);
     const res = await API.get(
       `/api/oauth/email/bind?email=${inputs.email}&code=${inputs.email_verification_code}`,
@@ -271,23 +271,23 @@ const PersonalSetting = () => {
                 onChange={handleInputChange}
                 name="email"
                 type="email"
-                action={
-                  <Button onClick={sendVerificationCode} disabled={disableButton || loading}>
-                    {disableButton
-                      ? t('setting.personal.binding.email.get_code_retry', {
-                          countdown,
-                        })
-                      : t('setting.personal.binding.email.get_code')}
-                  </Button>
-                }
+                // action={
+                //   <Button onClick={sendVerificationCode} disabled={disableButton || loading}>
+                //     {disableButton
+                //       ? t('setting.personal.binding.email.get_code_retry', {
+                //           countdown,
+                //         })
+                //       : t('setting.personal.binding.email.get_code')}
+                //   </Button>
+                // }
               />
-              <Form.Input
-                fluid
-                placeholder={t('setting.personal.binding.email.code_placeholder')}
-                name="email_verification_code"
-                value={inputs.email_verification_code}
-                onChange={handleInputChange}
-              />
+              {/*<Form.Input*/}
+              {/*  fluid*/}
+              {/*  placeholder={t('setting.personal.binding.email.code_placeholder')}*/}
+              {/*  name="email_verification_code"*/}
+              {/*  value={inputs.email_verification_code}*/}
+              {/*  onChange={handleInputChange}*/}
+              {/*/>*/}
               {turnstileEnabled && (
                 <Turnstile
                   sitekey={turnstileSiteKey}
