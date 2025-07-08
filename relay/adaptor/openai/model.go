@@ -1,6 +1,62 @@
 package openai
 
-import "github.com/songquanpeng/one-api/relay/model"
+import (
+	"encoding/json"
+	"time"
+
+	"github.com/songquanpeng/one-api/relay/model"
+)
+
+// FlexibleTimestamp handles both int64 Unix timestamps and ISO 8601 string timestamps
+type FlexibleTimestamp int64
+
+// NewFlexibleTimestamp creates a FlexibleTimestamp from an int64
+func NewFlexibleTimestamp(timestamp int64) FlexibleTimestamp {
+	return FlexibleTimestamp(timestamp)
+}
+
+// FromInt64 creates a FlexibleTimestamp from an int64 (alias for NewFlexibleTimestamp)
+func FromInt64(timestamp int64) FlexibleTimestamp {
+	return FlexibleTimestamp(timestamp)
+}
+
+// UnmarshalJSON implements custom JSON unmarshaling for FlexibleTimestamp
+func (ft *FlexibleTimestamp) UnmarshalJSON(data []byte) error {
+	// Try to unmarshal as int64 first (Unix timestamp)
+	var timestamp int64
+	if err := json.Unmarshal(data, &timestamp); err == nil {
+		*ft = FlexibleTimestamp(timestamp)
+		return nil
+	}
+
+	// If that fails, try to unmarshal as string (ISO 8601)
+	var timeStr string
+	if err := json.Unmarshal(data, &timeStr); err != nil {
+		return err
+	}
+
+	// Parse the ISO 8601 string
+	parsedTime, err := time.Parse(time.RFC3339, timeStr)
+	if err != nil {
+		// Try alternative formats if RFC3339 fails
+		if parsedTime, err = time.Parse("2006-01-02T15:04:05Z07:00", timeStr); err != nil {
+			return err
+		}
+	}
+
+	*ft = FlexibleTimestamp(parsedTime.Unix())
+	return nil
+}
+
+// MarshalJSON implements custom JSON marshaling for FlexibleTimestamp
+func (ft FlexibleTimestamp) MarshalJSON() ([]byte, error) {
+	return json.Marshal(int64(ft))
+}
+
+// Int64 returns the timestamp as int64
+func (ft FlexibleTimestamp) Int64() int64 {
+	return int64(ft)
+}
 
 type TextContent struct {
 	Type string `json:"type,omitempty"`
@@ -95,6 +151,28 @@ type TextResponse struct {
 	Created     int64                `json:"created"`
 	Choices     []TextResponseChoice `json:"choices"`
 	model.Usage `json:"usage"`
+}
+
+// TextResponseFlexible is like TextResponse but with flexible timestamp parsing
+type TextResponseFlexible struct {
+	Id          string               `json:"id"`
+	Model       string               `json:"model,omitempty"`
+	Object      string               `json:"object"`
+	Created     FlexibleTimestamp    `json:"created"`
+	Choices     []TextResponseChoice `json:"choices"`
+	model.Usage `json:"usage"`
+}
+
+// ToTextResponse converts TextResponseFlexible to TextResponse
+func (trf *TextResponseFlexible) ToTextResponse() *TextResponse {
+	return &TextResponse{
+		Id:      trf.Id,
+		Model:   trf.Model,
+		Object:  trf.Object,
+		Created: trf.Created.Int64(),
+		Choices: trf.Choices,
+		Usage:   trf.Usage,
+	}
 }
 
 type EmbeddingResponseItem struct {

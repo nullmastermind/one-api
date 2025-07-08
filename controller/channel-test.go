@@ -50,7 +50,7 @@ func buildTestRequest(model string) *relaymodel.GeneralOpenAIRequest {
 }
 
 func parseTestResponse(resp string) (*openai.TextResponse, string, error) {
-	var response openai.TextResponse
+	var response openai.TextResponseFlexible
 	err := json.Unmarshal([]byte(resp), &response)
 	if err != nil {
 		return nil, "", err
@@ -62,7 +62,7 @@ func parseTestResponse(resp string) (*openai.TextResponse, string, error) {
 	if !ok {
 		return nil, "", errors.New("response content is not string")
 	}
-	return &response, stringContent, nil
+	return response.ToTextResponse(), stringContent, nil
 }
 
 func testChannel(ctx context.Context, channel *model.Channel, request *relaymodel.GeneralOpenAIRequest) (responseMessage string, err error, openaiErr *relaymodel.Error) {
